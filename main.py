@@ -24,7 +24,7 @@ def trending_forecast():
     
     return result
 
-@app.route('/rest/forecast/coins')
+@app.route('/rest/forecast/coins', methods=['GET'])
 def user_option_forecast():
     data = request.json
     data = missingvalues_tool(data)
