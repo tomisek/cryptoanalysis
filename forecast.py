@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 from pycoingecko import CoinGeckoAPI
 cg = CoinGeckoAPI()
 
+
 # Get coin market by id and create dataframe
 def getCoinMarket(cryptos, currency, coin_market_period):
   df = {}
@@ -99,3 +100,14 @@ def analyseChosenCoins(cryptos, days, currency, coin_market_period):
   future = getFutureVal(cryptos, forecast, days)
   rec = futureRecommendation(cryptos, future)
   return rec
+
+
+days = 365
+currency = 'usd'
+coin_market_period = 'max'
+
+#cryptos = ['bitcoin']
+#result = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
+
+#print(result)
+
