@@ -1,13 +1,37 @@
-from flask import Flask , request, jsonify
+from flask import Flask, request, jsonify, session, redirect
 from forecast import analyseChosenCoins, getTrending
 from help_functions import missingvalues_tool
+from functools import wraps
+import pymongo
 app = Flask(__name__)
+
+
+
+#Database
+client = pymongo.MongoClient('localhost', 27017)
+db = client.user_login
+
+# Decorator
+def login_required(f):
+    @wraps(f)
+    def wrap(*arg, **kwargs):
+        if 'logged_in' in session:
+            # If user is logged in, continue to userpage
+            return f(*args, **kwargs)
+        else:
+            return redirect('/')
+
+# User routes
+from user import routes
 
 
 @app.route('/')
 def hello_world():
     return 'hello world'
 
+@app.route('/userpage')
+def userpage():
+    return 'userpage'
 
 @app.route('/rest/forecast/trending', methods=['GET'])
 def trending_forecast():
@@ -43,6 +67,6 @@ def user_option_forecast():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
 
