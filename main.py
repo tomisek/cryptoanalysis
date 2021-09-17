@@ -1,5 +1,6 @@
 from flask import Flask , request, jsonify
 from forecast import analyseChosenCoins, getTrending
+from charts import getTopChart
 from help_functions import missingvalues_tool
 app = Flask(__name__)
 
@@ -37,6 +38,13 @@ def user_option_forecast():
 
     result = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
 
+    return result
+
+@app.route('/rest/topchart', methods=['GET'])
+def top_chart():
+    data = request.json
+    currency = data['currency']
+    result = getTopChart(currency)
     return result
 
 
