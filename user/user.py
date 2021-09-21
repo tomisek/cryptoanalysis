@@ -6,7 +6,7 @@ import uuid
 class User:
     
     def session(self, user):
-        del user['password']
+        del user['password'] # remove password from session
         session['logged_in'] = True
         session['user'] = user
 
@@ -15,8 +15,8 @@ class User:
     def register(self, name, email, password):
 
         user = {
-            #create a random id
-            "_id": uuid.uuid4().hex,
+            #create a random id, "_id" for mongodb key
+            "_id": uuid.uuid4().hex, 
             "name": name,
             "email": email,
             "password": password
@@ -40,13 +40,14 @@ class User:
         print('logged out')
         return redirect('/')
 
-    def login(self, email):
+    def login(self, email, password):
         user = db.users.find_one({
             "email": email
         })
 
-        if user: 
+        # if user is found and the password is a verified match, start session
+        if user and pbkdf2_sha256.verify(password, user['password']): 
             print('logged in')
             return self.session(user)
 
-        return jsonify({"error": "Invalid email"}), 401
+        return jsonify({"error": "Invalid email"}), 401 # 401 unauthorized

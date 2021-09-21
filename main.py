@@ -3,8 +3,9 @@ from forecast import analyseChosenCoins, getTrending
 from help_functions import missingvalues_tool
 from functools import wraps
 import pymongo
-app = Flask(__name__)
-
+# app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
+app.config.from_pyfile('config.py')
 
 
 #Database
@@ -14,12 +15,13 @@ db = client.user_login
 # Decorator
 def login_required(f):
     @wraps(f)
-    def wrap(*arg, **kwargs):
+    def wrap(*args, **kwargs):
         if 'logged_in' in session:
-            # If user is logged in, continue to userpage
+            # If user is logged in, continue to userpage(requested function)
             return f(*args, **kwargs)
         else:
             return redirect('/')
+    return wrap
 
 # User routes
 from user import routes
@@ -30,6 +32,7 @@ def hello_world():
     return 'hello world'
 
 @app.route('/userpage')
+@login_required
 def userpage():
     return 'userpage'
 

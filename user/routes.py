@@ -26,5 +26,6 @@ def logout():
 @app.route('/user/login', methods=['POST'])
 def login():
     email = request.json['email']
+    password = request.json['password']
 
-    return User().login(email)
+    return User().login(email, password)
