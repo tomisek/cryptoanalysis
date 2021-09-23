@@ -29,7 +29,7 @@ def fitProphet(cryptos, df):
       weekly_seasonality='auto', # taking weekly seasonality into account
       daily_seasonality='auto', # taking daily seasonality into account
       seasonality_mode='multiplicative', # additive (for more linear data) or multiplicative seasonality (for more non-linear data)
-      changepoint_prior_scale=0.05 # determines the flexibility of the trend (how mutch the trend changes at the changepoints) 0.05 = Default
+      changepoint_prior_scale=0.05, # determines the flexibility of the trend (how mutch the trend changes at the changepoints) 0.05 = Default
     )
     m[x].fit(df[x])
   return m
@@ -38,7 +38,8 @@ def fitProphet(cryptos, df):
 def makeForecast(cryptos, m, days):
   forecast = {}
   for x in cryptos:
-    forecast[x] = m[x].predict(m[x].make_future_dataframe(periods=days))
+    future = m[x].make_future_dataframe(periods=days)
+    forecast[x] = m[x].predict(future)
   return forecast
 
 # Gets the day that are in the future
@@ -52,21 +53,16 @@ def getFutureVal(cryptos, forecast, days):
 def futureRecommendation(cryptos, future):
   recs = {}
   for x in cryptos:
-
-      # Uses yhat_upper when yhat is negative
-      if max(future[x]['yhat']) > 0 and min(future[x]['yhat']) > 0:
-        yhat = future[x]['yhat']
-      else:
-        yhat = future[x]['yhat_upper']
+      
         
-      my_indexed_list_min = zip(yhat, range(len(yhat)))
-      my_indexed_list_max = zip(yhat, range(len(yhat)))
+      my_indexed_list_min = zip(future[x]['yhat'], range(len(future[x]['yhat'])))
+      my_indexed_list_max = zip(future[x]['yhat'], range(len(future[x]['yhat'])))
       min_value, min_index = min(my_indexed_list_min)
       max_value, max_index = max(my_indexed_list_max)
 
       # calculate percentage difference
-      change = max(future[x]['yhat']) - min(yhat)
-      change_procent = round(change / min(yhat) * 100)
+      change = max(future[x]['yhat']) - min(future[x]['yhat'])
+      change_procent = round(change / min(future[x]['yhat']) * 100)
 
       recs[x] = {
           'max_gain_procent' : change_procent,
@@ -77,7 +73,7 @@ def futureRecommendation(cryptos, future):
       }
 
   recs_df = pd.DataFrame(recs).transpose()
-  return recs_df.to_json(orient='index')
+  return recs_df.to_dict(orient="index")
 
 # Gets the trending coins
 def getTrending():
