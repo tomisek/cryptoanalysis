@@ -6,6 +6,7 @@ from functools import wraps
 import pymongo
 
 app = Flask(__name__, instance_relative_config=True)
+# Need to add a 'instance'-folder with config.py-file containing secret key!
 app.config.from_pyfile('config.py')
 
 
