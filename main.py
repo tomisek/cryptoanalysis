@@ -1,6 +1,6 @@
 from flask import Flask , request, jsonify
-from forecast import analyseChosenCoins, getTrending
-from charts import getTopChart
+from forecast import analyseChosenCoins
+from api_calls import getTopChart, getTrending, getSingleCoinHistory
 from help_functions import missingvalues_tool, numeric_evaluations
 app = Flask(__name__)
 
@@ -41,6 +41,25 @@ def top_chart():
     currency = data['currency']
     result = getTopChart(currency)
     return result
+
+
+@app.route('/rest/market/coin', methods=['GET'])
+def market_single_coin():
+    data = request.json
+    
+
+    coin = data['coins']
+    currency = data['currency']
+    market_period = 'max'
+
+    result = getSingleCoinHistory(coin, currency, market_period)
+
+    return result
+
+
+
+
+
 
 
 if __name__ == '__main__':
