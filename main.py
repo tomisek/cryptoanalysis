@@ -2,8 +2,10 @@ from flask import Flask , request, jsonify
 from forecast import analyseChosenCoins, getTrending
 from charts import getTopChart
 from help_functions import missingvalues_tool, numeric_evaluations
-app = Flask(__name__)
+from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def hello_world():
@@ -37,10 +39,11 @@ def user_option_forecast():
 
 @app.route('/rest/topchart', methods=['GET'])
 def top_chart():
-    data = request.json
-    currency = data['currency']
+    currency = request.args.get('currency')
     result = getTopChart(currency)
     return result
+
+
 
 
 if __name__ == '__main__':

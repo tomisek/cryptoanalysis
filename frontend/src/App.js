@@ -1,10 +1,11 @@
 import Header from './components/Header'
+import Topcoins from './components/Topcoins';
 
 function App() {
   return (
     <div className="App">
         <Header />
-        <h1>App.js</h1>
+        <Topcoins />
     </div>
   );
 }
