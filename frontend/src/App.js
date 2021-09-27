@@ -1,12 +1,25 @@
+import React from 'react'
 import Header from './components/Header'
+import { LoginButton } from './components/LoginButton/LoginButton'
+// import {Routing} from './routes/Routing'
+import { UserProvider } from './shared/global/provider/UserProvider'
+import './shared/global/css/Global.css'
 
-function App() {
+
+function App() { 
+
   return (
-    <div className="App">
+    <UserProvider>
+     
+      <div className="App">
+        <LoginButton />
         <Header />
         <h1>App.js</h1>
-    </div>
+      </div>
+     
+
+    </UserProvider>
+
   );
 }
-
-export default App;
+export default App; 
