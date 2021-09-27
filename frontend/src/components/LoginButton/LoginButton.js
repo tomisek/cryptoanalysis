@@ -13,7 +13,20 @@ export const LoginButton = () => {
     
 
     useEffect(() => {
-        fetch("")
+        fetch("http://localhost:3000/user/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json',
+            },
+            body: JSON.stringify(authenticatedUser),
+        })
+        .then(response => response.json())
+        .then(authenticatedUser => {
+            console.log('Succes:', authenticatedUser);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        })
     })
 
     const displayUserIfAuthenticated = () => {
