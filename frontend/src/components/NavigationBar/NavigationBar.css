@@ -1,0 +1,8 @@
+.navBar{
+    background-color: rgb(14, 241, 117);
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+.loginButton{
+    grid-column: 5/10;
+}
