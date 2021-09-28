@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
 import './Topcoins.css'
 
 function Topcoins() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [topcoins, setTopcoins] = useState([]);
+    
+    const fetchData = async () => {
+        try {
+            const {data} = await CryptoShuttleService.topChart()
+            setIsLoaded(true);
+            setTopcoins(data);
+        } catch(error) {
+            setIsLoaded(true);
+            setError(error);
+        }
+    }
 
     useEffect(() => {
-        fetch("http://127.0.0.1:5000/rest/topchart?currency=usd")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setIsLoaded(true);
-                    setTopcoins(result);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-            )
+        fetchData()
     }, [])
 
     if (error) {
