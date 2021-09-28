@@ -1,0 +1,24 @@
+.topcoins {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    padding: 20px;
+    align-self: center;
+}
+th,td {
+    padding: 10px 30px;
+}
+
+td {
+    text-align: center;
+}
+
+.negative {
+    color: red;
+}
+
+.positive {
+    color: green;
+}

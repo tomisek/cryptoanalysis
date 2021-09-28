@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import './Topcoins.css'
 
 function Topcoins() {
     const [error, setError] = useState(null);
@@ -26,7 +27,7 @@ function Topcoins() {
         return <div>Loading...</div>;
     } else {
         return (
-            <>
+            <div className="topcoins">
                 <table>
                     <thead>
                         <tr>
@@ -44,15 +45,17 @@ function Topcoins() {
                                 <td><img src={topcoins[key].image} alt="logo" height="30" /></td>
                                 <td>{topcoins[key].market_cap_rank}</td>
                                 <td>{topcoins[key].name}</td>
-                                <td>{topcoins[key].current_price}</td>
-                                <td>{topcoins[key].price_change_percentage_24h}%</td>
-                                <td>{topcoins[key].market_cap}</td>
+                                <td>${topcoins[key].current_price.toLocaleString()}</td>
+                                <td className={(topcoins[key].price_change_percentage_24h < 0) ? 'negative' : 'positive'}>
+                                    {topcoins[key].price_change_percentage_24h.toLocaleString()}%
+                                </td>
+                                <td>${topcoins[key].market_cap.toLocaleString()}</td>
                             </tr>
                         ))}
                     </tbody>
 
                 </table>
-            </>
+            </div>
         );
     }
 }
