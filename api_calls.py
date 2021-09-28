@@ -36,4 +36,10 @@ def getSingleCoinHistory(coin ,currency, days):
 
 
 
+def getTrendingInfo(currency):
+  
+  trending = getTrending()
 
+  info = cg.get_price(ids=trending, vs_currencies=currency, include_market_cap=True, include_24hr_vol=True, include_24hr_change=True, include_last_updated_at=True)
+
+  return info
