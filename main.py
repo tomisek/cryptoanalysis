@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify, session, redirect
-from forecast import analyseChosenCoins, getTrending
+from forecast import analyseChosenCoins
 from api_calls import getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
 from help_functions import missingvalues_tool, numeric_evaluations
+from flask_cors import CORS
 from functools import wraps
 import pymongo
 
@@ -28,6 +29,8 @@ def login_required(f):
 # User routes
 from user import routes
 
+app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def hello_world():
@@ -64,13 +67,11 @@ def user_option_forecast():
     return jsonify(result)
 
 @app.route('/rest/topchart', methods=['GET'])
-def top_chart(): 
-    
+def top_chart():
     currency = request.args.get('currency')
     result = getTopChart(currency)
     return result
-    
-    
+
 
 @app.route('/rest/market/graph', methods=['GET'])
 def market_single_coin():
@@ -93,6 +94,8 @@ def trending_info():
     result = getTrendingInfo(currency='usd')
 
     return result
+
+
 
 
 if __name__ == '__main__':
