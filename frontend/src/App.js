@@ -1,25 +1,24 @@
 import React from 'react'
-import Header from './components/Header'
-import { LoginButton } from './components/LoginButton/LoginButton'
-// import {Routing} from './routes/Routing'
+import { Routing } from './routes/Routing'
 import { UserProvider } from './shared/global/provider/UserProvider'
 import './shared/global/css/Global.css'
+import {NavigationBar} from './components/NavigationBar/NavigationBar'
 
 
-function App() { 
+function App() {
 
   return (
     <UserProvider>
-     
-      <div className="App">
-        <LoginButton />
-        <Header />
-        <h1>App.js</h1>
-      </div>
-     
+      
+      <Routing>
+
+        <NavigationBar/>
+        
+
+      </Routing>
 
     </UserProvider>
 
   );
 }
-export default App; 
+export default App;

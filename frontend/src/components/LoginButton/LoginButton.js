@@ -9,10 +9,10 @@ export const LoginButton = () => {
  
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-    const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
+    const [authenticatedUser, setAuthenticatedUser] = useState()
     
 
-    useEffect(() => {
+    /* useEffect(() => {
         fetch("http://localhost:3000/user/login", {
             method: 'POST',
             headers: {
@@ -27,7 +27,7 @@ export const LoginButton = () => {
         .catch((error) => {
             console.error('Error:', error);
         })
-    })
+    }) */
 
     const displayUserIfAuthenticated = () => {
         return (authenticatedUser) ? <Profile/>
@@ -36,14 +36,16 @@ export const LoginButton = () => {
 
     const handleSubmit = (event)   => {
         event.preventDefault()
+        /* setAuthenticatedUser({email, password}) */
         console.log(authenticatedUser)
         console.log(authenticatedUser.email)
         console.log(authenticatedUser.password)
     }
 
     const login = () => {
-        setAuthenticatedUser({email, password})
+       
         localStorage.setItem("email", email) 
+        setAuthenticatedUser({email, password})
             
     }
 
@@ -52,10 +54,10 @@ export const LoginButton = () => {
             <Popup trigger={<button> Login</button>} position="right center">
                 <div>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="email"><b>Email</b></label>
+                        <label ><b>Email</b></label>
                         <input onChange={event => setEmail(event.target.value)} type="text" placeholder="Enter Email" name="email" required></input>
 
-                        <label htmlFor="psw"><b>Password</b></label>
+                        <label><b>Password</b></label>
                         <input onChange={event => setPassword(event.target.value)} type="password" placeholder="Enter Password" name="psw" required></input>
 
                         <button onClick={() => login()}>Submit</button>      
