@@ -75,18 +75,6 @@ def futureRecommendation(cryptos, future):
   recs_df = pd.DataFrame(recs).transpose()
   return recs_df.to_dict(orient="index")
 
-# Gets the trending coins
-def getTrending():
-  trending = cg.get_search_trending()
-
-  df = pd.DataFrame(trending['coins'])
-  df['item']
-  ids = []
-
-  for id in df['item']:
-    ids.append(id['id'])
-
-  return ids
 
 # Main function to run the forecast
 def analyseChosenCoins(cryptos, days, currency, coin_market_period):

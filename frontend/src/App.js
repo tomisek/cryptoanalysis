@@ -1,13 +1,24 @@
-import Header from './components/Header'
-import Topcoins from './components/topcoins/Topcoins';
+import React from 'react'
+import { Routing } from './routes/Routing'
+import { UserProvider } from './shared/global/provider/UserProvider'
+import './shared/global/css/Global.css'
+import {NavigationBar} from './components/NavigationBar/NavigationBar'
+
 
 function App() {
+
   return (
-    <div className="App">
-        <Header />
-        <Topcoins />
-    </div>
+    <UserProvider>
+      
+      <Routing>
+
+        <NavigationBar/>
+        
+
+      </Routing>
+
+    </UserProvider>
+
   );
 }
-
 export default App;

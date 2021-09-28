@@ -4,6 +4,7 @@
 
 def missingvalues_tool(data):
 
+
     ### Default value variables
     d_days = 365
     d_currency = 'usd'
