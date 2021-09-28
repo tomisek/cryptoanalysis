@@ -1,16 +1,42 @@
-from flask import Flask , request, jsonify
-from forecast import analyseChosenCoins
+from flask import Flask, request, jsonify, session, redirect
+from forecast import analyseChosenCoins, getTrending
 from api_calls import getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
 from help_functions import missingvalues_tool, numeric_evaluations
+from functools import wraps
+import pymongo
+
+app = Flask(__name__, instance_relative_config=True)
+# Need to add a 'instance'-folder with config.py-file containing secret key!
+app.config.from_pyfile('config.py')
 
 
+#Database
+client = pymongo.MongoClient('localhost', 27017)
+db = client.user_login
 
-app = Flask(__name__)
+# Decorator
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            # If user is logged in, continue to userpage(requested function)
+            return f(*args, **kwargs)
+        else:
+            return redirect('/')
+    return wrap
+
+# User routes
+from user import routes
 
 
 @app.route('/')
 def hello_world():
     return 'hello world'
+
+@app.route('/userpage')
+@login_required
+def userpage():
+    return 'userpage'
 
 @app.route('/rest/forecast/trending', methods=['GET'])
 def trending_forecast():
@@ -70,6 +96,6 @@ def trending_info():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
 
