@@ -1,4 +1,4 @@
-
+import pandas as pd
 # Functions for easier readability in the API  
 # Might be moved in a later state 
 
@@ -54,11 +54,22 @@ def numeric_evaluations(data):
         
     
 
+def check_history(data, cryptos):
+    
+    for x in cryptos:
 
+        now = pd.to_datetime('now')
+        data[x]['output'] = data[x]['ds'].between(now - pd.Timedelta(30, 'd'), now)
 
+    new_data = {k:v for k, v in data.items() if not v['output'][0]}
+    unwanted = {k:v for k, v in data.items() if v['output'][0]}
+    keysList = list(unwanted.keys())
+    
+    cryptos = [element for element in cryptos if element not in keysList]
+    
+        
+    return new_data, cryptos
     
 
 
-    
-    
 
