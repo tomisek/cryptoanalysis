@@ -4,4 +4,8 @@ const topChart = () => {
     return http.get("/rest/topchart?currency=usd")
 }
 
-export default {topChart}
+const marketGraph = (slug) => {
+    return http.get(`/rest/market/graph?coin=${slug}`)
+}
+
+export default {topChart, marketGraph}
