@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { HomeView } from '../views/HomeView'
 import { UserContext } from '../shared/global/provider/UserProvider'
 import { RegisterView } from '../views/RegisterView'
+import { CoinView } from '../views/CoinView'
 
 
 export const Routing = (props) => {
@@ -24,6 +25,7 @@ export const Routing = (props) => {
             {props.children}
             <Switch>
                 <Route exact path="/userregister" component={RegisterView} />
+                <Route path="/coins/:slug" component={CoinView} />
                 <Route component={HomeView} />
 
             </Switch>
