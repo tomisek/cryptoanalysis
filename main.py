@@ -29,7 +29,7 @@ def login_required(f):
 # User routes
 from user import routes
 
-app = Flask(__name__)
+#app = Flask(__name__)
 CORS(app)
 
 @app.route('/')

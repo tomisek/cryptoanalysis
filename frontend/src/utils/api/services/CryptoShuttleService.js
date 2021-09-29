@@ -4,4 +4,11 @@ const topChart = () => {
     return http.get("/rest/topchart?currency=usd")
 }
 
-export default {topChart}
+const loginUser = (userLogin) => {
+    
+    return http.post("/user/login", userLogin,  {
+        
+    } );
+}
+
+export default {topChart, loginUser}

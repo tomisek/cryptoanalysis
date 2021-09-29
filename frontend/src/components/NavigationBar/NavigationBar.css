@@ -4,5 +4,16 @@
     grid-template-columns: repeat(10, 1fr);
 }
 .loginButton{
-    grid-column: 5/10;
+    grid-column: 3/10;
+    align-self: center;
+}
+.logotype{
+    width: 100px;
+}
+.register{
+    align-self: center;
+}
+.logotype,
+.register{
+    cursor: pointer;
 }
