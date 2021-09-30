@@ -1,54 +1,32 @@
-import React, { useContext, useState, useEffect } from "react"
+import React, { useContext, useState } from "react"
 import './LoginButton.css'
 import Popup from "reactjs-popup"
 import { UserContext } from "../../shared/global/provider/UserProvider"
-import { Profile } from "../Profile/Profile"
+import CryptoShuttleService from "../../utils/api/services/CryptoShuttleService"
 
 
 export const LoginButton = () => {
  
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-    const [authenticatedUser, setAuthenticatedUser] = useState()
+    const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
     
 
-    /* useEffect(() => {
-        fetch("http://localhost:3000/user/login", {
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json',
-            },
-            body: JSON.stringify(authenticatedUser),
-        })
-        .then(response => response.json())
-        .then(authenticatedUser => {
-            console.log('Succes:', authenticatedUser);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        })
-    }) */
-
-    const displayUserIfAuthenticated = () => {
-        return (authenticatedUser) ? <Profile/>
-        : <Popup/>
-    }
-
-    const handleSubmit = (event)   => {
+    const handleSubmit = async (event)   => {
         event.preventDefault()
-        /* setAuthenticatedUser({email, password}) */
-        console.log(authenticatedUser)
-        console.log(authenticatedUser.email)
-        console.log(authenticatedUser.password)
-    }
 
-    const login = () => {
-       
-        localStorage.setItem("email", email) 
-        setAuthenticatedUser({email, password})
-            
+       try{
+        const userFromServer = await CryptoShuttleService.loginUser({email, password})
+        
+        console.log(userFromServer.data)
+        setAuthenticatedUser(userFromServer.data.name)
+        localStorage.setItem("name", userFromServer.data.name)
+        }
+        catch(error){
+            console.log("funkar ej")
+        }        
     }
-
+    
     return (
         <>
             <Popup trigger={<button> Login</button>} position="right center">
@@ -60,12 +38,12 @@ export const LoginButton = () => {
                         <label><b>Password</b></label>
                         <input onChange={event => setPassword(event.target.value)} type="password" placeholder="Enter Password" name="psw" required></input>
 
-                        <button onClick={() => login()}>Submit</button>      
+                        <button type="submit" >Submit</button> 
 
                     </form>
                 </div>
             </Popup>
-            {displayUserIfAuthenticated()}
+            {/* {displayUserIfAuthenticated()} */}
             
         </>
     )
