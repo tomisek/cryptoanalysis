@@ -23,17 +23,25 @@ export const Register = (props) => {
         try{
             const response = await CryptoShuttleService.registerUser(userObject)
             console.log(response);
+            setAuthenticatedUser(userObject)
+
         }
         catch(error){
+            if (error.response.data){
+                // Show error message from server
+                alert(error.response.data['error']);
+            }
+
             console.error(error.message);
         }
     }
 
     return (
-        <>
-            <h1 className="title">{props.title}</h1>
+        <div className="registerPage">
 
-            <div>
+            <h1 className="title">{props.title}</h1>
+            
+            <div className="formWrapper">
                 <form onSubmit={registerUser}>
         
                     <span>Email</span><input type="email" onChange={event => setEmail(event.target.value)} required></input> <br/>
@@ -42,6 +50,6 @@ export const Register = (props) => {
                     <button type="submit">Register</button>
                 </form>
             </div>
-        </>
+        </div>
     )
 }

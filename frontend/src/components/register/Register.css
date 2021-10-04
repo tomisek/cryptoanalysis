@@ -1,0 +1,22 @@
+.registerPage{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-content:  center;
+
+}
+
+.formWrapper{
+    grid-column: 5 / 9;
+}
+h1{
+    text-align: center;
+}
+input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
