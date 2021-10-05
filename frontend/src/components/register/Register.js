@@ -10,7 +10,13 @@ export const Register = (props) => {
     const [ name, setName ] = useState()
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
 
+    const logInUser = (userObject) => {
 
+        setAuthenticatedUser(userObject['email'])
+        localStorage.setItem("name", userObject['name'])
+        console.log(authenticatedUser);
+
+    }
     const registerUser = async (event) =>{
         event.preventDefault()
         
@@ -23,8 +29,7 @@ export const Register = (props) => {
         try{
             const response = await CryptoShuttleService.registerUser(userObject)
             console.log(response);
-            setAuthenticatedUser(userObject)
-
+            logInUser(userObject)
         }
         catch(error){
             if (error.response.data){
@@ -38,15 +43,14 @@ export const Register = (props) => {
 
     return (
         <div className="registerPage">
-
-            <h1 className="title">{props.title}</h1>
             
             <div className="formWrapper">
+                <h1 className="title">{props.title}</h1>
                 <form onSubmit={registerUser}>
         
-                    <span>Email</span><input type="email" onChange={event => setEmail(event.target.value)} required></input> <br/>
-                    <span>Name</span><input onChange={event => setName(event.target.value)}></input> <br/>
-                    <span>Password</span><input type="password" onChange={event => setPassword(event.target.value)} required></input> <br/>
+                    <label for="email">Email</label><input id="email" type="email" onChange={event => setEmail(event.target.value)} required></input>
+                    <label for="name">Name</label><input id="name" onChange={event => setName(event.target.value)}></input>
+                    <label for="password">Password</label><input id="password" type="password" onChange={event => setPassword(event.target.value)} required></input>
                     <button type="submit">Register</button>
                 </form>
             </div>
