@@ -8,4 +8,12 @@ const marketGraph = (slug) => {
     return http.get(`/rest/market/graph?coin=${slug}`)
 }
 
-export default {topChart, marketGraph}
+const loginUser = (userLogin) => {
+    
+    return http.post("/user/login", userLogin,  {
+        
+    } );
+}
+
+export default {topChart, loginUser, marketGraph}
+

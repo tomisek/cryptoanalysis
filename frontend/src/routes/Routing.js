@@ -11,7 +11,8 @@ export const Routing = (props) => {
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
 
     const checkIfUserIsAuthenticatedInBrowser = () => {
-        setAuthenticatedUser(localStorage.getItem("email"))
+        setAuthenticatedUser(localStorage.getItem("name"))
+        console.log(authenticatedUser)
     }
 
     useEffect(() => {
