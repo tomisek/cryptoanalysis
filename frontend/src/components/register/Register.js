@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import './Register.css'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
 import { UserContext } from '../../shared/global/provider/UserProvider'
+import { useHistory } from 'react-router-dom'
 
 export const Register = (props) => {
 
@@ -9,12 +10,14 @@ export const Register = (props) => {
     const [ password, setPassword ] = useState()
     const [ name, setName ] = useState()
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
+    const history = useHistory()
 
     const logInUser = (userObject) => {
 
         setAuthenticatedUser(userObject['email'])
         localStorage.setItem("name", userObject['name'])
         console.log(authenticatedUser);
+        history.push('/userpage')
 
     }
     const registerUser = async (event) =>{
