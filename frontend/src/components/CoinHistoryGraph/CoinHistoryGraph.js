@@ -11,6 +11,7 @@ import {
     Area,
     Tooltip,
     CartesianGrid,
+    Brush,
 } from "recharts";
 
 const CoinHistoryGraph = () => {
@@ -100,6 +101,7 @@ const CoinHistoryGraph = () => {
                         />
                         <Tooltip content={<CustomTooltip />} animationDuration={0} />
                         <CartesianGrid  opacity={0.4} vertical={false}/>
+                        <Brush dataKey="timestamp" />
                     </AreaChart>
                 </ResponsiveContainer>
             </div>

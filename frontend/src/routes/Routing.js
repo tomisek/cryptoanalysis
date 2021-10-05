@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { HomeView } from '../views/HomeView'
 import { UserContext } from '../shared/global/provider/UserProvider'
 import { RegisterView } from '../views/RegisterView'
-import { CoinView } from '../views/CoinView'
+import { CoinView } from '../views/CoinView/CoinView'
 
 
 export const Routing = (props) => {
