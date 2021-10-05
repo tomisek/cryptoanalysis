@@ -64,7 +64,7 @@ const CoinHistoryGraph = () => {
                 <div className="custom-tooltip">
                     <p className="label-tooltip">{`${formattedDate}`}</p>
                     <p className="desc-tooltip">
-                        <span className="value-tooltip">Prce: {payload[0].value.toLocaleString()}</span>
+                        <span className="value-tooltip">Price: {payload[0].value.toLocaleString()}</span>
                     </p>
                 </div>
             );
