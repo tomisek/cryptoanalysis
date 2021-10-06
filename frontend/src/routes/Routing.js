@@ -10,6 +10,13 @@ export const Routing = (props) => {
 
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
 
+    const blockIfAuthenticated = (viewRoute) => {
+        return authenticatedUser ? HomeView : viewRoute
+    }
+    const blockIfNotAuthenticated = (viewRoute) => {
+        return !authenticatedUser ? HomeView : viewRoute
+    }
+
     const checkIfUserIsAuthenticatedInBrowser = () => {
         setAuthenticatedUser(localStorage.getItem("name"))
         console.log(authenticatedUser)
@@ -25,8 +32,8 @@ export const Routing = (props) => {
         <Router>
             {props.children}
             <Switch>
-                <Route exact path="/userregister" component={RegisterView} />
-                <Route exact path="/userpage" component={UserView} />
+                <Route exact path="/userregister" component={blockIfAuthenticated(RegisterView)} />
+                <Route exact path="/userpage" component={blockIfNotAuthenticated(UserView)} />
                 <Route component={HomeView} />
 
             </Switch>
