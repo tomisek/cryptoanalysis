@@ -51,9 +51,9 @@ export const Register = (props) => {
                 <h1 className="title">{props.title}</h1>
                 <form onSubmit={registerUser}>
         
-                    <label for="email">Email</label><input id="email" type="email" onChange={event => setEmail(event.target.value)} required></input>
-                    <label for="name">Name</label><input id="name" onChange={event => setName(event.target.value)}></input>
-                    <label for="password">Password</label><input id="password" type="password" onChange={event => setPassword(event.target.value)} required></input>
+                    <label htmlFor="email">Email</label><input id="email" type="email" onChange={event => setEmail(event.target.value)} required></input>
+                    <label htmlFor="name">Name</label><input id="name" onChange={event => setName(event.target.value)}></input>
+                    <label htmlFor="password">Password</label><input id="password" type="password" onChange={event => setPassword(event.target.value)} required></input>
                     <button type="submit">Register</button>
                 </form>
             </div>
