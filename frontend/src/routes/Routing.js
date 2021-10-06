@@ -4,6 +4,7 @@ import { HomeView } from '../views/HomeView'
 import { UserContext } from '../shared/global/provider/UserProvider'
 import { RegisterView } from '../views/RegisterView'
 import { UserView } from '../views/UserView'
+import { CoinView } from '../views/CoinView/CoinView'
 
 
 export const Routing = (props) => {
@@ -34,6 +35,7 @@ export const Routing = (props) => {
             <Switch>
                 <Route exact path="/userregister" component={blockIfAuthenticated(RegisterView)} />
                 <Route exact path="/userpage" component={blockIfNotAuthenticated(UserView)} />
+                <Route path="/coins/:slug" component={CoinView} />
                 <Route component={HomeView} />
 
             </Switch>
