@@ -9,10 +9,10 @@
     grid-column: 5 / 9;
     margin: 10px 0;
 }
-h1{
+.formWrapper h1{
     text-align: center;
 }
-input{
+.formWrapper input{
     width: 100%;
     padding: 12px;
     margin: 8px 0px 15px 0px;
