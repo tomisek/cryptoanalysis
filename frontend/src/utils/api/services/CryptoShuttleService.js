@@ -11,4 +11,8 @@ const loginUser = (userLogin) => {
     } );
 }
 
-export default {topChart, loginUser}
+const trendingInfo = () => {
+    return http.get("/rest/trending/info")
+}
+
+export default {topChart, loginUser, trendingInfo}
