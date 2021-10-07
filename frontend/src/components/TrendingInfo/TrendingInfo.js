@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
 import './TrendingInfo.css'
+import { Link } from 'react-router-dom';
 
 export const TrendingInfo = () => {
     const [error, setError] = useState(null);
@@ -22,9 +23,6 @@ export const TrendingInfo = () => {
         fetchData()
     }, [])
 
-    console.log(trendingInfo)
-
-
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -32,11 +30,14 @@ export const TrendingInfo = () => {
     } else {
         return (
             <div className="trending-info">
+                <h3>Trending</h3>
                 {Object.keys(trendingInfo).map((key, index) => (
                     <div key={index}>
-                        <h4>{key}</h4>
-                        <div>{trendingInfo[key].usd}</div>
-                        <div>{trendingInfo[key].usd_24h_change}</div>
+                        <Link to={`/coins/${key}`} className="trending-links"><h4>{key}</h4></Link>
+                        <div>${trendingInfo[key].usd}</div>
+                        <div className={(trendingInfo[key].usd_24h_change < 0) ? 'negative' : 'positive'}>
+                           <div>{trendingInfo[key].usd_24h_change.toLocaleString()} %</div>
+                        </div>
                     </div>
                 ))}
             </div>
