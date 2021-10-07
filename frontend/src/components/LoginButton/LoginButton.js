@@ -34,7 +34,7 @@ export const LoginButton = () => {
     
     return (
         <div >
-            <Popup  trigger={<button> Login</button>} modal >
+            <Popup  trigger={<button className="triggerButton"> Login</button>} modal >
                 {close => (
                     <div className="wrapper">
                     <form onSubmit={handleSubmit}>
