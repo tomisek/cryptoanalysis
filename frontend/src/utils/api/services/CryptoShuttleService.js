@@ -15,8 +15,13 @@ const loginUser = (userLogin) => {
     } );
 }
 
+const logoutUser = () => {
+
+    return http.get("/user/logout")
+}
+
 const registerUser = (userObject) => {
     return http.post("/user/register", userObject)
 }
 
-export default {topChart, loginUser, registerUser, marketGraph}
+export default {topChart, loginUser, logoutUser,registerUser, marketGraph}
