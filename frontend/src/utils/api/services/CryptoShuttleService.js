@@ -4,6 +4,10 @@ const topChart = () => {
     return http.get("/rest/topchart?currency=usd")
 }
 
+const marketGraph = (slug) => {
+    return http.get(`/rest/market/graph?coin=${slug}`)
+}
+
 const loginUser = (userLogin) => {
     
     return http.post("/user/login", userLogin,  {
@@ -15,4 +19,9 @@ const trendingInfo = () => {
     return http.get("/rest/trending/info")
 }
 
-export default {topChart, loginUser, trendingInfo}
+
+const registerUser = (userObject) => {
+    return http.post("/user/register", userObject)
+}
+
+export default {topChart, loginUser, registerUser, marketGraph, trendingInfo}

@@ -6,6 +6,7 @@ body{
 #root {
     display: grid;
     grid-template-rows: auto;
+    grid-template-columns: 2fr 1fr 2fr 1fr;
     grid-template-areas: 
         "header header header header"
         "main main main sidebar"
