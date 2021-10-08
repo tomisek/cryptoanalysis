@@ -23,7 +23,6 @@ export const NavigationBar = () => {
                 src={Logotype} alt="Error..." />
             <span onClick={() => history.push('/userregister')} className="register" >Register</span>
             <div className="loginButton">
-                {/* <LoginButton /> */}
                 {displayUserIfAuthenticated()}
             </div>
         </div>
