@@ -2,6 +2,7 @@ import React from 'react'
 import './CoinView.css'
 import CoinHistoryGraph from '../../components/CoinHistoryGraph/CoinHistoryGraph'
 import { useParams } from 'react-router-dom'
+import ForecastInfo from '../../components/ForecastInfo/ForecastInfo'
 
 
 export const CoinView = () => {
@@ -11,6 +12,7 @@ export const CoinView = () => {
             <div className="main">
                 <h1>{slug}</h1>
                 <CoinHistoryGraph />
+                <ForecastInfo />
             </div>
         </div>
     )
