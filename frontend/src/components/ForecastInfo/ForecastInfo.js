@@ -37,9 +37,9 @@ const ForecastInfo = () => {
                 {Object.keys(forecastInfo).map((key, index) => (
                     <div key={index}>
                         <div>Max gain: {forecastInfo[key].max_gain_procent}%</div>
-                        <div>buy date: {forecastInfo[key].buy_date}</div>
+                        <div>buy date: {forecastInfo[key].buy_date.slice(0, -13)}</div>
                         <div>buy price: ${forecastInfo[key].buy_price}</div>
-                        <div>sell date: {forecastInfo[key].sell_date}</div>
+                        <div>sell date: {forecastInfo[key].sell_date.slice(0, -13)}</div>
                         <div>sell price: ${forecastInfo[key].sell_price}</div>
                     </div>
                 ))}
