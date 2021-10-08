@@ -8,8 +8,8 @@ import ForecastInfo from '../../components/ForecastInfo/ForecastInfo'
 export const CoinView = () => {
     let { slug } = useParams()
     return (
-        <div className="coin-view">
-            <div className="main">
+        <div className="main">
+            <div className="coin-view">
                 <h1>{slug}</h1>
                 <CoinHistoryGraph />
                 <ForecastInfo />
