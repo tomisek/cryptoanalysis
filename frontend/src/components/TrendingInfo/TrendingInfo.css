@@ -1,0 +1,18 @@
+.trending-info {
+    text-align: center;
+    border: 1px solid black;
+    padding-bottom: 20px;
+}
+
+.trending-info h4 {
+    margin-bottom: 0;
+}
+
+.trending-links {
+    text-decoration: none;
+    color: inherit;
+}
+
+.trending-links h4 {
+    font-size: 1em;
+}

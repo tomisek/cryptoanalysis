@@ -15,13 +15,21 @@ const loginUser = (userLogin) => {
     } );
 }
 
+
 const logoutUser = () => {
 
     return http.get("/user/logout")
 }
 
+
+const trendingInfo = () => {
+    return http.get("/rest/trending/info")
+}
+
+
 const registerUser = (userObject) => {
     return http.post("/user/register", userObject)
 }
 
-export default {topChart, loginUser, logoutUser,registerUser, marketGraph}
+export default {topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo}
+
