@@ -15,8 +15,13 @@ const loginUser = (userLogin) => {
     } );
 }
 
+const trendingInfo = () => {
+    return http.get("/rest/trending/info")
+}
+
+
 const registerUser = (userObject) => {
     return http.post("/user/register", userObject)
 }
 
-export default {topChart, loginUser, registerUser, marketGraph}
+export default {topChart, loginUser, registerUser, marketGraph, trendingInfo}
