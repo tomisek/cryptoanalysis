@@ -97,7 +97,7 @@ def trending_info():
 
 
 #market information for one ore more coins.
-@app.route('/rest/market/info')
+@app.route('/rest/market/info', methods=['GET'])
 def single_coin_info():
     coins = []
     coin = request.args.get('coin') 
