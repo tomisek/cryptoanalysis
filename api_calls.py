@@ -22,7 +22,7 @@ def getTrending():
 
   return ids
 
-
+# fetching a signele coins history
 def getSingleCoinHistory(coin ,currency, days):
     
     market_chart = cg.get_coin_market_chart_by_id(id=coin,vs_currency=currency,days=days)
@@ -35,7 +35,7 @@ def getSingleCoinHistory(coin ,currency, days):
     return df.to_json(orient='index')
 
 
-
+#Gets top trending coins and there market info , price 24hr change etc.
 def getTrendingInfo(currency):
   
   trending = getTrending()
@@ -43,3 +43,10 @@ def getTrendingInfo(currency):
   info = cg.get_price(ids=trending, vs_currencies=currency, include_market_cap=True, include_24hr_vol=True, include_24hr_change=True, include_last_updated_at=True)
 
   return info
+
+#single coin market info
+def getSingleCoinInfo(coin,currency):
+
+  result = cg.get_coins_markets(vs_currency=currency, ids=coin)
+
+  return result
