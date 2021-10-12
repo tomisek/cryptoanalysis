@@ -49,9 +49,13 @@ def trending_forecast():
     days = 365
     currency = 'usd'
     coin_market_period = 'max'
-    result = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
+    result, res = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
     result = numeric_evaluations(result)
-    return jsonify(result)
+    response = {}
+    response['coins'] = result
+    
+    
+    return jsonify(response)
 
 @app.route('/rest/forecast/coins', methods=['GET'])
 def user_option_forecast():
@@ -62,9 +66,12 @@ def user_option_forecast():
     days = 365
     currency = 'usd'
     coin_market_period = 'max'
-    result = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
+    result, res = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
     result = numeric_evaluations(result)
-    return jsonify(result)
+    response = {}
+    response['coin'] = result
+    response['graph'] = res
+    return jsonify(response)
 
 @app.route('/rest/topchart', methods=['GET'])
 def top_chart():
