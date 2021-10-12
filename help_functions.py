@@ -1,4 +1,4 @@
-
+import pandas as pd
 # Functions for easier readability in the API  
 # Might be moved in a later state 
 
@@ -53,12 +53,30 @@ def numeric_evaluations(data):
     return data
         
     
+# checks if a history of a coin is older then 30 days from now.
+def check_history(data, cryptos):
+    
+    #iterate through the coins
+    for x in cryptos:
 
+        #creates a variable for the time at this moment.
+        now = pd.to_datetime('now')
+        #adds adds a boolean to every coin, True or False.
+        data[x]['output'] = data[x]['ds'].between(now - pd.Timedelta(30, 'd'), now)
 
-
+    #checks if the coin has True value at index 0 , that means the coin has no history older than 30 days from now.
+    #and is there by removed from the new dict.
+    new_data = {k:v for k, v in data.items() if not v['output'][0]}
+    #reversing the proccess to get a hold of the coin name of the one/ones that has to short history.  
+    unwanted = {k:v for k, v in data.items() if v['output'][0]}
+    #taking hold of all the keys in the "unwanted" dict , keys in this case are , coins
+    keysList = list(unwanted.keys())
+    #iterates through all the coins names , and removes the ones that matches with those in keysList.
+    cryptos = [element for element in cryptos if element not in keysList]
+    
+        
+    return new_data, cryptos
     
 
 
-    
-    
 

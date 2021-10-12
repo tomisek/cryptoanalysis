@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, session, redirect
 from forecast import analyseChosenCoins
-from api_calls import getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
+from api_calls import getSingleCoinInfo, getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
 from help_functions import missingvalues_tool, numeric_evaluations
 from flask_cors import CORS
 from functools import wraps
@@ -41,6 +41,7 @@ def hello_world():
 def userpage():
     return 'userpage'
 
+#Forecasting top trending coins 
 @app.route('/rest/forecast/trending', methods=['GET'])
 def trending_forecast():
     
@@ -49,9 +50,18 @@ def trending_forecast():
     days = 365
     currency = 'usd'
     coin_market_period = 'max'
-    result = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
+    result, res = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
     result = numeric_evaluations(result)
-    return jsonify(result)
+
+    response = {}
+    response['coins'] = result
+    
+    
+    return jsonify(response)
+
+
+  
+#Can forecast one or more coins / need some changes for plural or multiple to work.
 
 @app.route('/rest/forecast/coins', methods=['GET'])
 def user_option_forecast():
@@ -62,9 +72,17 @@ def user_option_forecast():
     days = 365
     currency = 'usd'
     coin_market_period = 'max'
-    result = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
+    result, res = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
     result = numeric_evaluations(result)
-    return jsonify(result)
+
+    response = {}
+    response['coin'] = result
+    response['graph'] = res
+    return jsonify(response)
+
+
+   
+# fetches topchart for home page , with market data coin name , icon etc.
 
 @app.route('/rest/topchart', methods=['GET'])
 def top_chart():
@@ -72,7 +90,7 @@ def top_chart():
     result = getTopChart(currency)
     return result
 
-
+#Information about a single coin , time and price, To plot graphs
 @app.route('/rest/market/graph', methods=['GET'])
 def market_single_coin():
 
@@ -85,16 +103,26 @@ def market_single_coin():
     return result
 
 
-
+#Top trending coins and some market info.
 @app.route('/rest/trending/info',  methods=['GET'])
 def trending_info():
 
     #currency = request.args.get('coin')
-
     result = getTrendingInfo(currency='usd')
 
     return result
 
+
+#market information for one ore more coins.
+@app.route('/rest/market/info', methods=['GET'])
+def single_coin_info():
+    coins = []
+    coin = request.args.get('coin') 
+    coins.append(coin)
+
+    result = getSingleCoinInfo(coins, currency='usd')
+    
+    return jsonify(result)
 
 
 

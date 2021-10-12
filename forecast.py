@@ -1,11 +1,15 @@
 # Libraries
-import warnings; 
+import warnings
+
+from pandas.core.arrays.integer import Int64Dtype; 
 warnings.simplefilter('ignore')
 import pandas as pd
 from fbprophet import Prophet
 from fbprophet.plot import plot_plotly, plot_components_plotly
 import plotly.graph_objects as go
+from datetime import datetime
 from pycoingecko import CoinGeckoAPI
+from help_functions import check_history
 cg = CoinGeckoAPI()
 
 
@@ -17,7 +21,8 @@ def getCoinMarket(cryptos, currency, coin_market_period):
     df[x] = pd.DataFrame(market_chart['prices'])
     df[x].rename(columns={0: 'ds', 1: 'y'}, inplace=True, errors='raise')
     df[x]['ds'] = pd.to_datetime(df[x]['ds'],unit='ms').dt.normalize()
-  return df
+
+  return df 
 
 # Uses Prophet to run a fit on the crypto data
 def fitProphet(cryptos, df):
@@ -71,21 +76,36 @@ def futureRecommendation(cryptos, future):
           'buy_price': min_value,
           'sell_price': max_value
       }
+      
 
   recs_df = pd.DataFrame(recs).transpose()
+  recs_df['buy_date'] = recs_df[['buy_date']].apply(lambda x: x[0].timestamp(), axis=1).astype(int)
+  recs_df['sell_date'] = recs_df[['sell_date']].apply(lambda x: x[0].timestamp(), axis=1).astype(int)
   return recs_df.to_dict(orient="index")
 
 
 # Main function to run the forecast
 def analyseChosenCoins(cryptos, days, currency, coin_market_period):
   df = getCoinMarket(cryptos, currency, coin_market_period)
+  df, cryptos = check_history(df, cryptos)
   m = fitProphet(cryptos, df)
   forecast = makeForecast(cryptos, m, days)
   future = getFutureVal(cryptos, forecast, days)
   rec = futureRecommendation(cryptos, future)
-  return rec
+  
+  
+  for x in cryptos:
+    
+    forecast_df = pd.DataFrame(forecast[x], columns=['ds', 'yhat'])
+    forecast_df[['ds', 'yhat']].set_index('ds').to_dict()['yhat']
+    
 
-
+    forecast_df['ds'] = forecast_df[['ds']].apply(lambda x: x[0].timestamp(), axis=1).astype(int)
+    
+  return rec, forecast_df.to_dict(orient="index")
+ 
+ 
+    
 days = 365
 currency = 'usd'
 coin_market_period = 'max'

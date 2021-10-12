@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
 import './Topcoins.css'
+import { useHistory } from 'react-router-dom';
 
 function Topcoins() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [topcoins, setTopcoins] = useState([]);
+    const history = useHistory()
     
     const fetchData = async () => {
         try {
@@ -16,6 +18,10 @@ function Topcoins() {
             setIsLoaded(true);
             setError(error);
         }
+    }
+
+    const handleClick = (row) => {
+        history.push(`/coins/${row}`)
     }
 
     useEffect(() => {
@@ -42,7 +48,7 @@ function Topcoins() {
                     </thead>
                     <tbody>
                         {Object.keys(topcoins).map((key, index) => (
-                            <tr key={index}>
+                            <tr onClick={() =>handleClick(topcoins[key].id)} key={index}>
                                 <td><img src={topcoins[key].image} alt="logo" height="30" /></td>
                                 <td>{topcoins[key].market_cap_rank}</td>
                                 <td>{topcoins[key].name}</td>
