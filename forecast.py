@@ -9,7 +9,7 @@ from fbprophet.plot import plot_plotly, plot_components_plotly
 import plotly.graph_objects as go
 from datetime import datetime
 from pycoingecko import CoinGeckoAPI
-
+from help_functions import check_history
 cg = CoinGeckoAPI()
 
 
