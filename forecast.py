@@ -21,7 +21,8 @@ def getCoinMarket(cryptos, currency, coin_market_period):
     df[x] = pd.DataFrame(market_chart['prices'])
     df[x].rename(columns={0: 'ds', 1: 'y'}, inplace=True, errors='raise')
     df[x]['ds'] = pd.to_datetime(df[x]['ds'],unit='ms').dt.normalize()
-  return df
+
+  return df 
 
 # Uses Prophet to run a fit on the crypto data
 def fitProphet(cryptos, df):
@@ -86,6 +87,7 @@ def futureRecommendation(cryptos, future):
 # Main function to run the forecast
 def analyseChosenCoins(cryptos, days, currency, coin_market_period):
   df = getCoinMarket(cryptos, currency, coin_market_period)
+  df, cryptos = check_history(df, cryptos)
   m = fitProphet(cryptos, df)
   forecast = makeForecast(cryptos, m, days)
   future = getFutureVal(cryptos, forecast, days)
