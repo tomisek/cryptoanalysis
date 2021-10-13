@@ -12,7 +12,12 @@ export const CoinInfo = (props) => {
  
     const allinfo= props.coinInfo
     console.log(props.coinInfo[0]);
-  
+
+    const convertToDate = (val) => {
+        val = new Date(val).toLocaleString()
+        return val
+    }
+       
     return (
         
         <div>
@@ -20,6 +25,8 @@ export const CoinInfo = (props) => {
               Object.keys(allinfo).map((coin, index) => {
                   return (
                       <div key={index}>
+                          {console.log(Object.keys(allinfo[coin]))}
+                          {console.log(Object.values(allinfo[coin]))}
                         {/* <table>
                             <th>Current Price:</th>
                             <th>All time high:</th>
@@ -30,10 +37,10 @@ export const CoinInfo = (props) => {
                         </table> */}
                           <div className="currentPrice">Current Price: ${allinfo[coin].current_price}</div>
                           <div className="allTimeHigh">All time high: ${allinfo[coin].ath}</div>
-                          <div className="allTimeHighDate">All time high date: {allinfo[coin].ath_date}</div>
+                          <div className="allTimeHighDate">All time high date: {convertToDate(allinfo[coin].ath_date)}</div>
                           <div className="allTimeHighChangePercentage">All time high change percentage: {allinfo[coin].ath_change_percentage}</div>
                           <div className="allTimeLow">All time low: ${allinfo[coin].atl}</div>
-                          <div className="allTimeLowDate">All time low date: {allinfo[coin].atl_date}</div>
+                          <div className="allTimeLowDate">All time low date: {convertToDate(allinfo[coin].atl_date)}</div>
                           <div className="allTimeLowChangePercentage">All time low change percentage: {allinfo[coin].atl_change_percentage}</div>
                           <div className="circulatingSupply">Circulating supply: ${allinfo[coin].circulating_supply}</div>
                           <div className="fullyDilutedValuation">Fully diluted valuation: ${allinfo[coin].fully_diluted_valuation}</div>
@@ -52,7 +59,7 @@ export const CoinInfo = (props) => {
                           <div></div>
 
 
-                          <div className="lastUpdated">Last updated: {allinfo[coin].last_updated}</div>
+                          <div className="lastUpdated">Last updated: {convertToDate(allinfo[coin].last_updated)}</div>
                           {/* 
                             ​
                             id: "bitcoin"
