@@ -12,6 +12,9 @@ import {
     Tooltip,
     CartesianGrid,
     Brush,
+    Legend,
+    Line,
+    Label,
 } from "recharts";
 
 const Forecast = () => {
@@ -44,6 +47,18 @@ const Forecast = () => {
         return val
     })
 
+    var total = Object.keys(forecastGraph).length;
+    const percentage = 100 - ((365 / total) * 100) 
+    
+
+    
+    
+    
+    
+    
+        
+        
+    
     // Customises the graphs ticks on the X-axis
     const CustomizedAxisTick = ({ x, y, payload }) => {
         const dateTip = moment(payload.value)
@@ -99,12 +114,17 @@ const Forecast = () => {
                     <ResponsiveContainer width="100%" height={400}>
                         <AreaChart data={Object.values(forecastGraph)}>
                             <defs>
-                                <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stopColor="#2451B7" stopOpacity={0.8} />
-                                    <stop offset="75%" stopColor="#2451B7" stopOpacity={0.2} />
+
+                                <linearGradient id="gradient" x1="0" y1="0" x2="100%" y2="0">
+                                    <stop offset="0%" stopColor="blue"/>
+                                    <stop offset={`${percentage}%`} stopColor="blue"/>
+                                    <stop offset={`${percentage}%`} stopColor="red"/>
+                                    <stop offset="100%" stopColor="red"/>
                                 </linearGradient>
+                                
                             </defs>
-                            <Area dataKey="yhat" stroke="#2451B7" fill="url(#color)" />
+                                                      
+                            <Area dataKey="yhat" stroke="url(#gradient)" fill="url(#gradient)" fillOpacity={0.4}/>
                             <XAxis
                                 dataKey="ds"
                                 tick={CustomizedAxisTick}
@@ -117,6 +137,7 @@ const Forecast = () => {
                                 tickFormatter={(number) => `$${number}`}
 
                             />
+                            
                             <Tooltip content={<CustomTooltip />} animationDuration={0} />
                             <CartesianGrid  opacity={0.4} vertical={false}/>
                             <Brush dataKey="ds" />
