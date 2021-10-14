@@ -14,7 +14,7 @@ export const CoinInfoBox = () =>  {
             const response = await CryptoShuttleService.coinInfo(slug)
             setIsLoading(false)
             setCoinInfo(response.data)
-            // console.log("parent",coinInfo[0]);
+
         }
         catch (error){
             setIsLoading(false)

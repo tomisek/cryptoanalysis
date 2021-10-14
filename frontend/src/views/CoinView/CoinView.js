@@ -10,9 +10,9 @@ export const CoinView = () => {
     return (
         <div className="main">
             <div className="coin-view">
-                <h1>{slug}</h1>
-                <CoinHistoryGraph />
+                {/* <h1>{slug}</h1> */}
                 <CoinInfoBox />
+                <CoinHistoryGraph />
             </div>
         </div>
     )
