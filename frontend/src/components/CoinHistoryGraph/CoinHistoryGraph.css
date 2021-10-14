@@ -1,6 +1,7 @@
 .coin-history-graph {
     margin: 20px;
     size: 80%;
+    grid-area: a;
 }
 
 

@@ -1,0 +1,24 @@
+.coin-view {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr;
+    grid-template-areas:
+    "a a a b"
+    "c c c c";
+}
+
+@media screen and (max-width: 70em) {
+    .coin-view {
+        grid-template-areas: 
+            "a a a a"
+            "b b b b"
+            "c c c c";
+    }
+}
+
+.info-box {
+    grid-area: b;
+}
+
+.forecast {
+    grid-area: c;
+}

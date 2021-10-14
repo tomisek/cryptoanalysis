@@ -31,5 +31,9 @@ const registerUser = (userObject) => {
     return http.post("/user/register", userObject)
 }
 
-export default {topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo}
+const forecastInfo = (slug) => {
+    return http.get(`/rest/forecast/coins?coin=${slug}`)
+}
+
+export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, forecastInfo}
 
