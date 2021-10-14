@@ -81,6 +81,8 @@ def futureRecommendation(cryptos, future):
   recs_df = pd.DataFrame(recs).transpose()
   recs_df['buy_date'] = recs_df[['buy_date']].apply(lambda x: x[0].timestamp(), axis=1).astype(int)
   recs_df['sell_date'] = recs_df[['sell_date']].apply(lambda x: x[0].timestamp(), axis=1).astype(int)
+  recs_df['buy_date'] = recs_df['buy_date'].apply(lambda x: x*1000)
+  recs_df['sell_date'] = recs_df['sell_date'].apply(lambda x: x*1000)
   return recs_df.to_dict(orient="index")
 
 
@@ -101,6 +103,7 @@ def analyseChosenCoins(cryptos, days, currency, coin_market_period):
     
 
     forecast_df['ds'] = forecast_df[['ds']].apply(lambda x: x[0].timestamp(), axis=1).astype(int)
+    forecast_df['ds'] = forecast_df['ds'].apply(lambda x: x*1000)
     
   return rec, forecast_df.to_dict(orient="index")
  
