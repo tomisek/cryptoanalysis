@@ -50,10 +50,19 @@ def trending_forecast():
     days = 365
     currency = 'usd'
     coin_market_period = 'max'
-    result = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
+    result, res = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
     result = numeric_evaluations(result)
-    return jsonify(result)
+
+    response = {}
+    response['coins'] = result
+    
+    
+    return jsonify(response)
+
+
+  
 #Can forecast one or more coins / need some changes for plural or multiple to work.
+
 @app.route('/rest/forecast/coins', methods=['GET'])
 def user_option_forecast():
     cryptos = []
@@ -63,10 +72,18 @@ def user_option_forecast():
     days = 365
     currency = 'usd'
     coin_market_period = 'max'
-    result = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
+    result, res = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
     result = numeric_evaluations(result)
-    return jsonify(result)
+
+    response = {}
+    response['coin'] = result
+    response['graph'] = res
+    return jsonify(response)
+
+
+   
 # fetches topchart for home page , with market data coin name , icon etc.
+
 @app.route('/rest/topchart', methods=['GET'])
 def top_chart():
     currency = request.args.get('currency')
