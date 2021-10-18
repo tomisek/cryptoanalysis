@@ -4,7 +4,6 @@
 .singleCoinTitle {
     display: flex;
     justify-content: space-around;
-    margin-right: auto;
     width: 100%;
     margin: 10px;
     align-items: flex-end;
@@ -19,9 +18,9 @@
 }
 
 
-.coinInfo td:nth-child(even), th:nth-child(even) {
+/* .coinInfo td:nth-child(even), th:nth-child(even) {
     background-color: #d3d3d3;
-  }
+  } */
 
 .coinInfo table{
     margin: auto;
@@ -29,7 +28,7 @@
     border-collapse: collapse;
     table-layout: auto;
 }
-.coinInfo td, th {
+.coinInfo td, .coinInfo th {
     border: 1px solid #000000;
 }
 .lastUpdated {

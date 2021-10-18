@@ -39,7 +39,7 @@ export const CoinInfo = (props) => {
                                     <th>Low 24h</th>
                                     <th>Market cap</th>
                                     <th>Circulating supply</th>
-                                    <th>Max supply</th>
+                                    {/* <th>Max supply</th> */}
                                     <th>All time high</th>
                                     <th>All time low</th>
                                 </tr>
@@ -50,7 +50,7 @@ export const CoinInfo = (props) => {
                                     <td>${allinfo[coin].low_24h.toLocaleString()}</td>
                                     <td>${allinfo[coin].market_cap.toLocaleString()}</td>
                                     <td>{allinfo[coin].circulating_supply.toLocaleString()}</td>
-                                    <td>{allinfo[coin].max_supply.toLocaleString()}</td>
+                                    {/* <td>{allinfo[coin].max_supply.toLocaleString()}</td> */}
                                     <td>${allinfo[coin].ath.toLocaleString()}<br/>({convertToDate(allinfo[coin].ath_date)})</td>
                                     <td>${allinfo[coin].atl.toLocaleString()}<br/>({convertToDate(allinfo[coin].atl_date)})</td>
                                 </tr>
