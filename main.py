@@ -132,7 +132,7 @@ def global_market_data():
     return result
 
 
-@app.route('/rest/coins/search')
+@app.route('/rest/coins/search', methods=['GET'])
 def search_all_coins():
 
     result = getAllCoinNames()
