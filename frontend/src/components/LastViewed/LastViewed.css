@@ -1,0 +1,18 @@
+.last-viewed {
+    text-align: center;
+    border: 1px solid black;
+    padding-bottom: 20px;
+}
+
+.last-viewed h4 {
+    margin-bottom: 0;
+}
+
+.last-viewed-links {
+    text-decoration: none;
+    color: inherit;
+}
+
+.last-viewed-links h4 {
+    font-size: 1em;
+}

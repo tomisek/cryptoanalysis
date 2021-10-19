@@ -7,14 +7,16 @@ const SaveLastViewed = () => {
 
 
     const saveLastViewed = () => {
-        let lastViewedCoins = []
-        lastViewedCoins = JSON.parse(localStorage.getItem("lastViewedCoins"));
+        let lastViewedCoins = JSON.parse(localStorage.getItem("lastViewedCoins"));
 
-        if (lastViewedCoins.length > 5) {
-            lastViewedCoins.shift()
+        if (lastViewedCoins) {
+            if (lastViewedCoins.length > 5) {
+                lastViewedCoins.shift()
+            }
+            lastViewedCoins.indexOf(slug) === -1 ? lastViewedCoins.push(slug) : console.log("This item already exists");
+        }else {
+            lastViewedCoins = []
         }
-
-        lastViewedCoins.indexOf(slug) === -1 ? lastViewedCoins.push(slug) : console.log("This item already exists");
 
         localStorage.setItem("lastViewedCoins", JSON.stringify(lastViewedCoins));
     }
