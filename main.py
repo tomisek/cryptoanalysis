@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, session, redirect
 from forecast import analyseChosenCoins
-from api_calls import getGlobalCryptoMarket, getSingleCoinInfo, getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
+from api_calls import getAllCoinNames, getGlobalCryptoMarket, getSingleCoinInfo, getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
 from help_functions import missingvalues_tool, numeric_evaluations
 from flask_cors import CORS
 from functools import wraps
@@ -132,6 +132,12 @@ def global_market_data():
     return result
 
 
+@app.route('/rest/coins/search')
+def search_all_coins():
+
+    result = getAllCoinNames()
+
+    return result
 
 
 if __name__ == '__main__':

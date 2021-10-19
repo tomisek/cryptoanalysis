@@ -114,3 +114,20 @@ def getGlobalCryptoMarket():
 
   
   return data
+
+
+
+# Fetching all ids from Coingecko API
+def getAllCoinNames():
+  
+  data = {}
+  coin_list = cg.get_coins_list(include_platform=False)
+
+  df = pd.DataFrame(coin_list)
+  
+  names = df['id']
+  #remaking the pandas series object to dict orient records and then adding it to the data object as follows {"names": [{"id": "bitcoin"}, {"id": "ethereum"},....]}
+  names = pd.DataFrame(names).to_dict(orient="records")
+  data['names'] = names
+  
+  return data
