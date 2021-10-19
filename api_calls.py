@@ -54,7 +54,7 @@ def getSingleCoinInfo(coin,currency):
 
   return result
 
-
+# Fetches global market data, image link , and sends a response with desired values.
 def getGlobalCryptoMarket():
 
   #dict for all the values that will be sent through the API
@@ -111,11 +111,8 @@ def getGlobalCryptoMarket():
   data['market_change_percentage'] = int(market_change_percentage)
   data['updated_at'] = int(updated_at)*1000
    
-
-  
   return data
-
-
+  
 
 # Fetching all ids from Coingecko API
 def getAllCoinNames():
@@ -124,7 +121,7 @@ def getAllCoinNames():
   coin_list = cg.get_coins_list(include_platform=False)
 
   df = pd.DataFrame(coin_list)
-  
+  # creates a variable with all the coins id / "names"
   names = df['id']
   #remaking the pandas series object to dict orient records and then adding it to the data object as follows {"names": [{"id": "bitcoin"}, {"id": "ethereum"},....]}
   names = pd.DataFrame(names).to_dict(orient="records")

@@ -69,7 +69,7 @@ def check_history(data, cryptos):
     new_data = {k:v for k, v in data.items() if not v['output'][0]}
     #reversing the proccess to get a hold of the coin name of the one/ones that has to short history.  
     unwanted = {k:v for k, v in data.items() if v['output'][0]}
-    #taking hold of all the keys in the "unwanted" dict , keys in this case are , coins
+    #taking hold of all the keys in the "unwanted" dict , keys in this case are , coin names
     keysList = list(unwanted.keys())
     #iterates through all the coins names , and removes the ones that matches with those in keysList.
     cryptos = [element for element in cryptos if element not in keysList]
