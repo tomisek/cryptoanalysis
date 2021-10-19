@@ -2,7 +2,8 @@
     display: grid;
     grid-template-columns: 2fr 2fr 1fr 1fr;
     grid-template-areas:
-    "a a a b"
+    "a a a a"
+    "b b b b"
     "c c c c";
 }
 
@@ -15,8 +16,8 @@
     }
 }
 
-.info-box {
-    grid-area: b;
+.coinInfo {
+    grid-area: a;
 }
 
 .forecast {

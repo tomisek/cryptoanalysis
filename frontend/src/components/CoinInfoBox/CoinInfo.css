@@ -1,0 +1,37 @@
+.coinInfo{
+    box-sizing: border-box;
+}
+.singleCoinTitle {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 10px;
+    align-items: flex-end;
+}
+
+.singleCoinTitle img {
+    height: 60px;
+}
+.singleCoinTitle h1 {
+    padding: 0;
+    margin: 0;
+}
+
+
+/* .coinInfo td:nth-child(even), th:nth-child(even) {
+    background-color: #d3d3d3;
+  } */
+
+.coinInfo table{
+    margin: auto;
+    width: 90%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+.coinInfo td, .coinInfo th {
+    border: 1px solid #000000;
+}
+.lastUpdated {
+    margin: auto;
+    width: 90%;
+}
