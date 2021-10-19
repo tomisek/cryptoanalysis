@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, session, redirect
 from forecast import analyseChosenCoins
-from api_calls import getSingleCoinInfo, getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
+from api_calls import getGlobalCryptoMarket, getSingleCoinInfo, getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
 from help_functions import missingvalues_tool, numeric_evaluations
 from flask_cors import CORS
 from functools import wraps
@@ -123,6 +123,14 @@ def single_coin_info():
     result = getSingleCoinInfo(coins, currency='usd')
     
     return jsonify(result)
+
+@app.route('/rest/market/global-market-data', methods=['GET'])
+def global_market_data():
+
+    result = getGlobalCryptoMarket()
+    
+    return result
+
 
 
 
