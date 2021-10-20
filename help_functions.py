@@ -4,7 +4,6 @@ import pandas as pd
 
 def missingvalues_tool(data):
 
-
     ### Default value variables
     d_days = 365
     d_currency = 'usd'
@@ -12,7 +11,6 @@ def missingvalues_tool(data):
     
     ## check for missing values and correct them to default
     # and parse the string 'days' to integer if neccessary
-    
     if data['days'] == '':
         data['days'] = d_days
     else: 
@@ -23,8 +21,7 @@ def missingvalues_tool(data):
     
     if data['market_period'] == '':
         data['market_period'] = d_coin_market_period
-
-        
+       
     return data
             
 
