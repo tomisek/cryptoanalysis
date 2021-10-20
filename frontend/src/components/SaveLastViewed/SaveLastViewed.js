@@ -11,7 +11,9 @@ const SaveLastViewed = () => {
             if (lastViewedCoins.length > 5) {
                 lastViewedCoins.shift()
             }
-            lastViewedCoins.indexOf(slug) === -1 ? lastViewedCoins.push(slug) : console.log("This item already exists");
+            if (lastViewedCoins.indexOf(slug) === -1) { 
+                lastViewedCoins.push(slug)
+            }
         }else {
             lastViewedCoins = []
         }
