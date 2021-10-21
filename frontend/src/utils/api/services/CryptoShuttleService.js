@@ -39,5 +39,9 @@ const forecastInfo = (slug) => {
     return http.get(`/rest/forecast/coins?coin=${slug}`)
 }
 
-export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo}
+const lastViewed = (coins) => {
+    return http.get(`/rest/market/info?coin=${coins[0]}, ${coins[1]}, ${coins[2]}, ${coins[3]}, ${coins[4]}`)
+}
+
+export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed}
 

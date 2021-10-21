@@ -12,9 +12,6 @@ import {
     Tooltip,
     CartesianGrid,
     Brush,
-    Legend,
-    Line,
-    Label,
 } from "recharts";
 
 const Forecast = () => {
@@ -50,14 +47,6 @@ const Forecast = () => {
     var total = Object.keys(forecastGraph).length;
     const percentage = 100 - ((365 / total) * 100) 
     
-
-    
-    
-    
-    
-    
-        
-        
     
     // Customises the graphs ticks on the X-axis
     const CustomizedAxisTick = ({ x, y, payload }) => {
