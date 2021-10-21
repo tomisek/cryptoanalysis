@@ -4,6 +4,7 @@ from api_calls import getAllCoinNames, getGlobalCryptoMarket, getSingleCoinInfo,
 from help_functions import missingvalues_tool, numeric_evaluations
 from flask_cors import CORS
 from functools import wraps
+from instance.config import CONNECTION_STRING
 import pymongo
 
 app = Flask(__name__, instance_relative_config=True)
@@ -12,8 +13,8 @@ app.config.from_pyfile('config.py')
 
 
 #Database
-client = pymongo.MongoClient('localhost', 27017)
-db = client.user_login
+client = pymongo.MongoClient(CONNECTION_STRING, connect=False)
+db = client.cryptoShuttleDB
 
 # Decorator
 def login_required(f):
