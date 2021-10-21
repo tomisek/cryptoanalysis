@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, session, redirect
 from forecast import analyseChosenCoins
-from api_calls import getSingleCoinInfo, getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
+from api_calls import getAllCoinNames, getGlobalCryptoMarket, getSingleCoinInfo, getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
 from help_functions import missingvalues_tool, numeric_evaluations
 from flask_cors import CORS
 from functools import wraps
@@ -62,7 +62,6 @@ def trending_forecast():
 
   
 #Can forecast one or more coins / need some changes for plural or multiple to work.
-
 @app.route('/rest/forecast/coins', methods=['GET'])
 def user_option_forecast():
     cryptos = []
@@ -82,8 +81,7 @@ def user_option_forecast():
 
 
    
-# fetches topchart for home page , with market data coin name , icon etc.
-
+# Fetches topchart for home page , with market data coin name , icon etc.
 @app.route('/rest/topchart', methods=['GET'])
 def top_chart():
     currency = request.args.get('currency')
@@ -113,7 +111,7 @@ def trending_info():
     return result
 
 
-#market information for one ore more coins.
+# Market information for one ore more coins.
 @app.route('/rest/market/info', methods=['GET'])
 def single_coin_info():
     coins = []
@@ -124,6 +122,21 @@ def single_coin_info():
     
     return jsonify(result)
 
+# Global market data 
+@app.route('/rest/market/global-market-data', methods=['GET'])
+def global_market_data():
+
+    result = getGlobalCryptoMarket()
+    
+    return result
+
+# List of all coins ids. 
+@app.route('/rest/coins/search', methods=['GET'])
+def search_all_coins():
+
+    result = getAllCoinNames()
+
+    return result
 
 
 if __name__ == '__main__':
