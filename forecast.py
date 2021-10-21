@@ -10,6 +10,7 @@ import plotly.graph_objects as go
 from datetime import datetime
 from pycoingecko import CoinGeckoAPI
 from help_functions import check_history
+import numpy as np
 cg = CoinGeckoAPI()
 
 
@@ -59,20 +60,29 @@ def futureRecommendation(cryptos, future):
   recs = {}
   for x in cryptos:
       
-        
+      # Selects min predicted price from dataset and grabs the date at the same index. 
       my_indexed_list_min = zip(future[x]['yhat'], range(len(future[x]['yhat'])))
-      my_indexed_list_max = zip(future[x]['yhat'], range(len(future[x]['yhat'])))
       min_value, min_index = min(my_indexed_list_min)
-      max_value, max_index = max(my_indexed_list_max)
+      buy_date = future[x]['ds'].iloc[min_index]
+  
+      # Creating new dataframe, slicing dataframe from buy_date to prevent sell_date occuring before buy_date.
+      new_future = future[x].iloc[min_index:]
+      my_indexed_list_max = zip(new_future['yhat'], range(len(new_future['yhat'])))
+      max_value, max_index = max(my_indexed_list_max) 
+      sell_date = new_future['ds'].iloc[max_index]
+      
 
+     
       # calculate percentage difference
-      change = max(future[x]['yhat']) - min(future[x]['yhat'])
-      change_procent = round(change / min(future[x]['yhat']) * 100)
+      change = max_value - min_value
+      change_procent = round(change / min_value * 100)
+
+
 
       recs[x] = {
           'max_gain_procent' : change_procent,
-          'buy_date': future[x]['ds'].iloc[min_index],
-          'sell_date': future[x]['ds'].iloc[max_index],
+          'buy_date': buy_date,
+          'sell_date': sell_date,
           'buy_price': min_value,
           'sell_price': max_value
       }
