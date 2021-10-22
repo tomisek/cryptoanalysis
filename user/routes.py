@@ -29,3 +29,9 @@ def login():
     password = request.json['password']
 
     return User().login(email, password)
+
+@app.route('/user/forecasts', methods=["POST"])
+def saveForecast():
+    data = request.json
+
+    return User().saveForecast(data)

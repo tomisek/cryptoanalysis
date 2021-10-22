@@ -51,3 +51,10 @@ class User:
             return self.session(user)
 
         return jsonify({"error": "Invalid email"}), 401 # 401 unauthorized
+
+    def saveForecast(self, data):
+
+        if db.forecasts.insert_one(data):
+            return redirect("/userpage")
+        return jsonify({"error": "Could not save to database"})
+
