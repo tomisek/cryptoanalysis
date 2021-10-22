@@ -114,7 +114,10 @@ def analyseChosenCoins(cryptos, days, currency, coin_market_period):
 
     forecast_df['ds'] = forecast_df[['ds']].apply(lambda x: x[0].timestamp(), axis=1).astype(int)
     forecast_df['ds'] = forecast_df['ds'].apply(lambda x: x*1000)
-    
+    # Remove negative values from dataset and replace them with zero , preventing graph data to go below zero.
+    forecast_df['yhat'] = forecast_df['yhat'].clip(lower=0)
+
+
   return rec, forecast_df.to_dict(orient="index")
  
  
