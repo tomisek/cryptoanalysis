@@ -46,8 +46,8 @@ export const CoinInfo = (props) => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>${allinfo[coin].high_24h.toLocaleString()}</td>
-                                    <td>${allinfo[coin].low_24h.toLocaleString()}</td>
+                                    <td>{allinfo[coin].high_24h ? "$" + allinfo[coin].high_24h.toLocaleString() : 'N/A'}</td>
+                                    <td>{allinfo[coin].low_24h ? "$" + allinfo[coin].low_24h.toLocaleString() : 'N/A'}</td>
                                     <td>${allinfo[coin].market_cap.toLocaleString()}</td>
                                     <td>{allinfo[coin].circulating_supply.toLocaleString()}</td>
                                     {/* <td>{allinfo[coin].max_supply.toLocaleString()}</td> */}
