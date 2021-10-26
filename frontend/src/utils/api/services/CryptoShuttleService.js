@@ -48,5 +48,9 @@ const search = () => {
     return http.get("/rest/coins/search")
 }
 
-export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, search}
+const globalMarketInfo = (slug) => {
+    return http.get(`/rest/market/global-market-data`)
+}
+
+export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search}
 
