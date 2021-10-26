@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import { LoginButton } from '../LoginButton/LoginButton'
+import { Search } from '../Search/Search'
 import './NavigationBar.css'
 import Logotype from '../../shared/images/logotype.svg'
 import { useHistory } from 'react-router-dom'
@@ -25,6 +26,7 @@ export const NavigationBar = () => {
             <div className="loginButton">
                 {displayUserIfAuthenticated()}
             </div>
+            <Search />
         </div>
     )
 }

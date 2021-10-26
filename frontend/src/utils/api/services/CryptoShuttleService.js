@@ -43,9 +43,14 @@ const lastViewed = (coins) => {
     return http.get(`/rest/market/info?coin=${coins[0]}, ${coins[1]}, ${coins[2]}, ${coins[3]}, ${coins[4]}`)
 }
 
+
+const search = () => {
+    return http.get("/rest/coins/search")
+}
+
 const globalMarketInfo = (slug) => {
     return http.get(`/rest/market/global-market-data`)
 }
 
-export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo}
+export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search}
 

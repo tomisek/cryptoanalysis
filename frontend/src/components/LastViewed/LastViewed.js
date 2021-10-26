@@ -47,15 +47,17 @@ export const LastViewed = () => {
         return (
             <div className="last-viewed">
                 <h3>Last Viewed</h3>
-                {Object.keys(lastViewed).map((key, index) => (
-                    <div key={lastViewed[key].id}>
-                        <Link to={`/coins/${lastViewed[key].id}`} className="last-viewed-links"><h4>{lastViewed[key].id}</h4></Link>
-                        <div>${lastViewed[key].current_price}</div>
-                        <div className={(lastViewed[key].price_change_percentage_24h < 0) ? 'negative' : 'positive'}>
-                            <div>{lastViewed[key].price_change_percentage_24h.toLocaleString()} %</div>
+                {Object.keys(lastViewed).map((key, index) => {
+                    return (
+                        <div key={lastViewed[key].id}>
+                            <Link to={`/coins/${lastViewed[key].id}`} className="last-viewed-links"><h4>{lastViewed[key].id}</h4></Link>
+                            <div>${lastViewed[key].current_price}</div>
+                            <div className={(lastViewed[key].price_change_percentage_24h < 0) ? 'negative' : 'positive'}>
+                                <div>{lastViewed[key].price_change_percentage_24h ? lastViewed[key].price_change_percentage_24h.toLocaleString() + ' %' : 'N/A'}</div>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    )
+                })}
             </div>
         )
     }
