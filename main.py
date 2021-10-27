@@ -1,3 +1,4 @@
+import json
 from flask import Flask, request, jsonify, session, redirect
 from forecast import analyseChosenCoins
 from api_calls import getAllCoinNames, getGlobalCryptoMarket, getSingleCoinInfo, getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
@@ -72,12 +73,13 @@ def user_option_forecast():
     days = 365
     currency = 'usd'
     coin_market_period = 'max'
-    result, res = analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
+    result, res, multiple= analyseChosenCoins(cryptos=cryptos, days=days, currency=currency, coin_market_period=coin_market_period)
     result = numeric_evaluations(result)
 
     response = {}
     response['coin'] = result
     response['graph'] = res
+    response['multiple'] = multiple
     return jsonify(response)
 
 
@@ -138,6 +140,7 @@ def search_all_coins():
     result = getAllCoinNames()
 
     return result
+
 
 
 if __name__ == '__main__':
