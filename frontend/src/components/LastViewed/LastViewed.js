@@ -42,7 +42,7 @@ export const LastViewed = () => {
     if (error) {
         return <div></div>;
     } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return <div></div>;
     } else {
         return (
             <div className="last-viewed">

@@ -82,7 +82,7 @@ const Forecast = () => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return <div></div>;
     } else {
         return (
             <div className="forecast">
@@ -129,7 +129,7 @@ const Forecast = () => {
                             
                             <Tooltip content={<CustomTooltip />} animationDuration={0} />
                             <CartesianGrid  opacity={0.4} vertical={false}/>
-                            <Brush dataKey="ds" />
+                            
                         </AreaChart>
                     </ResponsiveContainer>
                 </div>
