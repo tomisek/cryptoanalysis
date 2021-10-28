@@ -27,7 +27,7 @@ export const CoinInfoBox = () =>  {
         fetchCoinInfo(slug)
     }, [slug])
 
-    if (!coinInfo) return "Loading coin info..."
+    if (!coinInfo) return ""
     else if (error) {
         return `Error: ${error.message}`
     }

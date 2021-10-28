@@ -47,5 +47,14 @@ const saveForecast = (forecastInfo) => {
     return http.post("/user/forecasts", forecastInfo)
 }
 
-export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, saveForecast}
+
+const search = () => {
+    return http.get("/rest/coins/search")
+}
+
+const globalMarketInfo = (slug) => {
+    return http.get(`/rest/market/global-market-data`)
+}
+
+export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search, saveForecast}
 

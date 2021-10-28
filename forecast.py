@@ -105,7 +105,7 @@ def analyseChosenCoins(cryptos, days, currency, coin_market_period):
   future = getFutureVal(cryptos, forecast, days)
   rec = futureRecommendation(cryptos, future)
   
-  
+  #Creating two dataframes (forecast_df with two values , multiple_df with 4 values) in multiple_df the lower and higher value of the precition is added.
   for x in cryptos:
     
     forecast_df = pd.DataFrame(forecast[x], columns=['ds', 'yhat'])
@@ -114,10 +114,25 @@ def analyseChosenCoins(cryptos, days, currency, coin_market_period):
 
     forecast_df['ds'] = forecast_df[['ds']].apply(lambda x: x[0].timestamp(), axis=1).astype(int)
     forecast_df['ds'] = forecast_df['ds'].apply(lambda x: x*1000)
+    # Remove negative values from dataset and replace them with zero , preventing graph data to go below zero.
+    forecast_df['yhat'] = forecast_df['yhat'].clip(lower=0)
+
+    #Multiple values data set
+
+    multiple_df = pd.DataFrame(forecast[x], columns=['ds', 'yhat', 'yhat_lower', 'yhat_upper'])
+    multiple_df[['ds', 'yhat']].set_index('ds').to_dict()['yhat']
     
-  return rec, forecast_df.to_dict(orient="index")
+    multiple_df['ds'] = multiple_df[['ds']].apply(lambda x: x[0].timestamp(), axis=1).astype(int)
+    multiple_df['ds'] = multiple_df['ds'].apply(lambda x: x*1000)
+    # Remove negative values from dataset and replace them with zero , preventing graph data to go below zero.
+    multiple_df['yhat'] = multiple_df['yhat'].clip(lower=0)
+    multiple_df['yhat_lower'] = multiple_df['yhat_lower'].clip(lower=0)
+
+
+
+  return rec, forecast_df.to_dict(orient="index"), multiple_df.to_dict(orient="index")
  
- 
+
     
 days = 365
 currency = 'usd'
