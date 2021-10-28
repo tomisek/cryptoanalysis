@@ -35,18 +35,25 @@ const Forecast = () => {
 
     const saveInfo = () =>{
         console.log("Clicked save button");
-    
-        const info = {
-            date_made : new Date(),
-            coin : Object.keys(forecastInfo)[0], 
+        
+        
+        try{
+            const info = {
+                user: localStorage.getItem('id'),
+                date_made : new Date(),
+                coin : Object.keys(forecastInfo)[0], 
+            }
+            let data = Object.values(forecastInfo)[0]
+            let values = Object.entries(data)
+            for (let [key, value] of values) {
+                info[key] = value
+            }
+            console.log(info);
+            return CryptoShuttleService.saveForecast(info)
         }
-        let data = Object.values(forecastInfo)[0]
-        let values = Object.entries(data)
-        for (let [key, value] of values) {
-            info[key] = value
+        catch(e){ 
+            console.log(e.message);
         }
-        console.log(info);
-        return CryptoShuttleService.saveForecast(info)
     }
     useEffect(() => {
         fetchData(slug)

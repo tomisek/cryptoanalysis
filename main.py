@@ -5,11 +5,13 @@ from help_functions import missingvalues_tool, numeric_evaluations
 from flask_cors import CORS
 from functools import wraps
 from instance.config import CONNECTION_STRING
+from JSONencoder import MyEncoder
 import pymongo
 
 app = Flask(__name__, instance_relative_config=True)
 # Need to add a 'instance'-folder with config.py-file containing secret key!
 app.config.from_pyfile('config.py')
+app.json_encoder = MyEncoder
 
 
 #Database
