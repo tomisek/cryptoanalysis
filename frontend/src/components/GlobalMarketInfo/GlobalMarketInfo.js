@@ -30,7 +30,7 @@ import { faLevelUpAlt, faLevelDownAlt } from '@fortawesome/free-solid-svg-icons'
 
     useEffect(() => {
         fetchData()
-        console.log(globalMarketInfo)
+        
     }, [])
     
     
