@@ -25,6 +25,7 @@ export const LoginButton = () => {
         console.log(authenticatedUser)
         setAuthenticatedUser(userFromServer.data.name)
         localStorage.setItem("name", userFromServer.data.name)
+        localStorage.setItem("id", userFromServer.data._id)
         /* document.getElementsById('noMatch').style.visibility = "hidden" */
         }
         catch(error){

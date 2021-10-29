@@ -9,7 +9,6 @@ class User:
         del user['password'] # remove password from session
         session['logged_in'] = True
         session['user'] = user
-
         return jsonify(user), 200
 
     def register(self, name, email, password):
@@ -51,3 +50,29 @@ class User:
             return self.session(user)
 
         return jsonify({"error": "Invalid email"}), 401 # 401 unauthorized
+
+    def saveForecast(self, data):
+        if db.forecasts.insert_one(data):
+            return "saved forecast", 200
+        return jsonify({"error": "Could not save to database"})
+
+    def showForecasts(self, user_id):
+        userForecasts = ""
+        for doc in db.users.aggregate([ 
+            {
+                # find user with the user_id
+                '$match': {
+                    '_id': user_id
+                }
+            }, {
+                # join forecasts collection on user id
+                '$lookup': {
+                    'from': 'forecasts', 
+                    'localField': '_id', 
+                    'foreignField': 'user', 
+                    'as': 'forecasts'
+                }
+            }]):
+            userForecasts = doc['forecasts']
+            
+        return jsonify(userForecasts)
