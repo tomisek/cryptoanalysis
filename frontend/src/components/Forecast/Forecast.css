@@ -1,5 +1,18 @@
-forecast-info {
+.forecast-info {
     grid-area: d;
     padding: 20px;
-    border: 1px solid black;
+}
+
+.forecast-info table{
+    margin: auto;
+    width: 90%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+.forecast-info td, .forecast-info th {
+    border: 1px solid #000000;
+}
+
+.forecast-graph {
+    margin: 20px;
 }
