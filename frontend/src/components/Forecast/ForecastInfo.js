@@ -14,16 +14,30 @@ const ForecastInfo = (data) => {
         <div className="forecast-info">
             {Object.keys(data.forecastInfo).map((key, index) => (
                 <div key={index}>
-                    <div>Max gain: {data.forecastInfo[key].max_gain_procent}%</div>
-                    <div>buy date: {data.forecastInfo[key].buy_date}</div>
-                    <div>buy price: ${data.forecastInfo[key].buy_price}</div>
-                    <div>sell date: {data.forecastInfo[key].sell_date}</div>
-                    <div>sell price: ${data.forecastInfo[key].sell_price}</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Max Gain</th>
+                                <th>Buy Date</th>
+                                <th>Buy Price</th>
+                                <th>Sell Date</th>
+                                <th>Sell Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{data.forecastInfo[key].max_gain_procent}%</td>
+                                <td>{data.forecastInfo[key].buy_date}</td>
+                                <td>${data.forecastInfo[key].buy_price}</td>
+                                <td>{data.forecastInfo[key].sell_date}</td>
+                                <td>${data.forecastInfo[key].sell_price}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             ))}
         </div>
     )
-
 }
 
 export default ForecastInfo
