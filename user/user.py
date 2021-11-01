@@ -1,3 +1,4 @@
+from datetime import timedelta
 from flask import Flask, jsonify, request, session, redirect
 from passlib.hash import pbkdf2_sha256
 from main import db
@@ -50,8 +51,14 @@ class User:
         # if user is found and the password is a verified match, start session
         if user and pbkdf2_sha256.verify(password, user['password']): 
             print('logged in')
-            access_token = create_access_token(identity=user['email'])
+            identity = {
+                "id" : user['_id'],
+                "name" : user['name']
+            }
+            expiration_time = timedelta(hours = 24)
+            access_token = create_access_token(identity=identity, expires_delta=expiration_time)
             self.session(user)
+
             return jsonify(access_token = access_token)
 
         return jsonify({"error": "Invalid email"}), 401 # 401 unauthorized

@@ -18,10 +18,10 @@ export const UserView = () => {
 
     useEffect(() => {
         userAuthBackend()
-    })
+    },[])
     return(
         <>
-             {user ? <Userpage /> : "You need to log in first" }
+             {user ? <Userpage name={user['name']}/> : "You need to log in first" }
         </>
     )
 }
