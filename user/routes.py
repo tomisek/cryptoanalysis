@@ -1,6 +1,10 @@
-from flask import Flask, request, json
+from flask import Flask, request, json, jsonify
 from __main__ import app
 from user.user import User
+
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 
 
 @app.route('/user/register', methods=['GET', 'POST'])
@@ -40,3 +44,9 @@ def saveForecast():
         data = request.json
 
         return User().saveForecast(data)
+
+@app.route('/rest/get-user')
+@jwt_required()
+def getUser():
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user)

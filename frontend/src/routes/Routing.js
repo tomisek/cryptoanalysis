@@ -13,7 +13,7 @@ export const Routing = (props) => {
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
 
     const checkIfUserIsAuthenticatedInBrowser = () => {
-        setAuthenticatedUser(localStorage.getItem("name"))
+        setAuthenticatedUser(localStorage.getItem("token"))
         console.log(authenticatedUser)
     }
 
@@ -28,10 +28,10 @@ export const Routing = (props) => {
             {props.children}
             <Switch>
                 {
-                !localStorage.getItem('name') ? <Redirect from='/userpage' to='/' /> : <Route exact path="/userpage" component={UserView} />
+                !localStorage.getItem('token') ? <Redirect from='/userpage' to='/' /> : <Route exact path="/userpage" component={UserView} />
                 } 
                 {
-                localStorage.getItem('name') ? <Redirect from='/userregister' to='/' /> : <Route exact path="/userregister" component={RegisterView} />
+                localStorage.getItem('token') ? <Redirect from='/userregister' to='/' /> : <Route exact path="/userregister" component={RegisterView} />
                 } 
                 <Route path="/coins/:slug" component={CoinView} />
                 <Route component={HomeView} />
