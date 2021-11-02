@@ -56,5 +56,11 @@ const globalMarketInfo = (slug) => {
     return http.get(`/rest/market/global-market-data`)
 }
 
-export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search, saveForecast}
+const getLoggedInUser = (token) => {
+    return http.get('/rest/get-user', {
+        headers: {'Authorization': 'Bearer ' + token}
+    })
+}
+
+export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search, saveForecast, getLoggedInUser}
 
