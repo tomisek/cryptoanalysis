@@ -1,5 +1,4 @@
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom';
 import './CoinView.css'
 import CoinHistoryGraph from '../../components/CoinHistoryGraph/CoinHistoryGraph'
 import { CoinInfoBox } from '../../components/CoinInfoBox/CoinInfoBox'
