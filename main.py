@@ -1,17 +1,22 @@
 import json
 from flask import Flask, request, jsonify, session, redirect
+from flask_jwt_extended.utils import get_jwt_identity
+from flask_jwt_extended.view_decorators import jwt_required
 from forecast import analyseChosenCoins
 from api_calls import getAllCoinNames, getGlobalCryptoMarket, getSingleCoinInfo, getTopChart, getTrending, getSingleCoinHistory, getTrendingInfo
 from help_functions import missingvalues_tool, numeric_evaluations
 from flask_cors import CORS
 from functools import wraps
 from instance.config import CONNECTION_STRING
+from JSONencoder import MyEncoder
+from flask_jwt_extended import JWTManager
 import pymongo
 
 app = Flask(__name__, instance_relative_config=True)
 # Need to add a 'instance'-folder with config.py-file containing secret key!
 app.config.from_pyfile('config.py')
-
+app.json_encoder = MyEncoder
+jwt = JWTManager(app)
 
 #Database
 client = pymongo.MongoClient(CONNECTION_STRING, connect=False)
@@ -41,7 +46,9 @@ def hello_world():
 @app.route('/userpage')
 @login_required
 def userpage():
-    return 'userpage'
+    current_user = get_jwt_identity()
+    # return 'userpage'
+    return jsonify(logged_in_as=current_user)
 
 #Forecasting top trending coins 
 @app.route('/rest/forecast/trending', methods=['GET'])

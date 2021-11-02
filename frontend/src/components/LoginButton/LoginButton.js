@@ -21,10 +21,8 @@ export const LoginButton = () => {
 
        try{
         const userFromServer = await CryptoShuttleService.loginUser({email, password})
-        console.log(userFromServer.data)
-        console.log(authenticatedUser)
-        setAuthenticatedUser(userFromServer.data.name)
-        localStorage.setItem("name", userFromServer.data.name)
+        setAuthenticatedUser(userFromServer.data.access_token)
+        localStorage.setItem("token", userFromServer.data.access_token)
         /* document.getElementsById('noMatch').style.visibility = "hidden" */
         }
         catch(error){
