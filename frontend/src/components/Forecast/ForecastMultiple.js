@@ -46,7 +46,7 @@ const ForecastMultiple = (data) => {
     };
 
     return (
-        <div className="forecast-mulitple">
+        <div className="forecast-multiple">
             <ResponsiveContainer width="100%" height={400}>
                 <LineChart data={Object.values(data.forecastMultiple)}>
                     <XAxis
@@ -57,12 +57,12 @@ const ForecastMultiple = (data) => {
                         tickCount={8}
                         tickFormatter={(number) => `$${number}`}
                     />
-                    <Line dataKey="yhat_upper" stroke="#82ca9d" dot={false} strokeWidth={1} />
-                    <Line dataKey="yhat" stroke="#ffc658" dot={false} strokeWidth={1} />
-                    <Line dataKey="yhat_lower" stroke="#8884d8" dot={false} strokeWidth={1} />
+                    <Line name="Predicted Upper" dataKey="yhat_upper" stroke="#82ca9d" dot={false} strokeWidth={1} />
+                    <Line name="Predicted" dataKey="yhat" stroke="#ffc658" dot={false} strokeWidth={1} />
+                    <Line name="Predicted Lower" dataKey="yhat_lower" stroke="#8884d8" dot={false} strokeWidth={1} />
                     <Tooltip content={<CustomTooltip />} animationDuration={0} />
-                    <Legend />
-                    <CartesianGrid opacity={0.4} vertical={false} />
+                    <Legend verticalAlign="top" height={36} />
+                    <CartesianGrid opacity={0.4} />
                 </LineChart>
             </ResponsiveContainer>
         </div>

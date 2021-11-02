@@ -12,6 +12,7 @@ from pycoingecko import CoinGeckoAPI
 from help_functions import check_history
 import numpy as np
 cg = CoinGeckoAPI()
+import time
 
 
 # Get coin market by id and create dataframe
@@ -127,10 +128,11 @@ def analyseChosenCoins(cryptos, days, currency, coin_market_period):
     # Remove negative values from dataset and replace them with zero , preventing graph data to go below zero.
     multiple_df['yhat'] = multiple_df['yhat'].clip(lower=0)
     multiple_df['yhat_lower'] = multiple_df['yhat_lower'].clip(lower=0)
+    df_filtered = multiple_df[multiple_df['ds'] >= time.time()*1000] 
 
 
 
-  return rec, forecast_df.to_dict(orient="index"), multiple_df.to_dict(orient="index")
+  return rec, forecast_df.to_dict(orient="index"), df_filtered.to_dict(orient="index")
  
 
     
