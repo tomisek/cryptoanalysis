@@ -37,7 +37,7 @@ def login():
 @app.route('/user/forecasts', methods=["GET", "POST"])
 def saveForecast():
     if request.method =="GET":
-        user_id = request.json['id']
+        user_id = request.args.get('id')
         return User().showForecasts(user_id) 
 
     if request.method =="POST":

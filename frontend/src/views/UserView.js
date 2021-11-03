@@ -21,7 +21,7 @@ export const UserView = () => {
     },[])
     return(
         <>
-             {user ? <Userpage name={user['name']}/> : "You need to log in first" }
+             {user ? <Userpage user={user}/> : "You need to log in first" }
         </>
     )
 }
