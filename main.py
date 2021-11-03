@@ -72,6 +72,7 @@ def trending_forecast():
   
 #Can forecast one or more coins / need some changes for plural or multiple to work.
 @app.route('/rest/forecast/coins', methods=['GET'])
+@jwt_required()
 def user_option_forecast():
     cryptos = []
    

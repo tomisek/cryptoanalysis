@@ -5,6 +5,8 @@
     "a a a a"
     "b b b b"
     "c c c c";
+    
+    
 }
 
 @media screen and (max-width: 70em) {
@@ -22,4 +24,18 @@
 
 .forecast {
     grid-area: c;
+}
+
+.coin-view input {
+    grid-area: c;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background-color: rgb(36, 77, 211);
+    width: 100px;
+    height: 40px;
+    margin: 0 auto;
+    justify-content: center;
+
+
+    
 }
