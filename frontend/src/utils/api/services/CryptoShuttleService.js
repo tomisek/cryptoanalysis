@@ -35,8 +35,10 @@ const coinInfo = (slug) => {
     return http.get(`/rest/market/info?coin=${slug}`)
 }
 
-const forecastInfo = (slug) => {
-    return http.get(`/rest/forecast/coins?coin=${slug}`)
+const forecastInfo = (slug, token) => {
+    return http.get(`/rest/forecast/coins?coin=${slug}`, {
+        headers: {'Authorization': 'Bearer ' + token}
+    })
 }
 
 const lastViewed = (coins) => {
@@ -56,5 +58,11 @@ const globalMarketInfo = (slug) => {
     return http.get(`/rest/market/global-market-data`)
 }
 
-export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search, saveForecast}
+const getLoggedInUser = (token) => {
+    return http.get('/rest/get-user', {
+        headers: {'Authorization': 'Bearer ' + token}
+    })
+}
+
+export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search, saveForecast, getLoggedInUser}
 
