@@ -6,7 +6,7 @@ import Forecast from '../../components/Forecast/Forecast'
 import SaveLastViewed from '../../components/SaveLastViewed/SaveLastViewed'
 import CryptoShuttleService from "../../utils/api/services/CryptoShuttleService";
 import { UserContext } from '../../shared/global/provider/UserProvider'
-
+import { SignUpLink } from "../../components/SignUpLink/SignUpLink";
 
 
 
@@ -65,8 +65,8 @@ export const CoinView = () => {
                 <SaveLastViewed />
                 
                 <input ref={btnRef} type="submit" value="Run Forecast" onClick={onClick} />
-                { showResults && user ? <Forecast /> : null }
-                
+                { showResults && user && <Forecast /> }
+                { !user && showResults  && <SignUpLink/> }
                   
                 
                     
