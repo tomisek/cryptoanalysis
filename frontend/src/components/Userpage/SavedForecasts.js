@@ -6,12 +6,16 @@ import "./SavedForecasts.css"
 export const SavedForecast = (props) => {
     const [data, setData] = useState([])
     const [sortedData, setSortedData] = useState([])
- 
+    
+    Object.values(sortedData).map((val) => {
+        val.date_made = (new Date(val.date_made)).toISOString().substr(0, 10).valueOf();
+        return val
+    })
+
     const getSavedForecasts = async () => {
         try{
             const { data } = await CryptoShuttleService.getSavedForecasts(props.userId)
             setData(data)
-            console.log("data",data);
             sortCoins(data)
 
         }
@@ -31,10 +35,7 @@ export const SavedForecast = (props) => {
             }
             return 0
         })
-        
-
-        
-        console.log("sorted",data);
+     
         setSortedData(data) 
     }
     useEffect(() => {
@@ -50,9 +51,9 @@ export const SavedForecast = (props) => {
                     <div className="coinName">{sortedData[key].coin.charAt(0).toUpperCase() + sortedData[key].coin.slice(1)}</div>
                     <div className="dateMade">Date made: {sortedData[key].date_made}</div>
                     <div className="buyDate">Buy date: {sortedData[key].buy_date}</div>
-                    <div className="buyPrice">Buy price: {sortedData[key].buy_price}</div>
+                    <div className="buyPrice">Buy price: ${sortedData[key].buy_price}</div>
                     <div className="sellDate">Sell date: {sortedData[key].sell_date}</div>
-                    <div className="sellPrice">Sell price: {sortedData[key].sell_price}</div>
+                    <div className="sellPrice">Sell price: ${sortedData[key].sell_price}</div>
                     <div className="maxGainPercent">Max gain: {sortedData[key].max_gain_procent}%</div>
                 </div>
             ))}
