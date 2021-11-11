@@ -26,10 +26,6 @@ export const CoinView = () => {
     }
         
             
-       
-   
-    
-    
     const userAuthBackend = async () => {
         
         setAuthenticatedUser(localStorage.getItem('token'))
@@ -51,12 +47,7 @@ export const CoinView = () => {
         
     }
     
-   
-    
-
-
-
-    
+      
     return (
         <div className="main">
             <div className="coin-view">
@@ -66,12 +57,9 @@ export const CoinView = () => {
                 
                 <input ref={btnRef} type="submit" value="Run Forecast" onClick={onClick} />
                 { showResults && user && <Forecast /> }
-                { !user && showResults  && <SignUpLink/> }
-                  
+                { !user && showResults && <SignUpLink/> }
                 
-                    
-
-                
+                               
             </div>
         </div>
     )

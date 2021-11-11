@@ -26,6 +26,10 @@
     grid-area: c;
 }
 
+.sign-up-link {
+    grid-area: c;
+}
+
 .coin-view input {
     grid-area: c;
     color: rgb(255, 255, 255);
