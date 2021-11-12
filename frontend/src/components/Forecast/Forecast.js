@@ -5,6 +5,7 @@ import ForecastInfo from './ForecastInfo.js'
 import ForecastGraph from './ForecastGraph.js'
 import ForecastMultiple from './ForecastMultiple.js'
 import { useParams } from 'react-router-dom'
+import CustomLoading from '../CustomLoading/CustomLoading';
 
 const Forecast = () => {
     const [error, setError] = useState(null);
@@ -13,10 +14,11 @@ const Forecast = () => {
     const [forecastGraph, setForecastGraph] = useState([]);
     const [forecastMultiple, setForecastMultiple] = useState([]);
     let { slug } = useParams();
+    let token = localStorage.getItem('token')
 
-    const fetchData = async (slug) => {
+    const fetchData = async (slug, token) => {
         try {
-            const { data } = await CryptoShuttleService.forecastInfo(slug)
+            const { data } = await CryptoShuttleService.forecastInfo(slug, token)
             setIsLoaded(true);
             setForecastInfo(data.coin);
             setForecastGraph(data.graph);
@@ -28,13 +30,13 @@ const Forecast = () => {
     }
 
     useEffect(() => {
-        fetchData(slug)
-    }, [slug])
+        fetchData(slug, token)
+    }, [slug, token])
 
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-        return <div>loading...</div>;
+        return <CustomLoading/>;
     } else {
         return (
             <div className="forecast">

@@ -35,8 +35,10 @@ const coinInfo = (slug) => {
     return http.get(`/rest/market/info?coin=${slug}`)
 }
 
-const forecastInfo = (slug) => {
-    return http.get(`/rest/forecast/coins?coin=${slug}`)
+const forecastInfo = (slug, token) => {
+    return http.get(`/rest/forecast/coins?coin=${slug}`, {
+        headers: {'Authorization': 'Bearer ' + token}
+    })
 }
 
 const lastViewed = (coins) => {
