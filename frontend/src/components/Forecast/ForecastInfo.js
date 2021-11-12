@@ -1,11 +1,8 @@
-import React, {useContext} from 'react'
 import './Forecast.css'
-import { UserContext } from '../../shared/global/provider/UserProvider'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
 
 const ForecastInfo = (data) => {
 
-    const authenticatedUser = useContext(UserContext)
 
     //Converts the timestamp to a readable string
     Object.values(data.forecastInfo).map((val) => {
@@ -14,16 +11,12 @@ const ForecastInfo = (data) => {
         return val
     })
 
-    
-    // may need change
-    const userId = authenticatedUser[0].id
-
     const handleClick = () => {
         
         Object.keys(data.forecastInfo).map((key, index) => {
  
             const info = {
-                "user" : userId,
+                "user" : data.user.id,
                 "date_made": Date.now(),
                 "coin": Object.keys(data.forecastInfo)[index],
                 "buy_date": data.forecastInfo[key].buy_date,

@@ -65,7 +65,7 @@ export const CoinView = () => {
                 <SaveLastViewed />
                 
                 <input ref={btnRef} type="submit" value="Run Forecast" onClick={onClick} />
-                { showResults && user ? <Forecast /> : null }
+                { showResults && user ? <Forecast user={user} /> : null }
                 
                   
                 
