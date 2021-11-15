@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import './Forecast.css'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
