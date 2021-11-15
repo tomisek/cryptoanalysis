@@ -1,9 +1,10 @@
+import { useState } from 'react'
 import './Forecast.css'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
 
 const ForecastInfo = (data) => {
 
-
+    const [showSaveInfo, setShowSaveInfo] = useState(false)
     //Converts the timestamp to a readable string
     Object.values(data.forecastInfo).map((val) => {
         val.buy_date = (new Date(val.buy_date)).toISOString().substr(0, 10).valueOf();
@@ -28,6 +29,7 @@ const ForecastInfo = (data) => {
             try{
                 CryptoShuttleService.saveForecast(info)
                 console.log("Saved forecast")
+                setShowSaveInfo(true)
                 return 200
             }
             catch (e) {
@@ -64,6 +66,7 @@ const ForecastInfo = (data) => {
                     <div className="button">
                         <button onClick={handleClick}>Save forecast suggestions</button>
                     </div>
+                    <div className="save-info">{showSaveInfo ? "Saved forecast." : null}</div>
                 </div>
             ))}
         </div>
