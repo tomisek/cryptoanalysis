@@ -1,13 +1,30 @@
-import React, {useContext}  from 'react'
+import React, { useEffect, useContext, useState}  from 'react'
 import {UserContext} from '../../shared/global/provider/UserProvider'
 import {useHistory} from 'react-router-dom'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
 
-
-
 export const Profile = () => {
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
     const history = useHistory()
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [user, setUser] = useState([]);
+    
+
+    const fetchData = async (authenticatedUser) => {
+        try {
+            const { data } = await CryptoShuttleService.getLoggedInUser(authenticatedUser)
+            setIsLoaded(true);
+            setUser(data);
+        } catch (error) {
+            setIsLoaded(true);
+            setError(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchData(authenticatedUser)
+    }, [authenticatedUser])
 
     const logout = async () => {
 
@@ -25,11 +42,17 @@ export const Profile = () => {
         
     }
 
-    return (
-        <div>  
-            <span>{authenticatedUser}</span>
-            <hr/>
-            <button onClick={() => logout()}> Logout</button>
-        </div>
-    )
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    } else if (!isLoaded || !user.logged_in_as) {
+        return "";
+    } else {
+        return (
+            <div>  
+                <span>{user.logged_in_as.name}</span>
+                <hr/>
+                <button onClick={() => logout()}> Logout</button>
+            </div>
+        )
+    }
 }
