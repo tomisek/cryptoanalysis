@@ -1,59 +1,46 @@
-import React, { useState, useContext } from 'react'
+import React from 'react'
 import './Register.css'
-import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
-import { UserContext } from '../../shared/global/provider/UserProvider'
-import { useHistory } from 'react-router-dom'
+import useForm from "./UseForm";
+import validate from './RegisterFormValidationRules';
 
 export const Register = (props) => {
 
-    const [ email, setEmail ] = useState()
-    const [ password, setPassword ] = useState()
-    const [ name, setName ] = useState()
-    const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
-    const history = useHistory()
+    
+    const {
+        values,
+        errors,
+        handleChange,
+        handleSubmit,
+      } = useForm(login, validate);
 
-    const logInUser = (userObject) => {
-
-        setAuthenticatedUser(userObject['email'])
-        localStorage.setItem("name", userObject['name'])
-        console.log(authenticatedUser);
-        history.push('/userpage')
-
-    }
-    const registerUser = async (event) =>{
-        event.preventDefault()
-        
-        const userObject = {
-            "email": email,
-            "name": name,
-            "password": password
-        }
-        
-        try{
-            const response = await CryptoShuttleService.registerUser(userObject)
-            console.log(response);
-            logInUser(userObject)
-        }
-        catch(error){
-            if (error.response.data){
-                // Show error message from server
-                alert(error.response.data['error']);
-            }
-
-            console.error(error.message);
-        }
-    }
-
+      function login() {
+        console.log('No errors, submit callback called!');
+      }
+    
     return (
         <div className="registerPage">
             
             <div className="formWrapper">
                 <h1 className="title">{props.title}</h1>
-                <form onSubmit={registerUser}>
+                <form onSubmit={handleSubmit} noValidate>
         
-                    <label htmlFor="email">Email</label><input id="email" type="email" onChange={event => setEmail(event.target.value)} required></input>
-                    <label htmlFor="name">Name</label><input id="name" onChange={event => setName(event.target.value)}></input>
-                    <label htmlFor="password">Password</label><input id="password" type="password" onChange={event => setPassword(event.target.value)} required></input>
+                    <label htmlFor="email">Email</label><input autoComplete="off" className={`input ${errors.email}`} type="email" name="email" onChange={handleChange} value={values.email || ''} required />
+                    {errors.email && (
+                    <p className="help">{errors.email}</p>
+                    )}
+                    <label htmlFor="name">Name</label><input autoComplete="off" className={`input ${errors.name}`} type="text" name="name" onChange={handleChange} value={values.name || ''} required />
+                    {errors.name && (
+                    <p className="help">{errors.name}</p>
+                    )}
+                    <label htmlFor="password">Password</label> <input className={`input ${errors.password}`} type="password" name="password" onChange={handleChange} value={values.password || ''} required />
+                
+                    {errors.password && (
+                    <p className="help">{errors.password}</p>
+                    )}
+                    <label htmlFor="password">Confirm Password</label><input className={`input ${errors.confirmPassword}`} type="password" name="confirmPassword" onChange={handleChange} value={values.confirmPassword || ''} required />
+                    {errors.confirmPassword && (
+                    <p className="help">{errors.confirmPassword}</p>
+                    )}
                     <button type="submit">Register</button>
                 </form>
             </div>
