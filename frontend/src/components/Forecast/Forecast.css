@@ -16,3 +16,12 @@
 .forecast-graph {
     margin: 20px;
 }
+
+.forecast-info .button, .forecast-info .save-info {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+.button button {
+    padding: 7px;
+}

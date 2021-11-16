@@ -7,7 +7,7 @@ import ForecastMultiple from './ForecastMultiple.js'
 import { useParams } from 'react-router-dom'
 import CustomLoading from '../CustomLoading/CustomLoading';
 
-const Forecast = () => {
+const Forecast = (props) => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [forecastInfo, setForecastInfo] = useState([]);
@@ -40,7 +40,7 @@ const Forecast = () => {
     } else {
         return (
             <div className="forecast">
-                <ForecastInfo forecastInfo={forecastInfo}/>
+                <ForecastInfo forecastInfo={forecastInfo} user={props.user}/>
                 <ForecastGraph forecastGraph={forecastGraph} />
                 <ForecastMultiple forecastMultiple={forecastMultiple} />
             </div>
