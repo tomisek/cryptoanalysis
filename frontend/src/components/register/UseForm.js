@@ -33,6 +33,8 @@ const useForm = (callback, validate) => {
     setErrors(validate(values));
     setIsSubmitting(true)
     
+    
+    
     const userObject = {
         "email": values.email,
         "name": values.name,
@@ -41,8 +43,8 @@ const useForm = (callback, validate) => {
     console.log(userObject)
     
     const response = await CryptoShuttleService.registerUser(userObject)
-    console.log(response);
-    console.log(userObject)
+    console.log(response)
+    
     logInUser(userObject)
     
 }
