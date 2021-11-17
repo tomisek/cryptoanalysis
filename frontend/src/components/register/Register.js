@@ -14,6 +14,7 @@ export const Register = (props) => {
         handleSubmit,
       } = useForm(login, validate);
 
+      //registering user
       async function  login (e) {
         if(e) e.preventDefault()
         console.log('No errors, submit callback called!');
