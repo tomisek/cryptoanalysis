@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
-import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../shared/global/provider/UserProvider';
 
 
@@ -11,7 +10,6 @@ const useForm = (callback, validate) => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
-  const history = useHistory();
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
@@ -19,12 +17,19 @@ const useForm = (callback, validate) => {
     }
   }, [errors]);
 
-  const logInUser = (userObject) => {
+  const logInUser = async ()   => {
 
-    setAuthenticatedUser(userObject['values.email'])
-    localStorage.setItem("name", userObject['values.name'])
-    history.push('/userpage')
-
+   try{
+    const email = values.email
+    const password = values.password
+    const userFromServer = await CryptoShuttleService.loginUser({email, password})
+    setAuthenticatedUser(userFromServer.data.access_token)
+    localStorage.setItem("token", userFromServer.data.access_token)
+    /* document.getElementsById('noMatch').style.visibility = "hidden" */
+    }
+    catch(error){
+        alert('Wrong email or password')
+    }        
 }
 
   
@@ -36,16 +41,25 @@ const useForm = (callback, validate) => {
     
     
     const userObject = {
-        "email": values.email,
-        "name": values.name,
-        "password": values.password
-    }
-    console.log(userObject)
-    
-    const response = await CryptoShuttleService.registerUser(userObject)
-    console.log(response)
-    
-    logInUser(userObject)
+      "email": values.email,
+      "name": values.name,
+      "password": values.password,
+  }
+  
+  try{
+      const response = await CryptoShuttleService.registerUser(userObject)
+      console.log(response);
+      logInUser(userObject)
+  }
+  catch(error){
+      if (error.response.data){
+          // Show error message from server
+          /* errors.email = error.response.data['error']; */
+          alert(error.response.data['error'])
+      }
+
+      console.error(error.message);
+  }
     
 }
 
