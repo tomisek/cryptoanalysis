@@ -6,7 +6,6 @@ export const HomeView = () => {
     return(
         <div className="main">
             <GlobalMarketInfo />
-            <h1>This is home</h1>
             <Topcoins />
         </div>
     )

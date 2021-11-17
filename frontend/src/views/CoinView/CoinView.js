@@ -24,34 +24,23 @@ export const CoinView = () => {
             signInRef.current.setAttribute("hidden", "hidden")
         }
     }
-    
-    
-    
-    
-    
-    
        
-    
-    
       
     return (
         <div className="main">
             <div className="coin-view">
                 <CoinInfoBox />
                 <CoinHistoryGraph />
-                <SaveLastViewed />
-                
+                <SaveLastViewed />                
                 <RunForecastButton/>
-
+                                                        
                 <div ref={signInRef} className="sign-in">
                     {authenticatedUser == null && <LoginButton/>}
                     {authenticatedUser == null && <SignUpLink/>}
                     {displayIfNotAuth()}
                 </div>
                 
-               
-               
-                               
+                                                             
             </div>
         </div>
     )

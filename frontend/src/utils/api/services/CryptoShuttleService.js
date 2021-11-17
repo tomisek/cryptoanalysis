@@ -64,5 +64,9 @@ const getLoggedInUser = (token) => {
     })
 }
 
-export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search, saveForecast, getLoggedInUser}
+const getSavedForecasts = (id) => {
+    return http.get('/user/forecasts', {params: {'id': id}})
+}
+
+export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search, saveForecast, getLoggedInUser, getSavedForecasts}
 
