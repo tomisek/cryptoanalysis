@@ -53,7 +53,7 @@ export const RunForecastButton = () => {
         
         <div className="forecast-button">
             <input ref={btnRef} type="submit" value="Run Forecast" onClick={onClick} />
-            { showResults && user && <Forecast /> }
+            { showResults && user && <Forecast user={user}/> }
 
         </div>
 
