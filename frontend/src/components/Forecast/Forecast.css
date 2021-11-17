@@ -16,3 +16,9 @@
 .forecast-graph {
     margin: 20px;
 }
+
+.forecast-button {
+    grid-area: c;
+    text-align: center;
+}
+

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
 import { LoginButton } from '../LoginButton/LoginButton';
-
+import "./SignUpLink.css"
 
 
 export const SignUpLink = () => {
@@ -10,22 +10,16 @@ export const SignUpLink = () => {
     
     
 
-    
-
-
     return (
 
         <div className="sign-up-link">
-            <div className="login">
-                <LoginButton/>
+            
                 
-                
-                
-                <span>New to Crypto Shuttle?</span>
-                <span onClick={() => history.push('/userregister')} className="register" > Register</span>
+                <p>New to Crypto Shuttle? </p>
+                <p onClick={() => history.push('/userregister')} className="register"> Register</p>
 
                 
-            </div>
+            
 
 
         </div>

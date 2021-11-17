@@ -4,7 +4,8 @@
     grid-template-areas:
     "a a a a"
     "b b b b"
-    "c c c c";
+    "c c c c"
+    "d d d d";
     
     
 }
@@ -14,7 +15,8 @@
         grid-template-areas: 
             "a a a a"
             "b b b b"
-            "c c c c";
+            "c c c c"
+            "d d d d";
     }
 }
 
@@ -41,5 +43,19 @@
     justify-content: center;
 
 
+    
+}
+
+.sign-in {
+    grid-area: d;
+    
+    align-items: center;
+    justify-content: center;
+}
+.sign-in div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
     
 }
