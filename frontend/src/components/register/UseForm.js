@@ -49,6 +49,7 @@ const useForm = (callback, validate) => {
   try{
       const response = await CryptoShuttleService.registerUser(userObject)
       console.log(response);
+      alert('You are logging in!')
       logInUser(userObject)
   }
   catch(error){
