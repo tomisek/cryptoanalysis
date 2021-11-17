@@ -1,18 +1,34 @@
-import React from 'react'
+import React, { useContext } from "react"
 import './Register.css'
 import useForm from "./UseForm";
 import validate from './RegisterFormValidationRules';
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
+import { UserContext } from "../../shared/global/provider/UserProvider"
 
 export const Register = (props) => {
 
-    
+    const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
     const {
         values,
         errors,
         handleChange,
         handleSubmit,
       } = useForm(login, validate);
+
+      const logInUser = async ()   => {
+
+        try{
+         const email = values.email
+         const password = values.password
+         const userFromServer = await CryptoShuttleService.loginUser({email, password})
+         setAuthenticatedUser(userFromServer.data.access_token)
+         localStorage.setItem("token", userFromServer.data.access_token)
+         /* document.getElementsById('noMatch').style.visibility = "hidden" */
+         }
+         catch(error){
+             alert('Wrong email or password')
+         }        
+     }
 
       //registering user
       async function  login (e) {
@@ -29,6 +45,8 @@ export const Register = (props) => {
         try{
             const response = await CryptoShuttleService.registerUser(userObject)
             console.log(response);
+            alert('You are logging in!')
+            logInUser();
         }
         catch(error){
             if (error.response.data){
