@@ -1,6 +1,4 @@
-
 export default function validate(values) {
-
 
     let errors = {};
     if (!values.email) {

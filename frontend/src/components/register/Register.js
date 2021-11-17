@@ -2,6 +2,7 @@ import React from 'react'
 import './Register.css'
 import useForm from "./UseForm";
 import validate from './RegisterFormValidationRules';
+import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
 
 export const Register = (props) => {
 
@@ -13,9 +14,30 @@ export const Register = (props) => {
         handleSubmit,
       } = useForm(login, validate);
 
-      function login() {
+      async function  login (e) {
+        if(e) e.preventDefault()
         console.log('No errors, submit callback called!');
-      }
+        
+        
+        const userObject = {
+            "email": values.email,
+            "name": values.name,
+            "password": values.password,
+        }
+        
+        try{
+            const response = await CryptoShuttleService.registerUser(userObject)
+            console.log(response);
+        }
+        catch(error){
+            if (error.response.data){
+                // Show error message from server
+                alert(error.response.data['error'])
+            }
+      
+            console.error(error.message);
+        }
+      };
     
     return (
         <div className="registerPage">
