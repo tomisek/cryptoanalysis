@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useContext } from "react"
 import './Register.css'
 import useForm from "./UseForm";
 import validate from './RegisterFormValidationRules';
+import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
+import { UserContext } from "../../shared/global/provider/UserProvider"
+import { RegUserContext } from "../../shared/global/provider/RegUserProvider";
 
 export const Register = (props) => {
 
-    
+    const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
+    const [registerError, setRegisterError] = useContext(RegUserContext)
+    /* const [registerError, setRegisterError] = useState() */
     const {
         values,
         errors,
@@ -13,9 +18,43 @@ export const Register = (props) => {
         handleSubmit,
       } = useForm(login, validate);
 
-      function login() {
+      const logInUser = async ()   => {
+         
+         const email = values.email
+         const password = values.password
+         const userFromServer = await CryptoShuttleService.loginUser({email, password})
+         setAuthenticatedUser(userFromServer.data.access_token)
+         localStorage.setItem("token", userFromServer.data.access_token)
+         }
+     
+
+      //registering user
+      async function  login (e) {
+        if(e) e.preventDefault()
         console.log('No errors, submit callback called!');
-      }
+        
+        
+        const userObject = {
+            "email": values.email,
+            "name": values.name,
+            "password": values.password,
+        }
+        
+        try{
+            const response = await CryptoShuttleService.registerUser(userObject)
+            console.log(response);
+            logInUser();
+        }
+        catch(error){
+            if (error.response.data){
+                // Show error message from server
+                setRegisterError(error.response.data['error'])
+                document.getElementById("noMatch").style.visibility = "visible"
+            }
+      
+            console.error(error.message);
+        }
+      };
     
     return (
         <div className="registerPage">
@@ -41,6 +80,7 @@ export const Register = (props) => {
                     {errors.confirmPassword && (
                     <p className="help">{errors.confirmPassword}</p>
                     )}
+                    <div id="noMatch">{registerError}</div>
                     <button type="submit">Register</button>
                 </form>
             </div>
