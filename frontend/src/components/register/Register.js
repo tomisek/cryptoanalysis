@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import './Register.css'
 import useForm from "./UseForm";
 import validate from './RegisterFormValidationRules';
@@ -8,6 +8,7 @@ import { UserContext } from "../../shared/global/provider/UserProvider"
 export const Register = (props) => {
 
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
+    const [registerError, setRegisterError] = useState()
     const {
         values,
         errors,
@@ -16,19 +17,14 @@ export const Register = (props) => {
       } = useForm(login, validate);
 
       const logInUser = async ()   => {
-
-        try{
+         
          const email = values.email
          const password = values.password
          const userFromServer = await CryptoShuttleService.loginUser({email, password})
          setAuthenticatedUser(userFromServer.data.access_token)
          localStorage.setItem("token", userFromServer.data.access_token)
-         /* document.getElementsById('noMatch').style.visibility = "hidden" */
          }
-         catch(error){
-             alert('Wrong email or password')
-         }        
-     }
+     
 
       //registering user
       async function  login (e) {
@@ -50,7 +46,8 @@ export const Register = (props) => {
         catch(error){
             if (error.response.data){
                 // Show error message from server
-                alert(error.response.data['error'])
+                setRegisterError(error.response.data['error'])
+                document.getElementById("noMatch").style.visibility = "visible"
             }
       
             console.error(error.message);
@@ -81,6 +78,7 @@ export const Register = (props) => {
                     {errors.confirmPassword && (
                     <p className="help">{errors.confirmPassword}</p>
                     )}
+                    <div id="noMatch">{registerError}</div>
                     <button type="submit">Register</button>
                 </form>
             </div>
