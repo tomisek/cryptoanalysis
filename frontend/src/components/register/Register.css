@@ -21,3 +21,10 @@
     border-radius: 4px;
     box-sizing: border-box;
   }
+  .help{
+      color: rgb(241, 22, 62);
+  }
+  #noMatch{
+    visibility: hidden;
+    color: red;
+  }
