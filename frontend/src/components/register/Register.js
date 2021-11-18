@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import './Register.css'
 import useForm from "./UseForm";
 import validate from './RegisterFormValidationRules';
