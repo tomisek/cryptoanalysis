@@ -4,11 +4,13 @@ import useForm from "./UseForm";
 import validate from './RegisterFormValidationRules';
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
 import { UserContext } from "../../shared/global/provider/UserProvider"
+import { RegUserContext } from "../../shared/global/provider/RegUserProvider";
 
 export const Register = (props) => {
 
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
-    const [registerError, setRegisterError] = useState()
+    const [registerError, setRegisterError] = useContext(RegUserContext)
+    /* const [registerError, setRegisterError] = useState() */
     const {
         values,
         errors,

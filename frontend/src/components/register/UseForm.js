@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { RegUserContext } from '../../shared/global/provider/RegUserProvider';
 
 
 const useForm = (callback, validate) => {
@@ -6,6 +7,7 @@ const useForm = (callback, validate) => {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [registerError,setRegisterError] = useContext(RegUserContext)
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
@@ -15,6 +17,7 @@ const useForm = (callback, validate) => {
   
   const handleSubmit = (event) => {
     if (event) event.preventDefault();
+    setRegisterError(null)
     setErrors(validate(values));
     setIsSubmitting(true);
   };
