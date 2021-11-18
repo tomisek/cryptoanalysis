@@ -45,7 +45,6 @@ export const Register = (props) => {
         try{
             const response = await CryptoShuttleService.registerUser(userObject)
             console.log(response);
-            alert('You are logging in!')
             logInUser();
         }
         catch(error){
