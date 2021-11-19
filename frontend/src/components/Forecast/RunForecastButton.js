@@ -2,12 +2,13 @@ import React,{useState, useContext, useRef} from "react";
 import Forecast from "./Forecast";
 import CryptoShuttleService from "../../utils/api/services/CryptoShuttleService";
 import { UserContext } from '../../shared/global/provider/UserProvider'
-
+import LesserForecast from "../LesserForecast/LesserForecast";
 
 export const RunForecastButton = () => {
     let btnRef = useRef();
     const [showResults, setShowResults] = React.useState(false)
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
+    const [isLesserForecast, setIsLesserForecast] = useState()
     let  [user, setUser] = useState()
     const onClick = () => {setShowResults(true)
         
@@ -16,14 +17,21 @@ export const RunForecastButton = () => {
             
         }
         
+        else if(authenticatedUser == null && btnRef.current){
+            btnRef.current.setAttribute("hidden", "hidden")
+        } 
+
+        
+        
         userAuthBackend()
         
         
-        
-        
-        
-        
     }
+        
+    
+
+        
+        
     const userAuthBackend = async () => {
         
         setAuthenticatedUser(localStorage.getItem('token'))
@@ -54,7 +62,8 @@ export const RunForecastButton = () => {
         <div className="forecast-button">
             <input ref={btnRef} type="submit" value="Run Forecast" onClick={onClick} />
             { showResults && user && <Forecast user={user}/> }
-
+            { showResults && !user && <LesserForecast/>}
+            
         </div>
 
 
