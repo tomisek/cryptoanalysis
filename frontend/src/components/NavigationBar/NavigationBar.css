@@ -18,3 +18,13 @@
 .register{
     cursor: pointer;
 }
+.logButton{
+    grid-column: 6/10;
+    background-color: blue;
+    /* align-self: center; */
+}
+.regButton{
+    grid-column: 2/10;
+    background-color: red;
+    /* align-self: center; */
+}

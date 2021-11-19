@@ -21,10 +21,15 @@ export const Profile = () => {
             setError(error);
         }
     }
+    const handleUserPage = () =>{
+        history.push('/userpage')
+    }
 
     useEffect(() => {
         fetchData(authenticatedUser)
     }, [authenticatedUser])
+
+   
 
     const logout = async () => {
 
@@ -42,6 +47,8 @@ export const Profile = () => {
         
     }
 
+    
+
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded || !user.logged_in_as) {
@@ -52,6 +59,7 @@ export const Profile = () => {
                 <span>{user.logged_in_as.name}</span>
                 <hr/>
                 <button onClick={() => logout()}> Logout</button>
+                <button onClick={handleUserPage}>My page</button>
             </div>
         )
     }

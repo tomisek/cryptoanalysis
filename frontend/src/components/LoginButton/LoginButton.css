@@ -4,7 +4,7 @@
     background: rgb(230, 222, 222);
     padding: 5px;
     width: 496px;
-    height: 368px;
+    height: 348px;
     border-radius: 7px;
   }
   
@@ -18,21 +18,7 @@
     cursor: pointer;
     color: blue;
   }
-  .email{
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(207, 214, 228);
-    border-radius: 8px;
-    box-sizing: border-box;
-    color: rgb(0, 0, 0);
-    max-width: 100%;
-    outline: 0px;
-    padding: 0px 16px;
-    width: 100%;
-    font-size: 14px;
-    height: 48px;
-    line-height: 21px;
-  }
-  .password{
+  .row{
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(207, 214, 228);
     border-radius: 8px;
