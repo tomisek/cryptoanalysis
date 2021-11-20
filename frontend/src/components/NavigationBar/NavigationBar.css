@@ -4,29 +4,19 @@
     display: grid;
     grid-template-columns: repeat(10, 1fr);
 }
-.loginButton{
-    grid-column: 3/10;
-    align-self: center;
-}
 .logotype{
+    cursor: pointer;
     width: 100px;
 }
-.register{
-    align-self: center;
-}
-.logotype,
-.register{
-    cursor: pointer;
-}
-.logButton{
-    /* flex: 1; */ /* additionally, equal width */
-}
-/* .regButton{
-    float: left;
-} */
 .logField{
-   /*  position: relative; */
     display: flex;
     margin-top: 25px;
-
+    gap: 20px;
+}
+.profileWrapper{
+    display:flex;
+    margin-top: 10px;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
 }

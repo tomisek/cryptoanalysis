@@ -14,13 +14,13 @@ export const NavigationBar = () => {
 
     
     const displayUserIfAuthenticated = () => {
-        return (authenticatedUser) ? <Profile/>
+        return (authenticatedUser) ? <div className="profileWrapper"><Profile/></div>
         : <div className="logField">
-            <div className="logButton">
-            <LoginButton/>
-            </div>
-            <div className="logbutton">
+            <div className="item">
                 <Register/>
+            </div>
+            <div className="item">
+                <LoginButton/>
             </div>
             
         </div>
@@ -35,7 +35,7 @@ export const NavigationBar = () => {
             <div >
                 {displayUserIfAuthenticated()}
             </div>
-            <Search />
-        </div>
+                <Search />
+            </div>
     )
 }
