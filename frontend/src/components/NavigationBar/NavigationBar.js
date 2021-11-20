@@ -15,13 +15,13 @@ export const NavigationBar = () => {
     
     const displayUserIfAuthenticated = () => {
         return (authenticatedUser) ? <Profile/>
-        : <div>
-            <span className="logButton">
+        : <div className="logField">
+            <div className="logButton">
             <LoginButton/>
-            </span>
-            <span className="regButton">
+            </div>
+            <div className="logbutton">
                 <Register/>
-            </span>
+            </div>
             
         </div>
     }

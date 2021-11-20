@@ -83,7 +83,7 @@ export const Register = (props) => {
                     <p className="help">{errors.confirmPassword}</p>
                     )}
                     <div id="noMatch">{registerError}</div>
-                    <button type="submit" className="submit">Register</button>
+                    <button type="submit" className="regSubmit">Register</button>
                 </form>
             </div>
                 )}

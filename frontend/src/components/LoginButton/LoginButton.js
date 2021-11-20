@@ -15,10 +15,16 @@ export const LoginButton = () => {
     const history = useHistory();
 
     
-
+    const openRegisterPopup = () => {
+            
+            return(
+                <span>
+                    <Register/>
+                </span>
+            )
     
+    }
     
-
     const handleSubmit = async (event)   => {
         event.preventDefault()
 
@@ -26,7 +32,6 @@ export const LoginButton = () => {
         const userFromServer = await CryptoShuttleService.loginUser({email, password})
         setAuthenticatedUser(userFromServer.data.access_token)
         localStorage.setItem("token", userFromServer.data.access_token)
-        /* document.getElementsById('noMatch').style.visibility = "hidden" */
         }
         catch(error){
             document.getElementById("noMatch").style.visibility = "visible"
@@ -42,8 +47,9 @@ export const LoginButton = () => {
                         <h4>Log In</h4>
                         <div>
                             New to Crypto Shuttle?
-                            <span className="create-account" onClick={() => {close();  }}>Create an account</span>
-                        </div><br/>
+                            <span className="create-account" onClick={() => { openRegisterPopup() }}>Create an account</span>
+                            {/* <span><Register/></span> */}
+                        </div><br/><br/>
                         <div>
                         <label ><b>Email</b></label><br/>
                         <input onChange={event => setEmail(event.target.value)} type="email" className="row" placeholder="Enter Email" name="email" required></input>
