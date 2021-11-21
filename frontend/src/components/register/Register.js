@@ -62,6 +62,9 @@ export const Register = (props) => {
             <Popup  trigger={<button className="regTriggerButton"> Register</button>} modal >
                 {close => (
             <div className="formWrapper">
+                <button className="close" onClick={close}>
+                &times;
+                </button>
                 <h4>Register</h4>
                 <form onSubmit={handleSubmit} noValidate>
         

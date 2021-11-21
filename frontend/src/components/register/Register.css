@@ -9,11 +9,11 @@
   .regSubmit{
     -webkit-box-align: center;
     align-items: center;
-    background: rgb(215, 251, 56);
+    background: rgb(158, 153, 153);
     border: 0px;
     border-radius: 8px;
     display: inline-flex;
-    color: rgb(255, 255, 255);
+    color: rgb(15, 15, 14);
     cursor: pointer;
     -webkit-box-pack: center;
     justify-content: center;
@@ -42,19 +42,32 @@
   .regTriggerButton{
     -webkit-box-align: center;
     align-items: center;
-    background: rgb(215, 251, 56);
+    background: rgb(158, 153, 153);
     border: 0px;
     border-radius: 8px;
     display: inline-flex;
-    color: rgb(255, 255, 255);
+    color: rgb(15, 15, 14);
     cursor: pointer;
     -webkit-box-pack: center;
     justify-content: center;
     outline: 0px;
     font-weight: 600;
-    width: auto;
+    width: 50px;
     height: 32px;
     font-size: 12px;
     padding: 0px 16px;
     line-height: 18px;
+  }
+  .formWrapper > .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
   }

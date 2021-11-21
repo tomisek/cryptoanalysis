@@ -3,8 +3,6 @@ import './LoginButton.css'
 import Popup from "reactjs-popup"
 import { UserContext } from "../../shared/global/provider/UserProvider"
 import CryptoShuttleService from "../../utils/api/services/CryptoShuttleService"
-import {useHistory} from "react-router-dom"
-import { Register } from '../register/Register'
 
 
 export const LoginButton = () => {
@@ -12,18 +10,6 @@ export const LoginButton = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
-    const history = useHistory();
-
-    
-    const openRegisterPopup = () => {
-            
-            return(
-                <span>
-                    <Register/>
-                </span>
-            )
-    
-    }
     
     const handleSubmit = async (event)   => {
         event.preventDefault()
@@ -42,14 +28,13 @@ export const LoginButton = () => {
         <div >
             <Popup  trigger={<button className="triggerButton"> Login</button>} modal >
                 {close => (
-                    <div className="wrapper">
-                    <form onSubmit={handleSubmit}>
+                    <div>
+                    <form className="wrapper" onSubmit={handleSubmit}>
+                        <button className="close" onClick={close}>
+                        &times;
+                        </button>
                         <h4>Log In</h4>
-                        <div>
-                            New to Crypto Shuttle?
-                            <span className="create-account" onClick={() => { openRegisterPopup() }}>Create an account</span>
-                            {/* <span><Register/></span> */}
-                        </div><br/><br/>
+                        
                         <div>
                         <label ><b>Email</b></label><br/>
                         <input onChange={event => setEmail(event.target.value)} type="email" className="row" placeholder="Enter Email" name="email" required></input>
