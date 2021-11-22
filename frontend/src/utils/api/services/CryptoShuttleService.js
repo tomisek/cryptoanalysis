@@ -68,5 +68,9 @@ const getSavedForecasts = (id) => {
     return http.get('/user/forecasts', {params: {'id': id}})
 }
 
-export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search, saveForecast, getLoggedInUser, getSavedForecasts}
+const deleteSavedForecast = (id) => {
+    return http.delete('/rest/delete-forecast', {data:{ "id": id }})
+}
+
+export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search, saveForecast, getLoggedInUser, getSavedForecasts, deleteSavedForecast}
 

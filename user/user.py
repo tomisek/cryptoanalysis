@@ -1,4 +1,5 @@
 from datetime import timedelta
+from bson.objectid import ObjectId
 from flask import Flask, jsonify, request, session, redirect
 from passlib.hash import pbkdf2_sha256
 from main import db
@@ -88,3 +89,8 @@ class User:
             userForecasts = doc['forecasts']
             
         return jsonify(userForecasts)
+
+    def deleteForecast (self, id):
+        if db.forecasts.delete_one({ "_id" : ObjectId(id)}):
+            return "deleted", 200
+        return jsonify({"error": "Could not delete" })
