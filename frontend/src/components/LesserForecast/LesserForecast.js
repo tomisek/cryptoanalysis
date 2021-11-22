@@ -15,7 +15,7 @@ const LesserForecast = (props) => {
         try {
             const { data } = await CryptoShuttleService.lesserForecastInfo(slug)
             setIsLoaded(true);
-            setLesserForecastGraph(data.graph)
+            setLesserForecastGraph(data.multiple)
         } catch (error) {
             setIsLoaded(true);
             setError(error);
@@ -33,7 +33,7 @@ const LesserForecast = (props) => {
     } else {
         return (
             <div className="lesser-forecast">
-               <span>test</span>
+               <LesserForecastGraph lesserForecastGraph={lesserForecastGraph} />
             </div>
         )
     }
