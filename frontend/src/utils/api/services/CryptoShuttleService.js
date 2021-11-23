@@ -72,5 +72,9 @@ const deleteSavedForecast = (id) => {
     return http.delete('/rest/delete-forecast', {data:{ "id": id }})
 }
 
-export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search, saveForecast, getLoggedInUser, getSavedForecasts, deleteSavedForecast}
+const lesserForecastInfo = (slug) => {
+    return http.get(`rest/forecast/lesser/coins?coin=${slug}`)
+}
+
+export default { topChart, loginUser, logoutUser, registerUser, marketGraph, trendingInfo, coinInfo, forecastInfo, lastViewed, globalMarketInfo, search, saveForecast, getLoggedInUser, getSavedForecasts, deleteSavedForecast, lesserForecastInfo}
 
