@@ -40,13 +40,17 @@ export const SavedForecast = (props) => {
     }
 
     const handleClick = (forecastId) =>{
-    
+        const currentForecasts = sortedData
+        const forecastsAfterDelete = currentForecasts.filter(f=> f._id !== forecastId)
+        
         try {
             CryptoShuttleService.deleteSavedForecast(forecastId)
             console.log("deleted forecast");
+            setSortedData(forecastsAfterDelete)
         }
         catch (e) {
             console.log(e.message);
+            setSortedData(currentForecasts)
         }
     }
     useEffect(() => {
