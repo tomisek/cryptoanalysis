@@ -1,62 +1,96 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from "react"
 import './Register.css'
-import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
-import { UserContext } from '../../shared/global/provider/UserProvider'
-import { useHistory } from 'react-router-dom'
+import useForm from "./UseForm";
+import validate from './RegisterFormValidationRules';
+import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
+import { UserContext } from "../../shared/global/provider/UserProvider"
+import { RegUserContext } from "../../shared/global/provider/RegUserProvider";
+import Popup from "reactjs-popup";
 
 export const Register = (props) => {
 
-    const [ email, setEmail ] = useState()
-    const [ password, setPassword ] = useState()
-    const [ name, setName ] = useState()
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
-    const history = useHistory()
+    const [registerError, setRegisterError] = useContext(RegUserContext)
+    /* const [registerError, setRegisterError] = useState() */
+    const {
+        values,
+        errors,
+        handleChange,
+        handleSubmit,
+      } = useForm(login, validate);
 
-    const logInUser = (userObject) => {
+      const logInUser = async ()   => {
+         
+         const email = values.email
+         const password = values.password
+         const userFromServer = await CryptoShuttleService.loginUser({email, password})
+         setAuthenticatedUser(userFromServer.data.access_token)
+         localStorage.setItem("token", userFromServer.data.access_token)
+         }
+     
 
-        setAuthenticatedUser(userObject['email'])
-        localStorage.setItem("name", userObject['name'])
-        console.log(authenticatedUser);
-        history.push('/userpage')
-
-    }
-    const registerUser = async (event) =>{
-        event.preventDefault()
+      //registering user
+      async function  login (e) {
+        if(e) e.preventDefault()
+        console.log('No errors, submit callback called!');
+        
         
         const userObject = {
-            "email": email,
-            "name": name,
-            "password": password
+            "email": values.email,
+            "name": values.name,
+            "password": values.password,
         }
         
         try{
             const response = await CryptoShuttleService.registerUser(userObject)
             console.log(response);
-            logInUser(userObject)
+            logInUser();
         }
         catch(error){
             if (error.response.data){
                 // Show error message from server
-                alert(error.response.data['error']);
+                setRegisterError(error.response.data['error'])
+                document.getElementById("noMatch").style.visibility = "visible"
             }
-
+      
             console.error(error.message);
         }
-    }
-
+      };
+    
     return (
-        <div className="registerPage">
-            
+        <div>
+            <Popup  trigger={<button className="regTriggerButton"> Register</button>} modal >
+                {close => (
             <div className="formWrapper">
-                <h1 className="title">{props.title}</h1>
-                <form onSubmit={registerUser}>
+                <button className="close" onClick={close}>
+                &times;
+                </button>
+                <h4>Register</h4>
+                <form onSubmit={handleSubmit} noValidate>
         
-                    <label htmlFor="email">Email</label><input id="email" type="email" onChange={event => setEmail(event.target.value)} required></input>
-                    <label htmlFor="name">Name</label><input id="name" onChange={event => setName(event.target.value)}></input>
-                    <label htmlFor="password">Password</label><input id="password" type="password" onChange={event => setPassword(event.target.value)} required></input>
-                    <button type="submit">Register</button>
+                    <label htmlFor="email">Email</label><input autoComplete="off" className={`input ${errors.email}`} type="email" name="email" onChange={handleChange} value={values.email || ''} required />
+                    {errors.email && (
+                    <p className="help">{errors.email}</p>
+                    )}
+                    <label htmlFor="name">Name</label><input autoComplete="off" className={`input ${errors.name}`} type="text" name="name" onChange={handleChange} value={values.name || ''} required />
+                    {errors.name && (
+                    <p className="help">{errors.name}</p>
+                    )}
+                    <label htmlFor="password">Password</label> <input className={`input ${errors.password}`} type="password" name="password" onChange={handleChange} value={values.password || ''} required />
+                
+                    {errors.password && (
+                    <p className="help">{errors.password}</p>
+                    )}
+                    <label htmlFor="password">Confirm Password</label><input className={`input ${errors.confirmPassword}`} type="password" name="confirmPassword" onChange={handleChange} value={values.confirmPassword || ''} required />
+                    {errors.confirmPassword && (
+                    <p className="help">{errors.confirmPassword}</p>
+                    )}
+                    <div id="noMatch">{registerError}</div>
+                    <button type="submit" className="regSubmit">Register</button>
                 </form>
             </div>
+                )}
+            </Popup>
         </div>
     )
 }
