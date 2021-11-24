@@ -6,12 +6,15 @@ import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
 import { UserContext } from "../../shared/global/provider/UserProvider"
 import { RegUserContext } from "../../shared/global/provider/RegUserProvider";
 import Popup from "reactjs-popup";
+import { PopupsContext } from "../../shared/global/provider/PopupsProvider";
 
 export const Register = (props) => {
 
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
     const [registerError, setRegisterError] = useContext(RegUserContext)
     /* const [registerError, setRegisterError] = useState() */
+    const [open, setOpen] = useContext(PopupsContext);
+    const closeModal = () => setOpen(false);
     const {
         values,
         errors,
@@ -45,6 +48,7 @@ export const Register = (props) => {
             const response = await CryptoShuttleService.registerUser(userObject)
             console.log(response);
             logInUser();
+            closeModal()
         }
         catch(error){
             if (error.response.data){
@@ -58,15 +62,19 @@ export const Register = (props) => {
       };
     
     return (
-        <div>
-            <Popup  trigger={<button className="regTriggerButton"> Register</button>} modal >
-                {close => (
+        
+            
             <div className="formWrapper">
-                <button className="close" onClick={close}>
-                &times;
-                </button>
-                <h4>Register</h4>
-                <form onSubmit={handleSubmit} noValidate>
+            <button type="button" className="button" onClick={() => setOpen(o => !o)}>
+            Sign Up
+            </button>
+            <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+            <div className="modal">
+                    <button className="close" onClick={closeModal}>
+                    &times;
+                    </button>
+                    <h4>Register</h4>
+                    <form onSubmit={handleSubmit} noValidate>
         
                     <label htmlFor="email">Email</label><input autoComplete="off" className={`input ${errors.email}`} type="email" name="email" onChange={handleChange} value={values.email || ''} required />
                     {errors.email && (
@@ -89,7 +97,7 @@ export const Register = (props) => {
                     <button type="submit" className="regSubmit">Register</button>
                 </form>
             </div>
-                )}
+            
             </Popup>
         </div>
     )

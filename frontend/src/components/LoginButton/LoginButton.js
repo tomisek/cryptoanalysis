@@ -3,6 +3,9 @@ import './LoginButton.css'
 import Popup from "reactjs-popup"
 import { UserContext } from "../../shared/global/provider/UserProvider"
 import CryptoShuttleService from "../../utils/api/services/CryptoShuttleService"
+import { Register } from "../register/Register"
+import { PopupsContext } from "../../shared/global/provider/PopupsProvider"
+
 
 
 export const LoginButton = () => {
@@ -10,6 +13,11 @@ export const LoginButton = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
+
+    const [open, setOpen] = useContext(PopupsContext)
+    
+
+    
     
     const handleSubmit = async (event)   => {
         event.preventDefault()
@@ -41,6 +49,10 @@ export const LoginButton = () => {
                         &times;
                         </button>
                         <h4>Log In</h4>
+                        <div>
+                            New to Crypto
+                            <span className="create-account" onClick={() => {close(); setOpen(true) }}> Create an account.</span>
+                            </div>
                         
                         <div>
                         <label ><b>Email</b></label><br/>
