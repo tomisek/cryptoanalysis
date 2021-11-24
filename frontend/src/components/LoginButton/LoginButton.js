@@ -3,7 +3,6 @@ import './LoginButton.css'
 import Popup from "reactjs-popup"
 import { UserContext } from "../../shared/global/provider/UserProvider"
 import CryptoShuttleService from "../../utils/api/services/CryptoShuttleService"
-import { Register } from "../register/Register"
 import { PopupsContext } from "../../shared/global/provider/PopupsProvider"
 
 
@@ -26,7 +25,6 @@ export const LoginButton = () => {
         const userFromServer = await CryptoShuttleService.loginUser({email, password})
         setAuthenticatedUser(userFromServer.data.access_token)
         localStorage.setItem("token", userFromServer.data.access_token)
-        /* document.getElementsById('noMatch').style.visibility = "hidden" */
         let btn = document.getElementById('forecastBtn')
         if(btn){
 

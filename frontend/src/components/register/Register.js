@@ -64,13 +64,13 @@ export const Register = (props) => {
     return (
         
             
-            <div className="formWrapper">
+            <div>
             <button type="button" className="registerButton" onClick={() => setOpen(o => !o)}>
             Sign Up
             </button>
             <Popup open={open} closeOnDocumentClick onClose={closeModal}>
-            <div className="modal">
-                    <button className="close" onClick={closeModal}>
+            <div className="wrapper">
+                    <button className="closeRegisterModal" onClick={closeModal}>
                     &times;
                     </button>
                     <h4>Register</h4>
