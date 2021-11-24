@@ -65,7 +65,7 @@ export const Register = (props) => {
         
             
             <div className="formWrapper">
-            <button type="button" className="button" onClick={() => setOpen(o => !o)}>
+            <button type="button" className="registerButton" onClick={() => setOpen(o => !o)}>
             Sign Up
             </button>
             <Popup open={open} closeOnDocumentClick onClose={closeModal}>
