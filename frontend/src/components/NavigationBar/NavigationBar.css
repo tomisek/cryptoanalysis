@@ -1,6 +1,6 @@
 .navBar{
     grid-area: header;
-    background-color: rgb(14, 241, 117);
+    background-color: white;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
 }
@@ -20,7 +20,23 @@
     gap: 20px;
     align-items: center;
 }
-.profileWrapper button{
-    background-color: pink;
+.profileWrapper .myPageButton{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.profileWrapper .logOutButton{
+    background-color: transparent;
+    border: none;   
     border-radius: 8px;
+    font-weight: 600;
+    width: 80px;
+    height: 32px;
+    font-size: 12px;
+    padding: 0px 16px;
+    line-height: 18px;
+}
+.profileWrapper .logOutButton:hover{
+    background-color: #f0f6ff;
+    
 }
