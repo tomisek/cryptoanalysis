@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { HomeView } from '../views/HomeView'
 import { UserContext } from '../shared/global/provider/UserProvider'
-import { RegisterView } from '../views/RegisterView'
 import { UserView } from '../views/UserView'
 import { CoinView } from '../views/CoinView/CoinView'
 
@@ -27,12 +26,7 @@ export const Routing = (props) => {
         <Router>
             {props.children}
             <Switch>
-                {
-                localStorage.getItem('token') ? <Redirect from='/userpage' to='/' /> : <Route exact path="/userpage" component={UserView} />
-                } 
-                {
-                /* localStorage.getItem('token') ? <Redirect from='/userregister' to='/' /> : <Route exact path="/userregister" component={RegisterView} /> */
-                } 
+                <Route exact path="/userpage" component={UserView} />
                 <Route path="/coins/:slug" component={CoinView} />
                 <Route component={HomeView} />
 
