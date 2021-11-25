@@ -14,28 +14,35 @@ export const NavigationBar = () => {
 
     
     const displayUserIfAuthenticated = () => {
-        return (authenticatedUser) ? <div className="profileWrapper"><Profile/></div>
-        : <div className="logField">
+        return (authenticatedUser) 
+        ? 
+        <Profile/>
+        : 
+        <div className="logField">
             <div className="item">
                 <Register/>
             </div>
             <div className="item">
                 <LoginButton/>
             </div>
-            
         </div>
     }
 
 
     return (
         <div className="navBar">
-            <img onClick={() => history.push('/')} className="logotype"
-                src={Logotype} alt="Error..." />
-            {/* <span onClick={() => history.push('/userregister')} className="register" >Register</span> */}
-            <div >
+            <div>
                 {displayUserIfAuthenticated()}
             </div>
+            <div className="header-search">
+                <div className="loggo-header">
+                    <img onClick={() => history.push('/')} className="logotype"
+                        src={Logotype} alt="Error..." />
+                    <h1>Crypto Shuttle</h1>
+                    {/* <span onClick={() => history.push('/userregister')} className="register" >Register</span> */}
+                </div>
                 <Search />
             </div>
+        </div>
     )
 }

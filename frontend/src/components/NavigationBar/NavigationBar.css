@@ -1,8 +1,7 @@
 .navBar{
     grid-area: header;
-    background-color: rgb(14, 241, 117);
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    display: flex;
+    flex-direction: column;
 }
 .logotype{
     cursor: pointer;
@@ -14,13 +13,26 @@
     gap: 20px;
 }
 .profileWrapper{
-    display:flex;
-    margin-top: 10px;
-    justify-content: space-between;
-    gap: 20px;
-    align-items: center;
+    text-align: end;
+    padding: 5px;
 }
 .profileWrapper button{
-    background-color: pink;
     border-radius: 8px;
+}
+
+.item {
+    text-align: end;
+}
+
+.header-search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #F0F6FF;
+    padding: 5px;
+}
+
+.loggo-header {
+    display: flex;
+    flex-direction: row;
 }
