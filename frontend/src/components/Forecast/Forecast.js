@@ -6,6 +6,7 @@ import ForecastGraph from './ForecastGraph.js'
 import ForecastMultiple from './ForecastMultiple.js'
 import { useParams } from 'react-router-dom'
 import CustomLoading from '../CustomLoading/CustomLoading';
+import RocketLoader from '../RocketLoader/RocketLoader';
 
 const Forecast = (props) => {
     const [error, setError] = useState(null);
@@ -36,7 +37,7 @@ const Forecast = (props) => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-        return <CustomLoading/>;
+        return <RocketLoader/>;
     } else {
         return (
             <div className="forecast">

@@ -1,0 +1,65 @@
+.body {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  padding: 0;
+  margin: 0;
+  font-family: Arial;
+
+}
+
+
+.loader {
+    width: 150px;
+    height: 150px;
+    margin: 0;
+    border-top: 8px double rgba(255, 114, 32, 0.973);
+    border-right: 4px solid transparent;
+    border-radius: 50%;
+    animation: 2s spin linear infinite; 
+}
+
+
+ .loader .rocket{
+    position:absolute;
+    top: 0;
+    left: 10px;
+    width: 100%;
+    height: 100%;
+    color: rgb(0, 0, 0);
+    font-size: 50px;
+    text-align:initial;
+    transform: rotate(100deg);
+}
+
+.loader .dot {
+    position: absolute;
+    top: 44px;
+    left: 146px;
+    background-color: yellow;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+}
+
+
+
+
+  
+
+  
+@keyframes spin {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+}
+
+
