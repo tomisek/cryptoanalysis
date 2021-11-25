@@ -50,3 +50,8 @@ def saveForecast():
 def getUser():
     current_user = get_jwt_identity()
     return jsonify(logged_in_as=current_user)
+
+@app.route('/rest/delete-forecast', methods=["DELETE"])
+def deleteForecast():
+    id = request.json['id']
+    return User().deleteForecast(id)

@@ -38,6 +38,21 @@ export const SavedForecast = (props) => {
      
         setSortedData(data) 
     }
+
+    const handleClick = (forecastId) =>{
+        const currentForecasts = sortedData
+        const forecastsAfterDelete = currentForecasts.filter(f=> f._id !== forecastId)
+        
+        try {
+            CryptoShuttleService.deleteSavedForecast(forecastId)
+            console.log("deleted forecast");
+            setSortedData(forecastsAfterDelete)
+        }
+        catch (e) {
+            console.log(e.message);
+            setSortedData(currentForecasts)
+        }
+    }
     useEffect(() => {
         getSavedForecasts()
     },[])
@@ -55,6 +70,7 @@ export const SavedForecast = (props) => {
                     <div className="sellDate">Sell date: {sortedData[key].sell_date}</div>
                     <div className="sellPrice">Sell price: ${sortedData[key].sell_price}</div>
                     <div className="maxGainPercent">Max gain: {sortedData[key].max_gain_procent}%</div>
+                    <button onClick={() =>handleClick(sortedData[key]._id)}>Delete</button>
                 </div>
             ))}
         </div>

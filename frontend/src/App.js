@@ -5,6 +5,7 @@ import './shared/global/css/Global.css'
 import {NavigationBar} from './components/NavigationBar/NavigationBar'
 import { Sidebar } from './components/Sidebar/Sidebar'
 import { RegUserProvider } from './shared/global/provider/RegUserProvider'
+import { PopupsProvider } from './shared/global/provider/PopupsProvider'
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   return (
     <UserProvider>
       <RegUserProvider>
+      <PopupsProvider>
       
       <Routing>
 
@@ -20,7 +22,7 @@ function App() {
         <Sidebar />
         
       </Routing>
-      
+      </PopupsProvider>
       </RegUserProvider>
 
     </UserProvider>

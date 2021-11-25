@@ -2,6 +2,8 @@
     grid-area: header;
     display: flex;
     flex-direction: column;
+    background-color: white;
+    grid-template-columns: repeat(10, 1fr);
 }
 .logotype{
     cursor: pointer;
@@ -35,4 +37,25 @@
 .loggo-header {
     display: flex;
     flex-direction: row;
+}
+
+.profileWrapper .myPageButton{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.profileWrapper .logOutButton{
+    background-color: transparent;
+    border: none;   
+    border-radius: 8px;
+    font-weight: 600;
+    width: 80px;
+    height: 32px;
+    font-size: 12px;
+    padding: 0px 16px;
+    line-height: 18px;
+}
+.profileWrapper .logOutButton:hover{
+    background-color: #f0f6ff;
+    
 }
