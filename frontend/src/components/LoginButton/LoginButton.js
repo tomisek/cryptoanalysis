@@ -48,7 +48,7 @@ export const LoginButton = () => {
                         </button>
                         <h4>Log In</h4>
                         <div>
-                            New to Crypto
+                            New to Crypto?
                             <span className="create-account" onClick={() => {close(); setOpen(true) }}> Create an account.</span>
                             </div>
                         

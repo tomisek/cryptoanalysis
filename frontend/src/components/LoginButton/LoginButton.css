@@ -51,11 +51,11 @@
   .submit{
     -webkit-box-align: center;
     align-items: center;
-    background: rgb(56, 97, 251);
+    background: #f0f6ff;
     border: 0px;
     border-radius: 8px;
     display: inline-flex;
-    color: rgb(255, 255, 255);
+    color: black;
     cursor: pointer;
     -webkit-box-pack: center;
     justify-content: center;
