@@ -5,7 +5,6 @@ import ForecastInfo from './ForecastInfo.js'
 import ForecastGraph from './ForecastGraph.js'
 import ForecastMultiple from './ForecastMultiple.js'
 import { useParams } from 'react-router-dom'
-import CustomLoading from '../CustomLoading/CustomLoading';
 import RocketLoader from '../RocketLoader/RocketLoader';
 
 const Forecast = (props) => {
