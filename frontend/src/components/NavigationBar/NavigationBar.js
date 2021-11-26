@@ -31,14 +31,14 @@ export const NavigationBar = () => {
 
     return (
         <div className="navBar">
-            <div>
+            <div className="signup-register">
                 {displayUserIfAuthenticated()}
             </div>
             <div className="header-search">
                 <div className="loggo-header">
                     <img onClick={() => history.push('/')} className="logotype"
                         src={Logotype} alt="Error..." />
-                    <h1>Crypto Shuttle</h1>
+                    <h1 onClick={() => history.push('/')}>Crypto Shuttle</h1>
                     {/* <span onClick={() => history.push('/userregister')} className="register" >Register</span> */}
                 </div>
                 <Search />
