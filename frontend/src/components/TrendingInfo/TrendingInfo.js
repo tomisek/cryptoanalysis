@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
 import './TrendingInfo.css'
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPepperHot } from '@fortawesome/free-solid-svg-icons'
 
 export const TrendingInfo = () => {
     const [error, setError] = useState(null);
@@ -30,7 +32,10 @@ export const TrendingInfo = () => {
     } else {
         return (
             <div className="trending-info">
-                <h3>Trending</h3>
+                <div className="header">
+                    <FontAwesomeIcon icon={faPepperHot} size="2x" color="red"/>
+                    <h3>Trending</h3>
+                </div>
                 {Object.keys(trendingInfo).map((key, index) => (
                     <div key={index}>
                         <Link to={`/coins/${key}`} className="trending-links"><h4>{key}</h4></Link>

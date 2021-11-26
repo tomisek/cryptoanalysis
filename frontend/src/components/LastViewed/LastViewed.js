@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
 import './LastViewed.css'
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-regular-svg-icons'
 
 
 export const LastViewed = () => {
@@ -46,7 +48,11 @@ export const LastViewed = () => {
     } else {
         return (
             <div className="last-viewed">
-                <h3>Last Viewed</h3>
+                <div className="header">
+                    <FontAwesomeIcon icon={faClock} size="2x"/> 
+                    <h3>Last Viewed</h3>
+
+                </div>
                 {Object.keys(lastViewed).map((key, index) => {
                     return (
                         <div key={lastViewed[key].id}>
