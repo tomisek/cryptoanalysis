@@ -1,7 +1,8 @@
 .navBar{
     grid-area: header;
+    display: flex;
+    flex-direction: column;
     background-color: white;
-    display: grid;
     grid-template-columns: repeat(10, 1fr);
 }
 .logotype{
@@ -10,33 +11,68 @@
 }
 .logField{
     display: flex;
-    margin-top: 25px;
+    justify-content: end;
     gap: 20px;
+    border-bottom: 1px solid #f0f6ff;
+    padding: 2px;
 }
 .profileWrapper{
-    display:flex;
-    margin-top: 10px;
-    justify-content: space-between;
-    gap: 20px;
-    align-items: center;
+    text-align: end;
+    padding: 2px;
+    border-bottom: 1px solid #f0f6ff;
+    font-weight: bold;
 }
+
+.signup-register {
+    padding: 5px;
+}
+
+.profileWrapper button{
+    border-radius: 8px;
+}
+
+.item {
+    text-align: end;
+}
+
+.header-search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    padding: 5px;
+    border-bottom: 1px solid #f0f6ff;
+}
+
+.loggo-header {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
 .profileWrapper .myPageButton{
     background-color: transparent;
     border: none;
     cursor: pointer;
+    font-weight: bold;
 }
 .profileWrapper .logOutButton{
     background-color: transparent;
     border: none;   
     border-radius: 8px;
-    font-weight: 600;
     width: 80px;
     height: 32px;
-    font-size: 12px;
     padding: 0px 16px;
     line-height: 18px;
+    margin: 0 10px;
+    font-weight: bold;
+    cursor: pointer;
 }
+
 .profileWrapper .logOutButton:hover{
     background-color: #f0f6ff;
-    
+}
+
+.myPageButton:hover {
+    color: #3861FB;
 }

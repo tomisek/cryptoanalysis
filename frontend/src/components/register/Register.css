@@ -42,6 +42,7 @@
    .registerButton{
     cursor: pointer;
     background: #3861FB;
+    color: white;
     border: 0px;
     border-radius: 8px;
     font-weight: 600;

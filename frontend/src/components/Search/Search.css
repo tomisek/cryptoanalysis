@@ -13,6 +13,7 @@
   padding: 15px;
   height: 30px;
   width: 300px;
+  background-color: #f0f6ff;
 }
 
 input:focus {
