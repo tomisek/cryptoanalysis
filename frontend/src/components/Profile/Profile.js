@@ -3,6 +3,7 @@ import {UserContext} from '../../shared/global/provider/UserProvider'
 import {useHistory} from 'react-router-dom'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
 import { LoginButton } from '../LoginButton/LoginButton'
+import { Register } from '../register/Register'
 
 export const Profile = () => {
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
@@ -59,10 +60,10 @@ export const Profile = () => {
     }
     else if (!isLoaded || !user.logged_in_as) {
         return   (
-            <div>
+            <div className="profileWrapper">
                 <span>Token expired. Please log in.</span>
+                <Register /> 
                 <LoginButton />
-
             </div>
         )}
     else if (error) {
