@@ -51,9 +51,9 @@ export const Profile = () => {
     if (isLoaded && user.logged_in_as) {
         return (
             <div className="profileWrapper">  
-                <span className="userLoggedIn">{user.logged_in_as.name}</span>
+                <button className="myPageButton" onClick={handleUserPage}>My Page</button>
                 <button className="logOutButton"  onClick={() => logout()}> Logout</button>
-                <button className="myPageButton" onClick={handleUserPage}>My page</button>
+                <span className="userLoggedIn">{user.logged_in_as.name}</span>
             </div>
         )
     }
