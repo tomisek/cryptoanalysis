@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService';
 import { useParams } from 'react-router-dom'
-import CustomLoading from '../CustomLoading/CustomLoading';
+import RocketLoader from '../RocketLoader/RocketLoader';
 import LesserForecastGraph from './LesserForecastGraph';
 
 const LesserForecast = (props) => {
@@ -29,7 +29,7 @@ const LesserForecast = (props) => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-        return <CustomLoading/>;
+        return <RocketLoader/>;
     } else {
         return (
             <div className="lesser-forecast">
