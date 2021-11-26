@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState}  from 'react'
 import {UserContext} from '../../shared/global/provider/UserProvider'
 import {useHistory} from 'react-router-dom'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
+import { LoginButton } from '../LoginButton/LoginButton'
 
 export const Profile = () => {
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
@@ -47,11 +48,7 @@ export const Profile = () => {
         
     }
 
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded || !user.logged_in_as) {
-        return "";
-    } else {
+    if (isLoaded && user.logged_in_as) {
         return (
             <div className="profileWrapper">  
                 <span className="userLoggedIn">{user.logged_in_as.name}</span>
@@ -60,4 +57,16 @@ export const Profile = () => {
             </div>
         )
     }
+    else if (!isLoaded || !user.logged_in_as) {
+        return   (
+            <div>
+                <span>Token expired. Please log in.</span>
+                <LoginButton />
+
+            </div>
+        )}
+    else if (error) {
+        return <div>Error: {error.message}</div>;
+    } 
+     
 }
