@@ -11,6 +11,7 @@ import { LoginButton } from "../../components/LoginButton/LoginButton";
 import { RunForecastButton } from "../../components/Forecast/RunForecastButton";
 
 
+
 export const CoinView = () => {
     const signInRef = useRef()
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
