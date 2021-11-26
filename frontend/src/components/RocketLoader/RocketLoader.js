@@ -12,7 +12,7 @@ const RocketLoader = () => {
     return (
             
             
-        <div className="body">
+        <div className="loader-body">
             <div className="loader">
                 <div className="rocket">
                     <FontAwesomeIcon icon={faRocket}/>
