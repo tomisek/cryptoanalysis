@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
 import "./SavedForecasts.css"
+import { Link } from 'react-router-dom';
+
 
 
 export const SavedForecast = (props) => {
@@ -63,14 +65,14 @@ export const SavedForecast = (props) => {
    
             {Object.keys(sortedData).map((key, index) => (
                 <div key={index} className="savedForecastInfo">
-                    <div className="coinName">{sortedData[key].coin.charAt(0).toUpperCase() + sortedData[key].coin.slice(1)}</div>
-                    <div className="dateMade">Date made: {sortedData[key].date_made}</div>
+                    <Link to={`/coins/${sortedData[key].coin}`} className="coinName"><h4>{sortedData[key].coin.charAt(0).toUpperCase() + sortedData[key].coin.slice(1)}</h4></Link>
+                    <div className="dateMade">Saved at: {sortedData[key].date_made}</div>
                     <div className="buyDate">Buy date: {sortedData[key].buy_date}</div>
                     <div className="buyPrice">Buy price: ${sortedData[key].buy_price}</div>
                     <div className="sellDate">Sell date: {sortedData[key].sell_date}</div>
                     <div className="sellPrice">Sell price: ${sortedData[key].sell_price}</div>
                     <div className="maxGainPercent">Max gain: {sortedData[key].max_gain_procent}%</div>
-                    <button onClick={() =>handleClick(sortedData[key]._id)}>Delete</button>
+                    <button className="deleteForecast" onClick={() =>handleClick(sortedData[key]._id)}>Delete</button>
                 </div>
             ))}
         </div>

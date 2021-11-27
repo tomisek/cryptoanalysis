@@ -1,7 +1,22 @@
 .last-viewed {
     text-align: center;
-    border: 1px solid black;
-    padding-bottom: 20px;
+    box-shadow: rgb(88 102 126 / 8%) 0px 4px 24px, rgb(88 102 126 / 12%) 0px 1px 2px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    margin-right: 15px;
+    padding: 12px 13px 35px;
+    margin-top: 80px;
+}
+.last-viewed .header{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.last-viewed .header h3{
+    padding-left: 8px;
+    padding-right: 20px;
 }
 
 .last-viewed h4 {
@@ -15,4 +30,8 @@
 
 .last-viewed-links h4 {
     font-size: 1em;
+}
+
+.last-viewed-links h4:hover {
+    color: #3861FB;
 }
