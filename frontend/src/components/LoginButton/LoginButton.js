@@ -75,13 +75,13 @@ export const LoginButton = () => {
                                     <p className="help">{errors.email}</p>
                                 )}
                             </div><br />
-                            <div>
-                                <label htmlFor="password">Password</label>
-                                <i className="eye-icon-login" onClick={togglePasswordVisiblity}>{passwordShown ? eyeSlash : eye}</i>
+                            <div className="login-password-icon">
+                                <label htmlFor="password">Password</label> 
                                 <input onChange={handleChange} name="password" type={passwordShown ? "text" : "password"} className={`input ${errors.password}`} placeholder="Enter Password" value={values.password || ''} required></input>
                                 {errors.password && (
                                     <p className="help">{errors.password}</p>
                                 )}
+                                <i className="eye-icon-login" onClick={togglePasswordVisiblity}>{passwordShown ? eyeSlash : eye}</i>
                             </div>
                             <div id="noMatch">Your email and password doesnt match. Please try again</div>
                             <div>

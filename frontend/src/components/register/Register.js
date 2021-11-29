@@ -99,13 +99,14 @@ export const Register = (props) => {
                                 <p className="help">{errors.name}</p>
                             )}
                         </div>
-                        <div className="passwordWrapper">
+                        <div className="register-password-icon">
                             <label htmlFor="password">Password</label>
-                            <i className="eye-icon-register" onClick={togglePasswordVisiblity}>{passwordShown ? eyeSlash : eye}</i>
+                            
                             <input className={`input ${errors.password}`} type={passwordShown ? "text" : "password"} name="password" onChange={handleChange} value={values.password || ''} required />
                             {errors.password && (
                                 <p className="help">{errors.password}</p>
                             )}
+                            <i className="eye-icon-register" onClick={togglePasswordVisiblity}>{passwordShown ? eyeSlash : eye}</i>
                         </div>
                         <div>
                             <label htmlFor="password">Confirm Password</label>

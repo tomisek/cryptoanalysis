@@ -73,9 +73,12 @@
     outline: none;
   	border: 1px solid rgb(38, 41, 214);
   }
-  .eye-icon-register{
+  .register-password-icon{
     position: relative;
+  }
+  .register-password-icon i{
+    position: absolute;
     top: 33px;
-    left: 400px;
+    right: 30px;
   }
   

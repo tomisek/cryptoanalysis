@@ -111,11 +111,14 @@
     color: #3861FB;
     cursor: pointer;
   }
-  
-  .eye-icon-login{
+  .login-password-icon{
     position: relative;
-    left: 400px;
-    top: 33px;
   }
+  .login-password-icon i{
+    position: absolute;
+    top: 33px;
+    right: 30px;
+  }
+  
 
  
