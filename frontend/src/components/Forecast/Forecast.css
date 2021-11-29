@@ -32,4 +32,20 @@
 .button button {
     padding: 7px;
 }
+#forecastBtn{
+    cursor: pointer;
+    background: #3861FB;
+    color: white;
+    border: 0px;
+    border-radius: 8px;
+    font-weight: 600;
+    width: auto;
+    height: 32px;
+    font-size: 12px;
+    padding: 0px 16px;
+    line-height: 18px;
+}
+#forecastBtn:hover{
+    background-color: #5d7df1;
+}
 
