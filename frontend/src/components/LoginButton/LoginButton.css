@@ -111,4 +111,11 @@
     color: #3861FB;
     cursor: pointer;
   }
+  
+  .eye-icon-login{
+    position: relative;
+    left: 420px;
+    top: 33px;
+  }
+
  

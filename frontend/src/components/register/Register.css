@@ -69,3 +69,13 @@
     border-radius: 18px;
     border: 1px solid #cfcece;
   }
+  input:focus{
+    outline: none;
+  	border: 1px solid rgb(38, 41, 214);
+  }
+  .eye-icon-register{
+    position: relative;
+    top: 34px;
+    left: 360px;
+  }
+  
