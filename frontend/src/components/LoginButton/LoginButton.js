@@ -7,6 +7,8 @@ import { PopupsContext } from "../../shared/global/provider/PopupsProvider"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import useForm from "./UseForm"
+import validate from "./LoginFormValidationRules"
 
 
 export const LoginButton = () => {
@@ -23,10 +25,22 @@ export const LoginButton = () => {
         setPasswordShown(passwordShown ? false : true);
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault()
+    const {
+        values,
+        errors,
+        handleChange,
+        handleSubmit,
+    } = useForm(login, validate);
+
+
+
+    async function login(e) {
+        if (e) e.preventDefault()
+        console.log('No errors, submit callback called!');
 
         try {
+            const email = values.email
+            const password = values.password
             const userFromServer = await CryptoShuttleService.loginUser({ email, password })
             setAuthenticatedUser(userFromServer.data.access_token)
             localStorage.setItem("token", userFromServer.data.access_token)
@@ -47,7 +61,7 @@ export const LoginButton = () => {
             <Popup trigger={<button className="triggerButton"> Login</button>} modal >
                 {close => (
                     <div>
-                        <form className="wrapper" onSubmit={handleSubmit}>
+                        <form className="wrapper" onSubmit={handleSubmit} noValidate>
                             <button className="close" onClick={close}>
                                 &times;
                             </button>
@@ -58,13 +72,18 @@ export const LoginButton = () => {
                             </div><br />
 
                             <div>
-                                <label ><b>Email</b></label><br />
-                                <input onChange={event => setEmail(event.target.value)} type="email" className="row" placeholder="Enter Email" name="email" required></input>
-                            </div><br />
+                                <label htmlFor="email">Email</label><input autoComplete="off" className={`input  ${errors.email}`} type="email" name="email" onChange={handleChange} value={values.email || ''} required />
+                                {errors.email && (
+                                    <p className="help">{errors.email}</p>
+                                )}
+                            </div>
                             <div>
                                 <label><b>Password</b></label><br />
                                 <i className="eye-icon-login" onClick={togglePasswordVisiblity}>{passwordShown ? eyeSlash : eye}</i>
-                                <input onChange={event => setPassword(event.target.value)} type={passwordShown ? "text" : "password"} className="row" placeholder="Enter Password" name="psw" required></input>
+                                <input onChange={handleChange} name="password" type={passwordShown ? "text" : "password"} className={`input ${errors.password}`} placeholder="Enter Password" value={values.password || ''} required></input>
+                                {errors.password && (
+                                    <p className="help">{errors.password}</p>
+                                )}
                             </div>
                             <div id="noMatch">Your email and password doesnt match. Please try again</div>
                             <div>
