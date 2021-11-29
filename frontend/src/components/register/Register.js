@@ -99,7 +99,7 @@ export const Register = (props) => {
                                 <p className="help">{errors.name}</p>
                             )}
                         </div>
-                        <div>
+                        <div className="passwordWrapper">
                             <label htmlFor="password">Password</label>
                             <i className="eye-icon-register" onClick={togglePasswordVisiblity}>{passwordShown ? eyeSlash : eye}</i>
                             <input className={`input ${errors.password}`} type={passwordShown ? "text" : "password"} name="password" onChange={handleChange} value={values.password || ''} required />
@@ -113,7 +113,7 @@ export const Register = (props) => {
                             {errors.confirmPassword && (
                                 <p className="help">{errors.confirmPassword}</p>
                             )}
-                        </div>
+                        </div><br />
                         <div id="noMatch">{registerError}</div>
                         <button type="submit" className="regSubmit">Register</button>
                     </form>

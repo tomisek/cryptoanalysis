@@ -25,7 +25,7 @@
     padding: 0px 24px;
     line-height: 24px;
   }
-  .input{
+  /* .input{
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(207, 214, 228);
     border-radius: 8px;
@@ -38,7 +38,7 @@
     font-size: 14px;
     height: 48px;
     line-height: 21px;
-  }
+  } */
    .registerButton{
     cursor: pointer;
     background: #3861FB;
@@ -75,7 +75,7 @@
   }
   .eye-icon-register{
     position: relative;
-    top: 34px;
-    left: 360px;
+    top: 33px;
+    left: 400px;
   }
   

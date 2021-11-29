@@ -13,8 +13,6 @@ import validate from "./LoginFormValidationRules"
 
 export const LoginButton = () => {
 
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
     const [open, setOpen] = useContext(PopupsContext)
     const [passwordShown, setPasswordShown] = useState(false)
@@ -67,7 +65,7 @@ export const LoginButton = () => {
                             </button>
                             <h4>Log In</h4>
                             <div>
-                                New to Crypto?
+                                New to Crypto Shuttle?
                                 <span className="create-account" onClick={() => { close(); setOpen(true) }}> Create an account.</span>
                             </div><br />
 
@@ -76,9 +74,9 @@ export const LoginButton = () => {
                                 {errors.email && (
                                     <p className="help">{errors.email}</p>
                                 )}
-                            </div>
+                            </div><br />
                             <div>
-                                <label><b>Password</b></label><br />
+                                <label htmlFor="password">Password</label>
                                 <i className="eye-icon-login" onClick={togglePasswordVisiblity}>{passwordShown ? eyeSlash : eye}</i>
                                 <input onChange={handleChange} name="password" type={passwordShown ? "text" : "password"} className={`input ${errors.password}`} placeholder="Enter Password" value={values.password || ''} required></input>
                                 {errors.password && (
