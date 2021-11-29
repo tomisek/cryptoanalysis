@@ -85,7 +85,7 @@
     font-weight: 600;
     width: auto;
     height: 32px;
-    font-size: 14px;
+    font-size: medium;
     padding: 0px 16px;
     line-height: 18px;
     background: transparent;
@@ -106,6 +106,7 @@
     background: #ffffff;
     border-radius: 18px;
     border: 1px solid #cfcece;
+    font-family: initial;
   }
   .create-account{
     color: #3861FB;
