@@ -60,10 +60,13 @@ export const Profile = () => {
     }
     else if (!isLoaded || !user.logged_in_as) {
         return   (
-            <div className="profileWrapper">
-                <span>Token expired. Please log in.</span>
-                <Register /> 
-                <LoginButton />
+            <div className="logField">
+                <div className="item">
+                    <Register/>
+                </div>
+                <div className="item">
+                    <LoginButton/>
+                </div>
             </div>
         )}
     else if (error) {
