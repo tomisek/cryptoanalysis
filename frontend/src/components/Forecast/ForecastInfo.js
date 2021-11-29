@@ -64,7 +64,7 @@ const ForecastInfo = (data) => {
                             </tr>
                         </tbody>
                     </table>
-                    <div className="button">
+                    <div className="saveForecastInfoButton">
                         <button onClick={handleClick}>Save forecast suggestions</button>
                     </div>
                     <div className="save-info">{showSaveInfo ? "Saved forecast." : null}</div>

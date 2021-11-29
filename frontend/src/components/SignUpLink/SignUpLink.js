@@ -1,5 +1,4 @@
 import React, {useContext} from 'react'
-import { LoginButton } from '../LoginButton/LoginButton';
 import "./SignUpLink.css"
 import { PopupsContext } from "../../shared/global/provider/PopupsProvider"
 
@@ -16,7 +15,7 @@ export const SignUpLink = () => {
             
                 
                 <p>New to Crypto Shuttle? </p>
-                <p onClick={() => {setOpen(true)}} className="register"> Register</p>
+                <p onClick={() => {setOpen(true)}} className="register"> Create an account</p>
 
                 
             

@@ -55,7 +55,7 @@ export const RunForecastButton = () => {
         
         
         <div className="forecast-button">
-            <input ref={btnRef} id="forecastBtn" type="submit" value="Run Forecast" onClick={onClick} />
+            <input ref={btnRef} id="forecastBtn" type="submit" value="Launch Forecast" onClick={onClick} />
             { showResults && user && <Forecast user={user}/> }
             { !user && showResults && <LesserForecast/> }
             

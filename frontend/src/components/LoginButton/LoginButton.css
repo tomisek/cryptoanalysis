@@ -34,7 +34,7 @@
   [data-popup='tooltip'].popup-overlay {
     background: transparent;
   }
-  .row{
+  .input{
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(207, 214, 228);
     border-radius: 8px;
@@ -51,7 +51,7 @@
   .submit{
     -webkit-box-align: center;
     align-items: center;
-    background: #f0f6ff;
+    background: #F0F6FF;
     border: 0px;
     border-radius: 8px;
     display: inline-flex;
@@ -111,4 +111,14 @@
     color: #3861FB;
     cursor: pointer;
   }
+  .login-password-icon{
+    position: relative;
+  }
+  .login-password-icon i{
+    position: absolute;
+    top: 33px;
+    right: 30px;
+  }
+  
+
  

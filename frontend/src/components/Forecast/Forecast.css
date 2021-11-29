@@ -23,13 +23,39 @@
     text-align: center;
 }
 
-
-.forecast-info .button, .forecast-info .save-info {
+.forecast-info .saveForecastInfoButton, .forecast-info .save-info {
     margin: 10px;
     display: flex;
     justify-content: center;
 }
-.button button {
+.saveForecastInfoButton button {
     padding: 7px;
+    cursor: pointer;
+    background: #3861FB;
+    color: white;
+    border: 0px;
+    border-radius: 8px;
+    font-weight: 600;
+    width: auto;
+    height: 32px;
+    font-size: 12px;
+    padding: 0px 16px;
+    line-height: 18px;
+}
+#forecastBtn{
+    cursor: pointer;
+    background: #3861FB;
+    color: white;
+    border: 0px;
+    border-radius: 8px;
+    font-weight: 600;
+    width: auto;
+    height: 32px;
+    font-size: 12px;
+    padding: 0px 16px;
+    line-height: 18px;
+}
+#forecastBtn:hover{
+    background-color: #5d7df1;
 }
 
