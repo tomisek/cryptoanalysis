@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=MuseoModerno:wght@100&display=swap');
+
 body{
     margin: 0;
     padding: 0;
     background-color:#F0F6FF ;
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+button {
+    font-family: inherit;
 }
 
 #root {

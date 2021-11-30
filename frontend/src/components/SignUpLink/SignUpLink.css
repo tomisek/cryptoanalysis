@@ -1,6 +1,9 @@
 .sign-up-link p.register {
     margin-left: 5px;
-    color: blue;
+    color: #3861FB;
     font-style: italic;
     cursor: pointer;
+}
+.sign-up-link{
+    padding: 8px;
 }

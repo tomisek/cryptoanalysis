@@ -40,22 +40,22 @@
     width: 100px;
     height: 40px;
     margin: 0 auto;
-    justify-content: center;
-
-
-    
+    justify-content: center;   
 }
 
 .sign-in {
     grid-area: d;
-    
-    align-items: center;
-    justify-content: center;
 }
-.sign-in div {
+
+.inside-div{
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    
+}
+.inside-div span{
+    border-radius: 8px;
+    background-color: white;
+    text-align: center;
+    box-shadow: rgb(88 102 126 / 8%) 0px 4px 24px, rgb(88 102 126 / 12%) 0px 1px 2px;
 }

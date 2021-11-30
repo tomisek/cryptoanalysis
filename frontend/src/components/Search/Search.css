@@ -3,6 +3,10 @@
   margin: 10px 10px 2px 10px;
 }
 
+.searchInputs ::placeholder{
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
 .search input {
   background-color: white;
   border: 0;
