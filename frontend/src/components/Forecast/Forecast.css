@@ -34,6 +34,7 @@
     padding: 7px;
 }
 
+
 .graph-info {
     box-shadow: rgb(88 102 126 / 8%) 0px 4px 24px, rgb(88 102 126 / 12%) 0px 1px 2px;
     background-color: #FFFFFF;
@@ -68,3 +69,13 @@
 .graph-info .expl-text h3{
     padding-top: 15px;
 }
+
+.recharts-layer.recharts-cartesian-axis.recharts-xAxis.xAxis {
+    font-size: small;
+  }
+
+#forecastBtn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: medium;
+}
+
