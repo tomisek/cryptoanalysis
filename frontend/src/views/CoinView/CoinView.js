@@ -1,4 +1,4 @@
-import React,{useState, useContext, useRef} from "react";
+import React, { useState, useContext, useRef } from "react";
 import './CoinView.css'
 import CoinHistoryGraph from '../../components/CoinHistoryGraph/CoinHistoryGraph'
 import { CoinInfoBox } from '../../components/CoinInfoBox/CoinInfoBox'
@@ -15,33 +15,37 @@ import { RunForecastButton } from "../../components/Forecast/RunForecastButton";
 export const CoinView = () => {
     const signInRef = useRef()
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
-    
-    
-    
+
+
+
     const displayIfNotAuth = () => {
-        
-        
-        if(authenticatedUser != null && signInRef.current) {
+
+
+        if (authenticatedUser != null && signInRef.current) {
             signInRef.current.setAttribute("hidden", "hidden")
         }
     }
-       
-      
+
+
     return (
         <div className="main">
             <div className="coin-view">
                 <CoinInfoBox />
                 <CoinHistoryGraph />
-                <SaveLastViewed />                
-                <RunForecastButton/>
-                                                       
+                <SaveLastViewed />
+                <RunForecastButton />
+
                 <div ref={signInRef} className="sign-in">
-                    {authenticatedUser == null && <LoginButton/>}
-                    {authenticatedUser == null && <SignUpLink/>}
-                    {displayIfNotAuth()}
+                    <div className="inside-div">
+                        <span>
+                            {authenticatedUser == null && <LoginButton />}
+                            {authenticatedUser == null && <SignUpLink />}
+
+                            {displayIfNotAuth()}
+                        </span>
+                    </div>
+
                 </div>
-                
-                                                             
             </div>
         </div>
     )
