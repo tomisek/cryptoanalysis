@@ -59,3 +59,10 @@
     margin-top: 15px;
     margin-left: 50px;
 }
+.sign-in div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    
+}
