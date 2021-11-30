@@ -58,17 +58,18 @@ export const LoginButton = () => {
         <div >
             <Popup trigger={<button className="triggerButton"> Login</button>} modal >
                 {close => (
-                    <div>
-                        <form className="wrapper" onSubmit={handleSubmit} noValidate>
-                            <button className="close" onClick={close}>
-                                &times;
-                            </button>
-                            <h4>Log In</h4>
-                            <div>
-                                New to Crypto Shuttle?
-                                <span className="create-account" onClick={() => { close(); setOpen(true) }}> Create an account.</span>
-                            </div><br />
+                    <div className="wrapper">
 
+                        <button className="close" onClick={close}>
+                            &times;
+                        </button>
+                        <h4>Log In</h4>
+                        <div>
+                            New to Crypto Shuttle?
+                            <span className="create-account" onClick={() => { close(); setOpen(true) }}> Create an account.</span>
+                        </div><br />
+
+                        <form onSubmit={handleSubmit} noValidate>
                             <div>
                                 <label htmlFor="email">Email</label><input autoComplete="off" className={`input  ${errors.email}`} type="email" name="email" onChange={handleChange} value={values.email || ''} required />
                                 {errors.email && (
@@ -76,17 +77,15 @@ export const LoginButton = () => {
                                 )}
                             </div><br />
                             <div className="login-password-icon">
-                                <label htmlFor="password">Password</label> 
+                                <label htmlFor="password">Password</label>
                                 <input onChange={handleChange} name="password" type={passwordShown ? "text" : "password"} className={`input ${errors.password}`} placeholder="Enter Password" value={values.password || ''} required></input>
                                 {errors.password && (
                                     <p className="help">{errors.password}</p>
                                 )}
                                 <i className="eye-icon-login" onClick={togglePasswordVisiblity}>{passwordShown ? eyeSlash : eye}</i>
-                            </div>
+                            </div><br />
                             <div id="noMatch">Your email and password doesnt match. Please try again</div>
-                            <div>
-                                <button type="submit" className="submit">Submit</button>
-                            </div>
+                            <button type="submit" className="submit">Submit</button>
                         </form>
                     </div>
                 )}
