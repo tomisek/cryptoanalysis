@@ -59,3 +59,11 @@
     background-color: #5d7df1;
 }
 
+.recharts-layer.recharts-cartesian-axis.recharts-xAxis.xAxis {
+    font-size: small;
+  }
+
+#forecastBtn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: medium;
+}
