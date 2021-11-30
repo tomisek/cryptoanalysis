@@ -33,3 +33,11 @@
     padding: 7px;
 }
 
+.recharts-layer.recharts-cartesian-axis.recharts-xAxis.xAxis {
+    font-size: small;
+  }
+
+#forecastBtn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: medium;
+}
