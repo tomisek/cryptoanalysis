@@ -43,25 +43,25 @@ import { faLevelUpAlt, faLevelDownAlt } from '@fortawesome/free-solid-svg-icons'
                         
             <div className="global-market-info">                                        
                 <div className="market-info">   
-                    <div>Active cryptos: {globalMarketInfo.active_cryptocurrencies}</div>
-                    <div>Market Cap: ${globalMarketInfo.total_market_cap}</div>
+                    <div>Active Cryptos: {globalMarketInfo.active_cryptocurrencies ? globalMarketInfo.active_cryptocurrencies.toLocaleString() : 'N/A'}</div>
+                    <div>Market Cap: ${globalMarketInfo.total_market_cap ? globalMarketInfo.total_market_cap.toLocaleString() : 'N/A'}</div>
                     <div className="cap-percentage"> Market Change: 
                         <div className={(globalMarketInfo.market_change_percentage < 0) ? 'negative' : 'positive'}>{globalMarketInfo.market_change_percentage}% <FontAwesomeIcon icon={(globalMarketInfo.market_change_percentage < 0) ? faLevelDownAlt : faLevelUpAlt}/></div>                                                                                                                 
                     </div>    
                     <div>Exchanges: {globalMarketInfo.total_markets}</div>
-                    <div>24h-Volume: ${globalMarketInfo.total_volume}</div>
+                    <div>24h-Volume: ${globalMarketInfo.total_volume ? globalMarketInfo.total_volume.toLocaleString() : 'N/A'}</div>
                     <div className="dominance"> 
                         {Object.keys(capPercentage).map((key, index) => {                                   
-                            return <div key={index}>                                        
-                                <span><img src={capPercentage[key].image} alt="logo" height="20"/></span>
+                            return <div key={index} className="dominance-market-cap">
+                                <img src={capPercentage[key].image} alt="logo" height="20"/>
                                 <span>{capPercentage[key].market_cap_percentage}%</span>
                             </div>                                   
                         })                                                                   
                         }
                     </div>
-                    <div>Updated at: {convertToDateTime(globalMarketInfo.updated_at)}</div>
-                    
+                    {/* <div>Updated: {convertToDateTime(globalMarketInfo.updated_at)}</div> */}
                 </div>                
+                    
             </div>
         )
     }

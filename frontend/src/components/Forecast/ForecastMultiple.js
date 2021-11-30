@@ -11,6 +11,7 @@ import {
     Line,
     Legend,
 } from "recharts";
+import Logotype from '../../shared/images/graph-line.jpg'
 
 const ForecastMultiple = (data) => {
 
@@ -65,6 +66,21 @@ const ForecastMultiple = (data) => {
                     <CartesianGrid opacity={0.4} />
                 </LineChart>
             </ResponsiveContainer>
+            <div className="graph-info">
+                <article>
+                    <div className="expl-text">
+                        <h3>Multiple Graph</h3>
+                        
+                        <p>
+                        Here you see another graph with the same dataset as before but with possibilites to create an assumtion for yourself.
+                        The three lines in this graph represent the upper predicted value, the median and the lowest predicited value. 
+                        These are all created during the process of predicting on the dataset. The "Predicted" value is the one used in the graph above. </p>
+                    </div>
+                    <div className="expl-picture">
+                        <img src={Logotype} alt="img"></img>
+                    </div>
+                </article>
+            </div>
         </div>
     )
 }

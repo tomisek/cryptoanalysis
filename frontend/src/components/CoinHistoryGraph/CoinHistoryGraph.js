@@ -104,7 +104,7 @@ const CoinHistoryGraph = () => {
                         <Brush dataKey="timestamp" />
                     </AreaChart>
                 </ResponsiveContainer>
-            </div>
+            </div>          
         );
     }
 }

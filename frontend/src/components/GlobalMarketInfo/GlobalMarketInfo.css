@@ -1,15 +1,16 @@
 .global-market-info {
-    
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 10px 0;
-    
-    
+    background: #FFFFFF;
+    padding: 20px 10px;
+    margin: 20px;
+    box-shadow: rgb(88 102 126 / 8%) 0px 4px 24px, rgb(88 102 126 / 12%) 0px 1px 2px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
 }
+
 
 .market-info {
     display: flex;
@@ -20,23 +21,26 @@
 }
 
 .cap-percentage {
-
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
     
 }
-
 
 .dominance {
-    
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    
 }
+
 .dominance span {
     margin-left: 5px;
+}
+
+.dominance-market-cap {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
 }
 
 .negative {
