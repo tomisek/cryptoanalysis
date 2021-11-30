@@ -10,6 +10,7 @@ import {
     Tooltip,
     CartesianGrid,
 } from "recharts";
+import Logotype from '../../shared/images/hadija-saidi-9cgMKmZyhH0-unsplash.jpg'
 
 const ForecastGraph = (data) => {
     var total = Object.keys(data.forecastGraph).length;
@@ -74,7 +75,25 @@ const ForecastGraph = (data) => {
                     <CartesianGrid opacity={0.4} vertical={false} />
                 </AreaChart>
             </ResponsiveContainer>
+            <div className="graph-info">
+                <article>
+                    <div className="expl-text">
+                        <h3>explanatory text</h3>
+                        
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                        optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+                        obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+                        nihil, eveniet aliquid culpa officia aut! </p>
+                    </div>
+                    <div className="expl-picture">
+                        <img src={Logotype} alt="img"></img>
+                    </div>
+                </article>
+            </div>
         </div>
+
     )
 
 }

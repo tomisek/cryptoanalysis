@@ -11,6 +11,7 @@ import {
     Line,
     Legend,
 } from "recharts";
+import Logotype from '../../shared/images/graph-line.jpg'
 
 const ForecastMultiple = (data) => {
 
@@ -65,6 +66,25 @@ const ForecastMultiple = (data) => {
                     <CartesianGrid opacity={0.4} />
                 </LineChart>
             </ResponsiveContainer>
+            <div className="graph-info">
+                <article>
+                    <div className="expl-text">
+                        <h3>explanatory text</h3>
+                        
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                        optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+                        obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+                        nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+                        tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+                        quia. </p>
+                    </div>
+                    <div className="expl-picture">
+                        <img src={Logotype} alt="img"></img>
+                    </div>
+                </article>
+            </div>
         </div>
     )
 }
