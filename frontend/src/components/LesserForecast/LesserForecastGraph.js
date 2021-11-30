@@ -10,7 +10,7 @@ import {
     Tooltip,
     CartesianGrid,
 } from "recharts";
-
+import Logotype from '../../shared/images/rocket-space-x.jpg'
 const LesserForecastGraph = (data) => {
 
 
@@ -50,6 +50,8 @@ const LesserForecastGraph = (data) => {
 
     return (
         <div className="forecast-graph">
+            <h3>15-days preditcion</h3>
+            
             <ResponsiveContainer width="100%" height={400}>
                 <AreaChart data={Object.values(data.lesserForecastGraph)}>
                     <defs>
@@ -74,6 +76,23 @@ const LesserForecastGraph = (data) => {
                     <CartesianGrid opacity={0.4} vertical={false} />
                 </AreaChart>
             </ResponsiveContainer>
+
+            <div className="graph-info">
+                <article>
+                    <div className="expl-text">
+                        <h3>Prediction Graph</h3>
+                        
+                        <p>Our prediction model is created by using historical data and the FbProphet AI model with multiplicative seasonality. 
+                        Why multiplicative instead of addiative? The choice came down to looking at the data and realizing that it is not linear at all, 
+                        because it is a market it is a ever chaning curve. This graph shows a restricted amount of days in the future.
+                        To be able to see the use of filtering methods that shows when to buy and sell, win/loss percentage etc. (create an account). 
+                        </p>
+                    </div>
+                    <div className="expl-picture">
+                        <img src={Logotype} alt="img"></img>
+                    </div>
+                </article>
+            </div>
         </div>
     )
 

@@ -69,16 +69,12 @@ const ForecastMultiple = (data) => {
             <div className="graph-info">
                 <article>
                     <div className="expl-text">
-                        <h3>explanatory text</h3>
+                        <h3>Multiple Graph</h3>
                         
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                        optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-                        obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-                        nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-                        tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
-                        quia. </p>
+                        <p>
+                        Here you see another graph with the same dataset as before but with possibilites to create an assumtion for yourself.
+                        The three lines in this graph represent the upper predicted value, the median and the lowest predicited value. 
+                        These are all created during the process of predicting on the dataset. The "Predicted" value is the one used in the graph above. </p>
                     </div>
                     <div className="expl-picture">
                         <img src={Logotype} alt="img"></img>

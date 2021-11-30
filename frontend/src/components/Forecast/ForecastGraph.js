@@ -78,14 +78,12 @@ const ForecastGraph = (data) => {
             <div className="graph-info">
                 <article>
                     <div className="expl-text">
-                        <h3>explanatory text</h3>
+                        <h3>Prediction Graph</h3>
                         
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                        optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-                        obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-                        nihil, eveniet aliquid culpa officia aut! </p>
+                        <p>Our prediction model is created by using historical data and the FbProphet AI model with multiplicative seasonality. 
+                        Why multiplicative instead of addiative? The choice came down to looking at the data and realizing that it is not linear at all, 
+                        because it is a market with an ever changing curve. The graph is showing predictons from past til future. The model has taking in to account all the data.
+                        Then we use filtering methods to find lowest and highest points in the dataset to be able to calculate when to buy and when to sell(only a prediciton).</p>
                     </div>
                     <div className="expl-picture">
                         <img src={Logotype} alt="img"></img>
