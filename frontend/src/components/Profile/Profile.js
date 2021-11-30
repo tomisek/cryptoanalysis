@@ -2,6 +2,8 @@ import React, { useEffect, useContext, useState}  from 'react'
 import {UserContext} from '../../shared/global/provider/UserProvider'
 import {useHistory} from 'react-router-dom'
 import CryptoShuttleService from '../../utils/api/services/CryptoShuttleService'
+import { LoginButton } from '../LoginButton/LoginButton'
+import { Register } from '../register/Register'
 
 export const Profile = () => {
     const [authenticatedUser, setAuthenticatedUser] = useContext(UserContext)
@@ -47,11 +49,7 @@ export const Profile = () => {
         
     }
 
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded || !user.logged_in_as) {
-        return "";
-    } else {
+    if (isLoaded && user.logged_in_as) {
         return (
             <div className="profileWrapper">  
                 <button className="myPageButton" onClick={handleUserPage}>My Page</button>
@@ -60,4 +58,19 @@ export const Profile = () => {
             </div>
         )
     }
+    else if (!isLoaded || !user.logged_in_as) {
+        return   (
+            <div className="logField">
+                <div className="item">
+                    <Register/>
+                </div>
+                <div className="item">
+                    <LoginButton/>
+                </div>
+            </div>
+        )}
+    else if (error) {
+        return <div>Error: {error.message}</div>;
+    } 
+     
 }

@@ -48,7 +48,7 @@
     font-weight: 600;
     width: 80px;
     height: 32px;
-    font-size: 12px;
+    font-size: medium;
     padding: 0px 16px;
     line-height: 18px;
 
@@ -68,6 +68,8 @@
     background: #ffffff;
     border-radius: 18px;
     border: 1px solid #cfcece;
+    font-family: initial;
+
   }
   input:focus{
     outline: none;
@@ -81,4 +83,7 @@
     top: 33px;
     right: 30px;
   }
+ 
+    
   
+
