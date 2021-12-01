@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom'
 import { Profile } from '../Profile/Profile'
 import { UserContext} from '../../shared/global/provider/UserProvider'
 import { Register } from '../register/Register'
+import { Darkmode } from '../Darkmode/Darkmode'
 
 export const NavigationBar = () => {
     const history = useHistory();
@@ -31,11 +32,15 @@ export const NavigationBar = () => {
 
     return (
         <div className="navBar">
-            <div className="signup-register">
-                {displayUserIfAuthenticated()}
+            <div className="top-navbar">
+                <Darkmode />
+                <div className="signup-register">
+                    {displayUserIfAuthenticated()}
+                </div>
             </div>
             <div className="header-search">
                 <div className="loggo-header">
+                    
                     <img onClick={() => history.push('/')} className="logotype"
                         src={Logotype} alt="Error..." />
                     <h1 onClick={() => history.push('/')}>Crypto Shuttle</h1>
