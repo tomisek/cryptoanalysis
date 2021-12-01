@@ -10,6 +10,7 @@ from functools import wraps
 from instance.config import CONNECTION_STRING
 from JSONencoder import MyEncoder
 from flask_jwt_extended import JWTManager
+from waitress import serve
 import pymongo
 
 app = Flask(__name__, instance_relative_config=True)
@@ -175,6 +176,7 @@ def search_all_coins():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run()
 
+    serve(app, host='0.0.0.0', port=8080)
 
