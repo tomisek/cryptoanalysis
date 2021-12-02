@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import './Darkmode.css'
 import {
     setFetchMethod,
@@ -12,26 +12,50 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 
 export const Darkmode = () => {
 
-    const toggleDarkmode= () => {
+    // Sets darkmode
+    const darkmode = () => {
+        enableDarkMode({
+            brightness: 100,
+            contrast: 90,
+            sepia: 10,
+        });
+        followSystemColorScheme();
+    }
+
+    // Toggle between normal and darkmode
+    const toggleDarkmode = () => {
         setFetchMethod(window.fetch)
         const isEnabled = isDarkReaderEnabled();
 
         if (!isEnabled) {
-            enableDarkMode({
-                brightness: 100,
-                contrast: 90,
-                sepia: 10,
-            });
-            followSystemColorScheme();
+            darkmode()
+            localStorage.setItem("darkmode", true);
         } else {
             disableDarkMode();
+            localStorage.setItem("darkmode", false);
         }
     }
+
+    // Calls darkmode function if saved in localstorage
+    if (localStorage.getItem("darkmode") === "true") {
+        darkmode()
+    } else {
+        disableDarkMode();
+    }
+
+    // Checks darkmode button if saved in localstorage
+    useEffect(() => {
+        if (localStorage.getItem("darkmode") === "true") {
+            document.getElementById("darkmode-button").checked = true;
+        } else {
+            document.getElementById("darkmode-button").checked = false;
+        }
+    });
 
     return (
         <div className="darkmode">
             <label class="switch">
-                <input onClick={toggleDarkmode} type="checkbox"></input>
+                <input id="darkmode-button" onClick={toggleDarkmode} type="checkbox"></input>
                 <span class="slider round">
                     <FontAwesomeIcon className="sun" icon={faSun} />
                     <FontAwesomeIcon className="moon" icon={faMoon} />
