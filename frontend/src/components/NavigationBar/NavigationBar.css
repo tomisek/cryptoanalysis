@@ -13,13 +13,11 @@
     display: flex;
     justify-content: end;
     gap: 20px;
-    border-bottom: 1px solid #f0f6ff;
     padding: 2px;
 }
 .profileWrapper{
     text-align: end;
     padding: 2px;
-    border-bottom: 1px solid #f0f6ff;
     font-weight: bold;
 }
 
@@ -78,4 +76,10 @@
 
 .myPageButton:hover {
     color: #3861FB;
+}
+
+.top-navbar {
+    display: flex;
+    justify-content: end;
+    border-bottom: 1px solid #f0f6ff;
 }
