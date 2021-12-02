@@ -14,6 +14,7 @@ export const Darkmode = () => {
 
     // Sets darkmode
     const darkmode = () => {
+        setFetchMethod(window.fetch)
         enableDarkMode({
             brightness: 100,
             contrast: 90,
@@ -24,7 +25,6 @@ export const Darkmode = () => {
 
     // Toggle between normal and darkmode
     const toggleDarkmode = () => {
-        setFetchMethod(window.fetch)
         const isEnabled = isDarkReaderEnabled();
 
         if (!isEnabled) {
@@ -54,9 +54,9 @@ export const Darkmode = () => {
 
     return (
         <div className="darkmode">
-            <label class="switch">
+            <label className="switch">
                 <input id="darkmode-button" onClick={toggleDarkmode} type="checkbox"></input>
-                <span class="slider round">
+                <span className="slider round">
                     <FontAwesomeIcon className="sun" icon={faSun} />
                     <FontAwesomeIcon className="moon" icon={faMoon} />
                 </span>
