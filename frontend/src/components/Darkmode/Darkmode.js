@@ -4,7 +4,6 @@ import {
     setFetchMethod,
     enable as enableDarkMode,
     disable as disableDarkMode,
-    auto as followSystemColorScheme,
     isEnabled as isDarkReaderEnabled
 } from 'darkreader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,7 +19,6 @@ export const Darkmode = () => {
             contrast: 90,
             sepia: 10,
         });
-        followSystemColorScheme();
     }
 
     // Toggle between normal and darkmode
