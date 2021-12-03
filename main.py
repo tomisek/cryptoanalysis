@@ -7,18 +7,22 @@ from api_calls import getAllCoinNames, getGlobalCryptoMarket, getSingleCoinInfo,
 from help_functions import missingvalues_tool, numeric_evaluations
 from flask_cors import CORS
 from functools import wraps
-from instance.config import CONNECTION_STRING
+# from instance.config import CONNECTION_STRING
 from JSONencoder import MyEncoder
 from flask_jwt_extended import JWTManager
 import pymongo
+import os
+# from instance.config import SECRET_KEY
 
 app = Flask(__name__, instance_relative_config=True)
 # Need to add a 'instance'-folder with config.py-file containing secret key!
-app.config.from_pyfile('config.py')
+# app.config.from_pyfile('config.py')
+SECRET_KEY = os.environ.get("SECRET_KEY", None)
 app.json_encoder = MyEncoder
 jwt = JWTManager(app)
 
 #Database
+CONNECTION_STRING = os.environ.get("CONNECTION_STRING")
 client = pymongo.MongoClient(CONNECTION_STRING, connect=False)
 db = client.cryptoShuttleDB
 
@@ -173,8 +177,9 @@ def search_all_coins():
     return result
 
 
+port = int(os.environ.get("PORT", 5000))
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False, host='0.0.0.0', port=port)
 
 
