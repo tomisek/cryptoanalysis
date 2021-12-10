@@ -34,7 +34,6 @@ export const LoginButton = () => {
 
     async function login(e) {
         if (e) e.preventDefault()
-        console.log('No errors, submit callback called!');
 
         try {
             const email = values.email

@@ -13,7 +13,6 @@ export const Routing = (props) => {
 
     const checkIfUserIsAuthenticatedInBrowser = () => {
         setAuthenticatedUser(localStorage.getItem("token"))
-        console.log(authenticatedUser)
     }
 
     useEffect(() => {
