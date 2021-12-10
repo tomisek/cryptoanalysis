@@ -37,7 +37,6 @@ export const Profile = () => {
 
         try{
             const userFromServer = await CryptoShuttleService.logoutUser()
-            console.log(userFromServer)
             localStorage.removeItem('token')
             setAuthenticatedUser(false)
             history.push('/')
