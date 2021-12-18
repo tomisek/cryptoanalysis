@@ -54,7 +54,7 @@ function Topcoins() {
                                 <td>{topcoins[key].name}</td>
                                 <td>${topcoins[key].current_price}</td>
                                 <td className={(topcoins[key].price_change_percentage_24h < 0) ? 'negative' : 'positive'}>
-                                    {topcoins[key].price_change_percentage_24h.toLocaleString()}%
+                                    {topcoins[key].price_change_percentage_24h ? topcoins[key].price_change_percentage_24h.toLocaleString() +'%' : 'N/A'}
                                 </td>
                                 <td>${topcoins[key].market_cap.toLocaleString()}</td>
                             </tr>
