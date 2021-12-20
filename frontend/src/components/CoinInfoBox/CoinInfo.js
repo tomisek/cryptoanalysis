@@ -26,7 +26,7 @@ export const CoinInfo = (props) => {
                         <div className="singleCoinTitle">
                             <img src={allinfo[coin].image} alt="logo"></img>
                             <h1>{allinfo[coin].name}</h1>
-                            <h1>${allinfo[coin].current_price.toLocaleString()}</h1>
+                            <h1>${allinfo[coin].current_price}</h1>
                             <div>{allinfo[coin].market_cap_change_percentage_24h}%</div>
                             <div>Rank #{allinfo[coin].market_cap_rank}</div>
 
