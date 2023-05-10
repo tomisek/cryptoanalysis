@@ -2,6 +2,7 @@
 
 
 An app for predicting future cryptocurrency prices. 
+https://tomisek.github.io/cryptoanalysis/
 
 ***
 
